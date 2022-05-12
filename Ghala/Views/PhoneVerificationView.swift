@@ -9,6 +9,9 @@ import SwiftUI
 
 struct PhoneVerificationView: View {
     
+    var colors = flag
+        @State private var selectContryCode =  "KE 🇰🇪"
+    
     @ObservedObject var userService = Service()
     @ObservedObject var userViewModel = UserViewModel(userService: Service())
     
@@ -43,17 +46,32 @@ struct PhoneVerificationView: View {
                 .frame(
                       //minWidth: 0,
                       maxWidth: .infinity,
-                      maxHeight: 300,
+                      maxHeight: 350,
                       alignment: .topLeading
                     )
                 .background(Color.yellow)
                
                 VStack {
                     
+                    //MARK: To-Do Add Country Code with flags
+                    /*
+                     https://www.reddit.com/r/swift/comments/hnjwrm/how_can_i_get_the_country_code_or_country_name/fxds870/
+                     
+                     
+                     */
+                    
+                    Picker("Please choose a country Code", selection: $selectContryCode) {
+                        ForEach(colors, id: \.self) {
+                            Text($0)
+                        }
+                    }.foregroundColor(.black)
+                        .padding(.top, 100)
+                    
                     TextField("Phone number", text: $user.phoneNumber)
                         .frame(width: 350.0)
                         .overlay(VStack{Divider().offset(x: 0, y: 10)})
-                        .padding(.top, 80)
+                        .padding(.top, 10)
+                        .keyboardType(/*@START_MENU_TOKEN@*/.numberPad/*@END_MENU_TOKEN@*/)
                     
                     Button {
                         Task {
@@ -82,7 +100,7 @@ struct PhoneVerificationView: View {
                         .fill(Color(UIColor.white))
                     
                 )
-                .offset(y: -40)
+                .offset(y: -50)
                 Spacer()
                             // .padding(.bottom, -130)
             }
