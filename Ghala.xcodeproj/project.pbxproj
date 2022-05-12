@@ -72,10 +72,10 @@
 		201B05AF282D7E94002B6629 /* Verification */ = {
 			isa = PBXGroup;
 			children = (
-				201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */,
 				201B05B5282D8E01002B6629 /* OTPVerificationView.swift */,
-				201B05B4282D8C75002B6629 /* SubViews */,
+				201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */,
 				2073C42C282DA78A008E749F /* PinVerificationView.swift */,
+				201B05B4282D8C75002B6629 /* SubViews */,
 			);
 			path = Verification;
 			sourceTree = "<group>";
