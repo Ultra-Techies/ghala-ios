@@ -12,10 +12,12 @@
 		201B05AA282D09B5002B6629 /* PhoneVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */; };
 		201B05AC282D1176002B6629 /* enterOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05AB282D1176002B6629 /* enterOTP.swift */; };
 		201B05AE282D5D77002B6629 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05AD282D5D77002B6629 /* extensions.swift */; };
-		201B05B1282D7F1D002B6629 /* TopInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B0282D7F1D002B6629 /* TopInfoView.swift */; };
-		201B05B3282D8226002B6629 /* phoneInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B2282D8226002B6629 /* phoneInputView.swift */; };
+		201B05B1282D7F1D002B6629 /* TopInfoSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B0282D7F1D002B6629 /* TopInfoSubView.swift */; };
+		201B05B3282D8226002B6629 /* PhoneInputSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B2282D8226002B6629 /* PhoneInputSubView.swift */; };
 		201B05B6282D8E04002B6629 /* OTPVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B5282D8E01002B6629 /* OTPVerificationView.swift */; };
-		2073C429282D9714008E749F /* OTPCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C428282D9714008E749F /* OTPCodeView.swift */; };
+		2073C429282D9714008E749F /* OTPCodeSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C428282D9714008E749F /* OTPCodeSubView.swift */; };
+		2073C42B282DA6D9008E749F /* PinVerificationSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C42A282DA6D8008E749F /* PinVerificationSubView.swift */; };
+		2073C42D282DA78A008E749F /* PinVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C42C282DA78A008E749F /* PinVerificationView.swift */; };
 		207A076D282C57AC003C7EBD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A076C282C57AC003C7EBD /* User.swift */; };
 		207A076F282C5810003C7EBD /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A076E282C5810003C7EBD /* UserService.swift */; };
 		207A0771282C59BA003C7EBD /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A0770282C59BA003C7EBD /* UserViewModel.swift */; };
@@ -31,10 +33,12 @@
 		201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationView.swift; sourceTree = "<group>"; };
 		201B05AB282D1176002B6629 /* enterOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enterOTP.swift; sourceTree = "<group>"; };
 		201B05AD282D5D77002B6629 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
-		201B05B0282D7F1D002B6629 /* TopInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopInfoView.swift; sourceTree = "<group>"; };
-		201B05B2282D8226002B6629 /* phoneInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = phoneInputView.swift; sourceTree = "<group>"; };
+		201B05B0282D7F1D002B6629 /* TopInfoSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopInfoSubView.swift; sourceTree = "<group>"; };
+		201B05B2282D8226002B6629 /* PhoneInputSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneInputSubView.swift; sourceTree = "<group>"; };
 		201B05B5282D8E01002B6629 /* OTPVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationView.swift; sourceTree = "<group>"; };
-		2073C428282D9714008E749F /* OTPCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCodeView.swift; sourceTree = "<group>"; };
+		2073C428282D9714008E749F /* OTPCodeSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCodeSubView.swift; sourceTree = "<group>"; };
+		2073C42A282DA6D8008E749F /* PinVerificationSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationSubView.swift; sourceTree = "<group>"; };
+		2073C42C282DA78A008E749F /* PinVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationView.swift; sourceTree = "<group>"; };
 		207A076C282C57AC003C7EBD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		207A076E282C5810003C7EBD /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		207A0770282C59BA003C7EBD /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -71,6 +75,7 @@
 			children = (
 				201B05B5282D8E01002B6629 /* OTPVerificationView.swift */,
 				201B05B4282D8C75002B6629 /* SubViews */,
+				2073C42C282DA78A008E749F /* PinVerificationView.swift */,
 			);
 			path = Verification;
 			sourceTree = "<group>";
@@ -78,9 +83,10 @@
 		201B05B4282D8C75002B6629 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				201B05B2282D8226002B6629 /* phoneInputView.swift */,
-				201B05B0282D7F1D002B6629 /* TopInfoView.swift */,
-				2073C428282D9714008E749F /* OTPCodeView.swift */,
+				201B05B2282D8226002B6629 /* PhoneInputSubView.swift */,
+				201B05B0282D7F1D002B6629 /* TopInfoSubView.swift */,
+				2073C428282D9714008E749F /* OTPCodeSubView.swift */,
+				2073C42A282DA6D8008E749F /* PinVerificationSubView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -221,20 +227,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				201B05B3282D8226002B6629 /* phoneInputView.swift in Sources */,
+				201B05B3282D8226002B6629 /* PhoneInputSubView.swift in Sources */,
 				207A076F282C5810003C7EBD /* UserService.swift in Sources */,
 				201B05A7282CE1A4002B6629 /* Service.swift in Sources */,
 				20C22702282C2255009BAD5C /* ContentView.swift in Sources */,
 				201B05A5282C6C94002B6629 /* numberOtp.swift in Sources */,
-				2073C429282D9714008E749F /* OTPCodeView.swift in Sources */,
+				2073C429282D9714008E749F /* OTPCodeSubView.swift in Sources */,
 				20C22700282C2255009BAD5C /* GhalaApp.swift in Sources */,
 				201B05AE282D5D77002B6629 /* extensions.swift in Sources */,
 				207A0771282C59BA003C7EBD /* UserViewModel.swift in Sources */,
+				2073C42D282DA78A008E749F /* PinVerificationView.swift in Sources */,
 				201B05AA282D09B5002B6629 /* PhoneVerificationView.swift in Sources */,
 				207A076D282C57AC003C7EBD /* User.swift in Sources */,
 				201B05B6282D8E04002B6629 /* OTPVerificationView.swift in Sources */,
 				201B05AC282D1176002B6629 /* enterOTP.swift in Sources */,
-				201B05B1282D7F1D002B6629 /* TopInfoView.swift in Sources */,
+				2073C42B282DA6D9008E749F /* PinVerificationSubView.swift in Sources */,
+				201B05B1282D7F1D002B6629 /* TopInfoSubView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

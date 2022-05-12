@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OTPCodeView: View {
+struct OTPCodeSubView: View {
     
     @State var code1: Int
     @State var code2: Int
@@ -67,7 +67,7 @@ struct OTPCodeView: View {
 
 struct OTPCodeView_Previews: PreviewProvider {
     static var previews: some View {
-        OTPCodeView(code1: 1, code2: 2, code3: 3, code4: 4)
+        OTPCodeSubView(code1: 1, code2: 2, code3: 3, code4: 4)
     }
 }
 

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TopInfoView: View {
+struct TopInfoSubView: View {
     
     @State var title: String
     @State var description: String
@@ -37,6 +37,6 @@ struct TopInfoView: View {
 
 struct TopInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        TopInfoView(title: "Mobile Number", description: "We need to send an OTP to authenticate your number")
+        TopInfoSubView(title: "Mobile Number", description: "We need to send an OTP to authenticate your number")
     }
 }

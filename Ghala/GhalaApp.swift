@@ -13,6 +13,7 @@ struct GhalaApp: App {
         WindowGroup {
            // ContentView(user: User())
             PhoneVerificationView()
+           
         }
     }
 }
