@@ -21,6 +21,10 @@ struct RoundedCornersShape: Shape {
     }
 }
 
+extension Color {
+    static let buttonColor = Color("buttonColor")
+}
+
 
 
 let flags: [String: String] = [

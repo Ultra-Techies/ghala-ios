@@ -12,7 +12,7 @@ struct GhalaApp: App {
     var body: some Scene {
         WindowGroup {
            // ContentView(user: User())
-            PhoneVerificationView(user: User())
+            PhoneVerificationView()
         }
     }
 }
