@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		201B05A5282C6C94002B6629 /* numberOtp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05A4282C6C94002B6629 /* numberOtp.swift */; };
 		201B05A7282CE1A4002B6629 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05A6282CE1A4002B6629 /* Service.swift */; };
+		201B05AA282D09B5002B6629 /* PhoneVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */; };
+		201B05AC282D1176002B6629 /* enterOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05AB282D1176002B6629 /* enterOTP.swift */; };
+		201B05AE282D5D77002B6629 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05AD282D5D77002B6629 /* extensions.swift */; };
 		207A076D282C57AC003C7EBD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A076C282C57AC003C7EBD /* User.swift */; };
 		207A076F282C5810003C7EBD /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A076E282C5810003C7EBD /* UserService.swift */; };
 		207A0771282C59BA003C7EBD /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A0770282C59BA003C7EBD /* UserViewModel.swift */; };
@@ -21,6 +24,9 @@
 /* Begin PBXFileReference section */
 		201B05A4282C6C94002B6629 /* numberOtp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = numberOtp.swift; sourceTree = "<group>"; };
 		201B05A6282CE1A4002B6629 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationView.swift; sourceTree = "<group>"; };
+		201B05AB282D1176002B6629 /* enterOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enterOTP.swift; sourceTree = "<group>"; };
+		201B05AD282D5D77002B6629 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		207A076C282C57AC003C7EBD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		207A076E282C5810003C7EBD /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		207A0770282C59BA003C7EBD /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -42,6 +48,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		201B05A8282D0992002B6629 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */,
+				201B05AB282D1176002B6629 /* enterOTP.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		207A076A282C5789003C7EBD /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +101,7 @@
 		20C226FE282C2255009BAD5C /* Ghala */ = {
 			isa = PBXGroup;
 			children = (
+				201B05A8282D0992002B6629 /* Views */,
 				207A0772282C59BE003C7EBD /* ViewModel */,
 				207A076B282C578F003C7EBD /* Services */,
 				207A076A282C5789003C7EBD /* Model */,
@@ -94,6 +110,7 @@
 				20C22703282C2259009BAD5C /* Assets.xcassets */,
 				20C22705282C2259009BAD5C /* Preview Content */,
 				201B05A4282C6C94002B6629 /* numberOtp.swift */,
+				201B05AD282D5D77002B6629 /* extensions.swift */,
 			);
 			path = Ghala;
 			sourceTree = "<group>";
@@ -181,8 +198,11 @@
 				20C22702282C2255009BAD5C /* ContentView.swift in Sources */,
 				201B05A5282C6C94002B6629 /* numberOtp.swift in Sources */,
 				20C22700282C2255009BAD5C /* GhalaApp.swift in Sources */,
+				201B05AE282D5D77002B6629 /* extensions.swift in Sources */,
 				207A0771282C59BA003C7EBD /* UserViewModel.swift in Sources */,
+				201B05AA282D09B5002B6629 /* PhoneVerificationView.swift in Sources */,
 				207A076D282C57AC003C7EBD /* User.swift in Sources */,
+				201B05AC282D1176002B6629 /* enterOTP.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

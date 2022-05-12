@@ -19,7 +19,7 @@ class Service: ObservableObject {
     
     
     //MARK: Check if User Exists
-    func checkIfUserExists(user: User) async throws {
+    func checkIfUserExists(user: User) async throws -> check {
         guard let url = URL(string: "http://localhost:8080/api/users") else {
             throw NetworkError.invalidURL
         }
@@ -33,7 +33,7 @@ class Service: ObservableObject {
         request.httpMethod = "POST"
         request.httpBody = phoneEncoded // Set HTTP Request Body
         
-        do {
+       // do {
             let (data, response) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
             print(data)
         
@@ -43,16 +43,16 @@ class Service: ObservableObject {
                      throw NetworkError.invalidResponse
                  }
             
-            print(response)
+            //print(response)
             
             let decoded = try JSONDecoder().decode(check.self, from: data)
+            //print(decoded.exists)
             
-            print(decoded)
             // let stringValue = String(decoding: usenumber, as: UTF8.self)
-        } catch {
-            print(error.localizedDescription)
-        }
-        
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+        return decoded
         
     }
     
