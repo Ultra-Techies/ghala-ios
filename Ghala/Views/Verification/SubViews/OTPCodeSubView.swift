@@ -54,7 +54,7 @@ struct OTPCodeSubView: View {
                     .fontWeight(.light)
                     .multilineTextAlignment(.center)
                 
-                let _ = print(String(describing: "OTP is:  \(userService.otpCode.otp)"))
+                let _ = print(String(describing: "OTP is on OTP Screen:  \(userService.otpCode.otp)"))
                 
                 Button  {
                     print("resend OTP")
@@ -95,7 +95,7 @@ struct OTPCodeSubView: View {
         }
         .onAppear {
             Task {
-                print("phone number: \(user.phoneNumber)")
+                //print("phone number: \(user.phoneNumber)")
                 await getOTP()
             }
         }

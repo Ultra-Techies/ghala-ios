@@ -23,10 +23,12 @@ struct TopInfoSubView: View {
                 .bold()
                 .padding(.top, 30)
                 .padding(.bottom, 5)
+                .foregroundColor(.black)
                     
             Text(description)
                 .fontWeight(.light)
                 .font(.system(size: 12))
+                .foregroundColor(.black)
                 
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

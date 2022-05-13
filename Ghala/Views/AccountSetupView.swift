@@ -70,7 +70,13 @@ struct AccountSetupView: View {
                     .frame(width: 350, height: 50)
             }
             .background(Color.buttonColor)
-
+            
+            //MARK: Add condion when button pressed wait for...  ---on (Environment dismiss)
+            ProgressView()
+                .scaleEffect(2)
+                .font(.system(size:8))
+                .frame(alignment: .bottom)
+                .padding(.top, 50)
             Spacer()
         }
         .frame(maxHeight: .infinity)

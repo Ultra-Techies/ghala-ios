@@ -18,7 +18,7 @@ struct PhoneVerificationView: View {
                         .fill(Color(UIColor.white))
                 )
                 .offset(y: -80)                
-        }
+        }.background(.white)
     }
 }
 

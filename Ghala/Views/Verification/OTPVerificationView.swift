@@ -17,11 +17,11 @@ struct OTPVerificationView: View {
                 TopInfoSubView(title: "OTP SMS", description: "Please enter the OTP code sent to your number")
                 OTPCodeSubView(user: user, otpCode: OTP(), code1: "", code2: "", code3: "", code4: "")
                     .background(
-                        RoundedCornersShape(corners: .topLeft, radius: 90)
+                        RoundedCornersShape(corners: .topLeft, radius: 60)
                             .fill(Color(UIColor.white))
                     )
-                    .offset(y: -80)
-            }
+                    .offset(y: -45)
+            }.background(.white)
         }
 
     }

@@ -17,7 +17,7 @@ struct PinVerificationView: View {
                         .fill(Color(UIColor.white))
                 )
                 .offset(y: -80)
-        }
+        }.background(.white)
     }
 }
 

@@ -36,6 +36,7 @@ struct PhoneInputSubView: View {
                 .overlay(VStack{Divider().frame(height: 2).background(Color.buttonColor).offset(x: 0, y: 15)})
                 .padding(.top, 10)
                 .keyboardType(/*@START_MENU_TOKEN@*/.numbersAndPunctuation/*@END_MENU_TOKEN@*/)
+                .foregroundColor(.black)
             
             //MARK: -Next Button
             Button {
