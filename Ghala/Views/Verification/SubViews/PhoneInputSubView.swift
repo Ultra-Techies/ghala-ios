@@ -53,7 +53,7 @@ struct PhoneInputSubView: View {
             .padding()
         
         .sheet(isPresented: $showOtp) {
-            OTPVerificationView()
+            OTPVerificationView(user: user)
         }
         .sheet(isPresented: $shownum) {
             numberOtp(user: user)
@@ -67,8 +67,9 @@ struct PhoneInputSubView: View {
             let value = try await userViewModel.checkU(user: user)
             if value == false {
                 print("False to OPT")
+                //try? await userViewModel.getCode(user: user)
                 showOtp.toggle()
-                
+                //shownum.toggle()
             } else {
                 shownum.toggle()
                 print("To Pin")

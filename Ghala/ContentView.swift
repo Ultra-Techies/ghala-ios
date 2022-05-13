@@ -21,10 +21,10 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
-            
+    
             
             TextField("Phone", text: $user.phoneNumber)
-            
+            Text(userService.otpCode.otp)
 //            TextField("email", text: $user.email)
 //            TextField("first name", text: $user.firstName)
 //            TextField("last name", text: $user.lastName)
@@ -32,9 +32,9 @@ struct ContentView: View {
             
             Button {
                 Task {
-                    //try await userService.getOTP(user: user)
+                    try await userService.getOTP(user: user)
                    //try await userService.createUser(user: user)
-                    try await userService.checkIfUserExists(user: user)
+                    //try await userService.checkIfUserExists(user: user)
                 }
             } label: {
                 Text("Send")

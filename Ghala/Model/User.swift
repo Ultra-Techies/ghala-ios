@@ -54,6 +54,33 @@ struct check: Codable {
 }
 
 
+class OTP: Codable, ObservableObject, Identifiable {
+   // var otp: String
+    
+    enum CodingKeys: CodingKey{
+            case otp
+        }
+    
+    @Published var otp = ""
+    
+    init() {
+        
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    
+        otp = try container.decode(String.self, forKey: .otp)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(otp, forKey: .otp)
+    }
+}
+
+
 /**
  {
      "email":"idhfggfttgre@com",

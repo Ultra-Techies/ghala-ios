@@ -19,7 +19,6 @@ struct SplashScreen: View {
             Image("logo")
                 .resizable()
                 .frame(width: 120, height: 120)
-                //.font(.system(size: 100))
             
             Text("Ghala")
                 .fontWeight(.bold)

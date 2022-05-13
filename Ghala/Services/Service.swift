@@ -7,8 +7,10 @@
 
 import Foundation
 
-
+@MainActor
 class Service: ObservableObject {
+    
+    @Published var otpCode = OTP()
     
     enum NetworkError: Error {
         case invalidURL
@@ -53,10 +55,10 @@ class Service: ObservableObject {
 //            print(error.localizedDescription)
 //        }
         return decoded
-        
     }
     
-    //MARK: Verify User
+    
+    //MARK: Verify User Password
     //TO DO
     
     func verifyUser(user: User) async throws {
@@ -103,8 +105,9 @@ class Service: ObservableObject {
         
         do {
             let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
-            let decoded = try JSONDecoder().decode(check.self, from: data)
-            print(decoded)
+            let decoded = try JSONDecoder().decode(OTP.self, from: data)
+            self.otpCode = decoded
+            print(decoded.otp)
             
         } catch {
             print(error.localizedDescription)
@@ -112,6 +115,72 @@ class Service: ObservableObject {
         
     }
     
+    
+    //MARK: GET OTP
+    func getOTP1(user: User) async throws -> String {
+        guard let url = URL(string: "http://localhost:8080/api/otp") else {
+            throw NetworkError.invalidURL
+        }
+        guard let phoneEncoded = try? JSONEncoder().encode(user) else {
+                print("Failed to encode")
+                throw NetworkError.invalidEncoding
+            }
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = phoneEncoded // Set HTTP Request Body
+        
+       
+        let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
+        let decoded = try JSONDecoder().decode(OTP.self, from: data)
+       // print(decoded.otp)
+       
+        return decoded.otp
+    }
+    
+    
+    func getOTP2(user: User) async throws -> OTP {
+        guard let url = URL(string: "http://localhost:8080/api/otp") else {
+            throw NetworkError.invalidURL
+        }
+        guard let phoneEncoded = try? JSONEncoder().encode(user) else {
+                print("Failed to encode")
+                throw NetworkError.invalidEncoding
+            }
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = phoneEncoded // Set HTTP Request Body
+        
+       
+        let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
+        let decoded = try JSONDecoder().decode(OTP.self, from: data)
+       // print(decoded.otp)
+        self.otpCode = decoded
+        return decoded
+    }
+    
+    
+    func getOTP3(user: User) async throws -> String {
+        guard let url = URL(string: "http://localhost:8080/api/otp") else {
+            throw NetworkError.invalidURL
+        }
+        guard let phoneEncoded = try? JSONEncoder().encode(user) else {
+                print("Failed to encode")
+                throw NetworkError.invalidEncoding
+            }
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = phoneEncoded // Set HTTP Request Body
+        
+       
+        let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
+        let decoded = try JSONDecoder().decode(OTP.self, from: data)
+        //print(decoded.otp)
+        self.otpCode = decoded
+        return decoded.otp
+    }
     
     
     //MARK: Create User

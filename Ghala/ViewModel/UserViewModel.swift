@@ -25,6 +25,8 @@ class UserViewModel: ObservableObject {
         case errorFound
     }
     
+    @Published var otpCode = OTP()
+    
     var state: State = .notAvailable
     
     var userService: Service
@@ -38,12 +40,8 @@ class UserViewModel: ObservableObject {
         self.state = .loading
         
         do {
-            
             let value = try await checkU(user: user)
              print(value)
-//
-//            self.state = .success(data: value)
-
             if value == false {
                 //print("Does not exist")
                 self.state = .falseN
@@ -52,7 +50,6 @@ class UserViewModel: ObservableObject {
                 self.state = .trueN
             }
             
-           // self.state = .success(data: checked)
             
         } catch {
             self.state = .failed(error: error)
@@ -69,21 +66,56 @@ class UserViewModel: ObservableObject {
         return checkedNumber
     }
     
+    //MARK: -OTP Check
+    
+    func getOTPCode(user:User) async throws -> String {
+        
+        guard let otpCode = try? await userService.getOTP1(user: user) else {
+            throw ch.failedtoDecode
+        }
+        self.otpCode.otp = otpCode
+        return otpCode
+
+    }
+    
+    func getCode(user:User) async  throws {
+        do {
+        let otpCode = try await userService.getOTP3(user: user)
+        print(otpCode)
+            self.otpCode.otp = otpCode
+        //let decodedCode = try JSONDecoder().decode(OTP.self, from: otpCode)
+            
+            //self.otp.otp = otpCode
+            //print("Code is: \(otp.otp)")
+          
+        }
+        catch {
+            print(error)
+        }
+    }
+    
+    
+    func GETOT(user:User) async {
+        do {
+           let ot =  try await userService.getOTP2(user: user)
+            print(ot)
+            userService.otpCode.otp = ot.otp
+            //self.otp.otp = ot.otp
+        } catch {
+            print(error)
+        }
+    }
+//    func getOTPCode(user:User) async {
+//
+//        do {
+//            let otpCode = try await userService.getOTP1(user: user)
+//            print(otpCode)
+//        } catch {
+//            print(error)
+//        }
+//
+//    }
+    
 }
 
 
-//func checkUserExist(user: User) async {
-//    self.state = .loading
-//
-//    do {
-//
-//        //let usenumber = try await userService.checkIfUserExists(user: user)
-//       // let stringValue = String(decoding: usenumber, as: UTF8.self)
-//        //self.state = .success(data: usenumber)
-//
-//    }catch {
-//        self.state = .failed(error: error)
-//        debugPrint(error.localizedDescription)
-//    }
-//
-//}
