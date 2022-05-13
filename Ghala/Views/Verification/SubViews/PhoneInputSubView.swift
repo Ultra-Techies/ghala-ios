@@ -62,17 +62,15 @@ struct PhoneInputSubView: View {
     
     //MARK: -To OTP and Pin View
     func switchView() async {
-        
         do {
-            let value = try await userViewModel.checkU(user: user)
+            let value = try await userViewModel.checkIfUserExists(user: user)
             if value == false {
-                print("False to OPT")
-                //try? await userViewModel.getCode(user: user)
+                print("To OPT Screen")
                 showOtp.toggle()
-                //shownum.toggle()
+                
             } else {
+                print("To Pin Screen")
                 shownum.toggle()
-                print("To Pin")
             }
         } catch {
             print(error)

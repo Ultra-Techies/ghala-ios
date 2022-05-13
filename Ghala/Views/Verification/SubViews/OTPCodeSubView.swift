@@ -14,9 +14,8 @@ struct OTPCodeSubView: View {
         case noOTPError
     }
     
-    @ObservedObject var userViewModel = UserViewModel(userService: Service())
-    
     @ObservedObject var userService = Service()
+    
     @ObservedObject var user : User
     @ObservedObject var otpCode : OTP
     
@@ -42,6 +41,7 @@ struct OTPCodeSubView: View {
                
                TextField("", text: $code4)
                    .vCodeStyle()
+                   
            }
                 .padding()
             
@@ -51,8 +51,7 @@ struct OTPCodeSubView: View {
                     .fontWeight(.light)
                     .multilineTextAlignment(.center)
                 
-                
-                let _ = print(String(describing: "at view OTP VIEW \(userService.otpCode.otp)"))
+                let _ = print(String(describing: "OTP is:  \(userService.otpCode.otp)"))
                 
                 Button  {
                     print("resend OTP")
@@ -64,7 +63,6 @@ struct OTPCodeSubView: View {
                         .foregroundColor(Color.buttonColor)
                 }.buttonStyle(BorderlessButtonStyle())
                 
-              //  Text(otp.otp)
                 
                 Button  {
 
@@ -74,12 +72,11 @@ struct OTPCodeSubView: View {
                 let code = userService.otpCode.otp
                     
                 if code != join {
-                print("not same")
+                    print("not same")
                 } else {
-                print("Same!!! to create account")
+                    print("Same!!! to create account")
                 }
                     
-                    print("Verify")
                 } label: {
                     Text("Verify")
                         .foregroundColor(.white)
@@ -94,34 +91,16 @@ struct OTPCodeSubView: View {
                 await getOTP()
             }
         }
-//        .task {
-//            print("phone number: \(user.phoneNumber)")
-//            await getOTP()
-//
-//        }
         .frame(minWidth: 0, maxWidth: .infinity)
         .padding(.top, 100)
     }
     
     func getOTP() async {
         
-//       let otpCode = try? await userService.getOTP(user: user)
-//        print("code is: \(otpCode)")
         do {
-            //let otpCode = try await userViewModel.getOTPCode(user: user)
+
             try await userService.getOTP(user: user)
            print(otpCode)
-            
-//            // codes from view
-//            let arrayCode = [code1, code2, code3, code4]
-//            let join = arrayCode.joined(separator: "")
-//            print(join)
-//
-//            if otpCode != join {
-//                print("not same")
-//            } else {
-//                print("to create account")
-//            }
             
         } catch {
             print(error)
@@ -132,7 +111,6 @@ struct OTPCodeSubView: View {
 
 struct OTPCodeView_Previews: PreviewProvider {
     static var previews: some View {
-        //OTPCodeSubView(user: User(), code1: "1", code2: "2", code3: "3", code4: "4")
         OTPCodeSubView(user: User(), otpCode: OTP(), code1: "1", code2: "2", code3: "3", code4: "4")
     }
 }
@@ -146,6 +124,7 @@ struct codeTextStyle: ViewModifier {
             .background(Color.gray).opacity(0.5)
             .multilineTextAlignment(.center)
             .cornerRadius(10)
+            .keyboardType(/*@START_MENU_TOKEN@*/.numberPad/*@END_MENU_TOKEN@*/)
     }
 }
 
