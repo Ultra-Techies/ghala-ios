@@ -10,7 +10,7 @@ import Foundation
 class User: Codable, ObservableObject, Identifiable {
     
     enum CodingKeys: CodingKey{
-            case phoneNumber, email, assignedWarehouse, firstName, lastName
+            case phoneNumber, email, assignedWarehouse, firstName, lastName, password
             
         }
       
@@ -19,6 +19,7 @@ class User: Codable, ObservableObject, Identifiable {
         @Published var assignedWarehouse: Int = 1
         @Published var firstName = ""
         @Published var lastName = ""
+        @Published var password = ""
         
         init() {
             
@@ -32,6 +33,7 @@ class User: Codable, ObservableObject, Identifiable {
             assignedWarehouse = try container.decode(Int.self, forKey: .assignedWarehouse)
             firstName = try container.decode(String.self, forKey: .firstName)
             lastName = try container.decode(String.self, forKey: .lastName)
+            password = try container.decode(String.self, forKey: .password)
           
         }
         
@@ -43,6 +45,7 @@ class User: Codable, ObservableObject, Identifiable {
             try container.encode(assignedWarehouse, forKey: .assignedWarehouse)
             try container.encode(firstName, forKey: .firstName)
             try container.encode(lastName, forKey: .lastName)
+            try container.encode(password, forKey: .password)
         }
 
     

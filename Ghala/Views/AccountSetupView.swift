@@ -9,6 +9,12 @@ import SwiftUI
 
 struct AccountSetupView: View {
     
+    @Environment(\.presentationMode) var presentationMode
+    
+    @ObservedObject var userService = Service()
+    
+    @ObservedObject var user : User
+    
     @State var firstName = ""
     @State var lastName = ""
     @State var email = ""
@@ -36,15 +42,16 @@ struct AccountSetupView: View {
                 .multilineTextAlignment(.center)
                 .padding(.top, 50)
             VStack(spacing: 40) {
-                TextField("First Name", text: $firstName)
+                let _ = print(String(describing: user.phoneNumber))
+                TextField("First Name", text: $user.firstName)
                     .TextFieldStyling()
-                TextField("Last Name", text: $lastName)
+                TextField("Last Name", text: $user.lastName)
                     .TextFieldStyling()
-                TextField("Email Address", text: $email )
+                TextField("Email Address", text: $user.email )
                     .TextFieldStyling()
-                TextField("Warehouse", value: $wareHouse, formatter: NumberFormatter())
+                TextField("Warehouse", value: $user.assignedWarehouse, formatter: NumberFormatter())
                     .TextFieldStyling()
-                TextField("Account PIN", text: $accountPin)
+                TextField("Account PIN", text: $user.password)
                     .TextFieldStyling()
                 //TextField("Warehouse", value: $wareHouse, format: Formatter())
                 
@@ -53,7 +60,10 @@ struct AccountSetupView: View {
             .padding(.top, 50)
             .padding(.bottom, 100)
             Button  {
-                print("Verify Details")
+                Task {
+                    print("Verify Details")
+                    try await userService.createUser(user: user)
+                }
             } label: {
                 Text("Verify")
                     .foregroundColor(.white)
@@ -69,7 +79,7 @@ struct AccountSetupView: View {
 
 struct AccountSetupView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountSetupView()
+        AccountSetupView(user: User())
     }
 }
 

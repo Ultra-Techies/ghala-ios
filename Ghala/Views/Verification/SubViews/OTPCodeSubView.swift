@@ -25,6 +25,9 @@ struct OTPCodeSubView: View {
     @State var code3: String
     @State var code4: String
     
+    @State private var toAccSetup = false
+    
+    
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
             
@@ -71,9 +74,10 @@ struct OTPCodeSubView: View {
                     
                 let code = userService.otpCode.otp
                     
-                if code != join {
+                if  join != code {
                     print("not same")
                 } else {
+                    toAccSetup.toggle()
                     print("Same!!! to create account")
                 }
                     
@@ -84,6 +88,10 @@ struct OTPCodeSubView: View {
                 }
                 .background(Color.buttonColor)
             } .padding(.top, 30)
+            
+            .fullScreenCover(isPresented: $toAccSetup) {
+                AccountSetupView(user: user)
+            }
         }
         .onAppear {
             Task {
