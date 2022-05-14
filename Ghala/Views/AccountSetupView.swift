@@ -54,11 +54,10 @@ struct AccountSetupView: View {
                 TextField("Warehouse", value: $user.assignedWarehouse, formatter: NumberFormatter())
                     .TextFieldStyling()
                 SecureField("Account Pin",text: $user.password)
-                //TextField("Account PIN", text: $user.password)
                     .TextFieldStyling()
                     .keyboardType(/*@START_MENU_TOKEN@*/.numberPad/*@END_MENU_TOKEN@*/)
                     
-                //TextField("Warehouse", value: $wareHouse, format: Formatter())
+
                 
             }
             .padding(.horizontal, 25.0)
