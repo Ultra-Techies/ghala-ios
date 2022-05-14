@@ -21,7 +21,7 @@ struct PhoneInputSubView: View {
     var body: some View {
        
         VStack {
-            
+
             //MARK: -Country Code
             Picker("Please choose a country Code", selection: $selectContryCode) {
                 ForEach(code, id: \.self) {
@@ -29,7 +29,7 @@ struct PhoneInputSubView: View {
                 }
             }.foregroundColor(.black)
                 .padding(.top, 100)
-            
+
             //MARK: -Phone Number
             TextField("Phone number", text: $user.phoneNumber)
                 .frame(width: 350.0)
@@ -37,7 +37,7 @@ struct PhoneInputSubView: View {
                 .padding(.top, 10)
                 .keyboardType(/*@START_MENU_TOKEN@*/.numbersAndPunctuation/*@END_MENU_TOKEN@*/)
                 .foregroundColor(.black)
-            
+
             //MARK: -Next Button
             Button {
                 Task {
@@ -50,6 +50,37 @@ struct PhoneInputSubView: View {
             }
             .background(Color.buttonColor)
             .padding(.top, 50)
+            
+            
+//            Form {
+//                Section {
+//                    TextField("Phone number", text: $user.phoneNumber)
+//                        .frame(width: 350.0)
+//                        .overlay(VStack{Divider().frame(height: 2).background(Color.buttonColor).offset(x: 0, y: 15)})
+//                            .padding(.top, 10)
+//                            .keyboardType(/*@START_MENU_TOKEN@*/.numbersAndPunctuation/*@END_MENU_TOKEN@*/)
+//                            .foregroundColor(.black)
+//                }.listRowBackground(Color.clear)
+//
+//
+//                Section {
+//                    Button {
+//                        Task {
+//                            await switchView()
+//                        }
+//                    } label: {
+//                        Text("NEXT")
+//                            .foregroundColor(.white)
+//                            .frame(width: 350, height: 50)
+//                    }
+//                    .background(Color.buttonColor)
+//                    .padding(.top, 50)
+//                }
+//                .listRowBackground(Color.clear)
+//                .disabled(disableForm)
+//            }
+            
+            
         } .frame(minWidth: 0, maxWidth: .infinity)
             .padding()
         
@@ -60,6 +91,10 @@ struct PhoneInputSubView: View {
             numberOtp(user: user)
         }
     }
+    
+//    var disableForm: Bool {
+//        user.phoneNumber.count < 13
+//    }
     
     //MARK: -To OTP and Pin View
     func switchView() async {

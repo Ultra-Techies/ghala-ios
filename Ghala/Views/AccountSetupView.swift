@@ -11,7 +11,7 @@ struct AccountSetupView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject var userService = Service()
+    
     
     @ObservedObject var user : User
     
@@ -20,6 +20,8 @@ struct AccountSetupView: View {
     @State var email = ""
     @State var wareHouse : Int = 1
     @State var accountPin = ""
+    
+    @State private var toAccSetup = false
     
     var body: some View {
         
@@ -51,35 +53,40 @@ struct AccountSetupView: View {
                     .TextFieldStyling()
                 TextField("Warehouse", value: $user.assignedWarehouse, formatter: NumberFormatter())
                     .TextFieldStyling()
-                TextField("Account PIN", text: $user.password)
+                SecureField("Account Pin",text: $user.password)
+                //TextField("Account PIN", text: $user.password)
                     .TextFieldStyling()
+                    .keyboardType(/*@START_MENU_TOKEN@*/.numberPad/*@END_MENU_TOKEN@*/)
+                    
                 //TextField("Warehouse", value: $wareHouse, format: Formatter())
                 
             }
             .padding(.horizontal, 25.0)
             .padding(.top, 50)
             .padding(.bottom, 100)
+            
             Button  {
-                Task {
-                    print("Verify Details")
-                    try await userService.createUser(user: user)
-                }
+                toAccSetup.toggle()
             } label: {
-                Text("Verify")
+                Text("VERIFY")
                     .foregroundColor(.white)
                     .frame(width: 350, height: 50)
             }
             .background(Color.buttonColor)
             
             //MARK: Add condion when button pressed wait for...  ---on (Environment dismiss)
-            ProgressView()
-                .scaleEffect(2)
-                .font(.system(size:8))
-                .frame(alignment: .bottom)
-                .padding(.top, 50)
+//            ProgressView()
+//                .scaleEffect(2)
+//                .font(.system(size:8))
+//                .frame(alignment: .bottom)
+//                .padding(.top, 50)
             Spacer()
         }
         .frame(maxHeight: .infinity)
+        .fullScreenCover(isPresented: $toAccSetup) {
+           SubmittedSucessScreen(user: user)
+        }
+        
     }
 }
 

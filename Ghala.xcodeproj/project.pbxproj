@@ -21,6 +21,7 @@
 		207A076D282C57AC003C7EBD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A076C282C57AC003C7EBD /* User.swift */; };
 		207A076F282C5810003C7EBD /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A076E282C5810003C7EBD /* UserService.swift */; };
 		207A0771282C59BA003C7EBD /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A0770282C59BA003C7EBD /* UserViewModel.swift */; };
+		208FC1F8282FB80000C78421 /* SubmittedSucessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC1F7282FB80000C78421 /* SubmittedSucessScreen.swift */; };
 		20B7F472282E40E600D29C5F /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B7F471282E40E600D29C5F /* SplashScreen.swift */; };
 		20C22700282C2255009BAD5C /* GhalaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C226FF282C2255009BAD5C /* GhalaApp.swift */; };
 		20C22702282C2255009BAD5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22701282C2255009BAD5C /* ContentView.swift */; };
@@ -44,6 +45,7 @@
 		207A076C282C57AC003C7EBD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		207A076E282C5810003C7EBD /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		207A0770282C59BA003C7EBD /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		208FC1F7282FB80000C78421 /* SubmittedSucessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmittedSucessScreen.swift; sourceTree = "<group>"; };
 		20B7F471282E40E600D29C5F /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		20C226FC282C2255009BAD5C /* Ghala.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ghala.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20C226FF282C2255009BAD5C /* GhalaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhalaApp.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				201B05B5282D8E01002B6629 /* OTPVerificationView.swift */,
 				201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */,
 				2073C42C282DA78A008E749F /* PinVerificationView.swift */,
+				208FC1F7282FB80000C78421 /* SubmittedSucessScreen.swift */,
 				201B05B4282D8C75002B6629 /* SubViews */,
 			);
 			path = Verification;
@@ -242,6 +245,7 @@
 				2073C429282D9714008E749F /* OTPCodeSubView.swift in Sources */,
 				20C22700282C2255009BAD5C /* GhalaApp.swift in Sources */,
 				201B05AE282D5D77002B6629 /* extensions.swift in Sources */,
+				208FC1F8282FB80000C78421 /* SubmittedSucessScreen.swift in Sources */,
 				207A0771282C59BA003C7EBD /* UserViewModel.swift in Sources */,
 				20B7F472282E40E600D29C5F /* SplashScreen.swift in Sources */,
 				2073C42D282DA78A008E749F /* PinVerificationView.swift in Sources */,

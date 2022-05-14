@@ -15,24 +15,39 @@ struct SplashScreen: View {
     
     
     var body: some View {
-        VStack {
-            Image("logo")
-                .resizable()
-                .frame(width: 120, height: 120)
-            
-            Text("Ghala")
-                .fontWeight(.bold)
-                .font(.system(size: 38))
-                .padding(.bottom, 50)
+        if isActive {
+            PhoneVerificationView()
+        } else {
+            VStack {
+                VStack {
+                    Spacer()
+                    Image("logo")
+                        .resizable()
+                        .frame(width: 120, height: 120)
+                    
+                    Text("Ghala")
+                        .fontWeight(.bold)
+                        .font(.system(size: 38))
+                        .padding(.bottom, 50)
 
-                ProgressView()
-
-                    .scaleEffect(2)
-                    .font(.system(size:8))
-                    .frame(alignment: .bottom)
+                    Spacer()
+                        ProgressView()
+                            .scaleEffect(2)
+                            .font(.system(size:8))
+                            .frame(alignment: .bottom)
+                            .padding()
+                            .padding(.bottom, 60)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(.yellow)
+            } .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0 ) {
+                    withAnimation {
+                        self.isActive = true
+                    }
+                }
+            }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.yellow)
     }
 }
 
