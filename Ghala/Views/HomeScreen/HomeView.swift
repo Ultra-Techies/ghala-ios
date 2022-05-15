@@ -30,7 +30,7 @@ struct HomeView: View {
                     MainView(user: user, showDrawerMenu: self.$showDrawerMenu)
                         .frame(width: geo.size.width, height: geo.size.height)
                         .transition(.move(edge: .leading))
-                        .offset(x: self.showDrawerMenu ? geo.size.width * 0.0 : 0)
+                        .offset(x: self.showDrawerMenu ? geo.size.width * 0 : 0)
                         .disabled(self.showDrawerMenu ? true : false)
                     
                     if self.showDrawerMenu {
