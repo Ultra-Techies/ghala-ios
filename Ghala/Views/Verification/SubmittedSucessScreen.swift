@@ -14,6 +14,8 @@ struct SubmittedSucessScreen: View {
     
     @ObservedObject var user : User
     
+    @State private var toHomeView = false
+    
     var body: some View {
         VStack {
          Image(systemName: "checkmark.circle")
@@ -68,6 +70,8 @@ struct SubmittedSucessScreen: View {
                     try await userService.createUser(user: user)
                 }
                 
+                toHomeView.toggle()
+                
                 print("confirm")
             } label: {
                 Text("CONFIRM")
@@ -76,6 +80,9 @@ struct SubmittedSucessScreen: View {
             }
             .background(Color.buttonColor)
             .padding(.top, 50)
+        }
+        .fullScreenCover(isPresented: $toHomeView) {
+            HomeView(user: user)
         }
     }
 }
