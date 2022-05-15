@@ -28,6 +28,7 @@
 		20C22704282C2259009BAD5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20C22703282C2259009BAD5C /* Assets.xcassets */; };
 		20C22707282C2259009BAD5C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20C22706282C2259009BAD5C /* Preview Assets.xcassets */; };
 		20C26319282F1088008C6F58 /* AccountSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C26318282F1088008C6F58 /* AccountSetupView.swift */; };
+		20E3AE3B2831034400BE295E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E3AE3A2831034400BE295E /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		20C22703282C2259009BAD5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20C22706282C2259009BAD5C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		20C26318282F1088008C6F58 /* AccountSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupView.swift; sourceTree = "<group>"; };
+		20E3AE3A2831034400BE295E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 		201B05A8282D0992002B6629 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				20E3AE392831032700BE295E /* HomeScreen */,
 				201B05AF282D7E94002B6629 /* Verification */,
 				201B05AB282D1176002B6629 /* enterOTP.swift */,
 				20B7F471282E40E600D29C5F /* SplashScreen.swift */,
@@ -166,6 +169,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		20E3AE392831032700BE295E /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				20E3AE3A2831034400BE295E /* HomeView.swift */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -249,6 +260,7 @@
 				207A0771282C59BA003C7EBD /* UserViewModel.swift in Sources */,
 				20B7F472282E40E600D29C5F /* SplashScreen.swift in Sources */,
 				2073C42D282DA78A008E749F /* PinVerificationView.swift in Sources */,
+				20E3AE3B2831034400BE295E /* HomeView.swift in Sources */,
 				201B05AA282D09B5002B6629 /* PhoneVerificationView.swift in Sources */,
 				207A076D282C57AC003C7EBD /* User.swift in Sources */,
 				201B05B6282D8E04002B6629 /* OTPVerificationView.swift in Sources */,
