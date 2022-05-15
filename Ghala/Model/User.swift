@@ -53,7 +53,12 @@ class User: Codable, ObservableObject, Identifiable {
 
 struct check: Codable {
     let exists: Bool
+   
    // let otp: String
+}
+
+struct Pin: Codable {
+    let verified: Bool
 }
 
 

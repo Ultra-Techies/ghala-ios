@@ -42,6 +42,15 @@ class UserViewModel: ObservableObject {
         let checkedNumber = checked.exists
         return checkedNumber
     }
+    
+    //MARK: Verify user Pin
+    func checkPin(user: User) async throws -> Bool {
+        guard let pin = try? await userService.verifyUser(user: user) else {
+            throw ch.failedtoDecode
+        }
+        let userPin = pin.verified
+        return userPin
+    }
 }
 
 

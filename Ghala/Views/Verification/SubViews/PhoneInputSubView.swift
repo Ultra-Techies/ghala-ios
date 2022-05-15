@@ -88,7 +88,8 @@ struct PhoneInputSubView: View {
             OTPVerificationView(user: user)
         }
         .sheet(isPresented: $shownum) {
-            numberOtp(user: user)
+//            numberOtp(user: user)
+            PinVerificationView(user: user)
         }
     }
     

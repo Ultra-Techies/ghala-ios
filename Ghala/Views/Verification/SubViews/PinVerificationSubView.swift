@@ -9,26 +9,30 @@ import SwiftUI
 
 struct PinVerificationSubView: View {
     
-    @State var code1: Int
-    @State var code2: Int
-    @State var code3: Int
-    @State var code4: Int
+    @ObservedObject var userViewModel = UserViewModel(userService: Service())
+    
+    @ObservedObject var user: User
+    
+    @State var code1: String
+    @State var code2: String
+    @State var code3: String
+    @State var code4: String
     
     var body: some View {
         VStack(alignment: .center, spacing: 80) {
             
             //MARK: -Code
            HStack(alignment: .center, spacing: 30) {
-               TextField("", value: $code1, formatter: NumberFormatter())
+               TextField("", text: $code1)
                    .vCodeStyle()
                
-               TextField("", value: $code2, formatter: NumberFormatter())
+               TextField("", text: $code2)
                    .vCodeStyle()
                
-               TextField("", value: $code3, formatter: NumberFormatter())
+               TextField("", text: $code3)
                    .vCodeStyle()
                
-               TextField("", value: $code4, formatter: NumberFormatter())
+               TextField("", text: $code4)
                    .vCodeStyle()
            }
                 .padding()
@@ -37,6 +41,10 @@ struct PinVerificationSubView: View {
                 
                 Button  {
                     print("Login")
+                
+                    Task {
+                        await checkPassword()
+                    }
                 } label: {
                     Text("Login")
                         .foregroundColor(.white)
@@ -49,10 +57,41 @@ struct PinVerificationSubView: View {
         .frame(minWidth: 0, maxWidth: .infinity)
         .padding(.top, 100)
     }
+    
+    func checkPassword() async {
+        do {
+            let phone = user.phoneNumber
+            print(phone)
+            
+            let arraryCode = [code1, code2, code3, code4]
+            let joined = arraryCode.joined(separator: "")
+            user.password = joined
+            print("joined pin: \(user.password)")
+            
+            let pin = try await userViewModel.checkPin(user: user)
+            print("from service: \(pin)")
+
+            if pin == false {
+                print("password does not match")
+            } else {
+                print("to Home")
+            }
+            
+            //print("to Home")
+//            else {
+//                print("password match")
+//            }
+        
+            
+        } catch {
+            debugPrint(error.localizedDescription)
+            print(error.localizedDescription)
+        }
+    }
 }
 
 struct PinVerificationSubView_Previews: PreviewProvider {
     static var previews: some View {
-        PinVerificationSubView(code1: 1, code2: 2, code3: 3, code4: 4)
+       PinVerificationSubView(user: User(), code1: "1", code2: "2", code3: "3", code4: "4")
     }
 }

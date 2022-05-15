@@ -44,24 +44,14 @@ class Service: ObservableObject {
                        response.statusCode == 200 else {
                      throw NetworkError.invalidResponse
                  }
-            
-            //print(response)
-            
             let decoded = try JSONDecoder().decode(check.self, from: data)
-            //print(decoded.exists)
-            
-            // let stringValue = String(decoding: usenumber, as: UTF8.self)
-//        } catch {
-//            print(error.localizedDescription)
-//        }
+
         return decoded
     }
     
     
     //MARK: Verify User Password
-    //TO DO
-    
-    func verifyUser(user: User) async throws {
+    func verifyUser(user: User) async throws -> Pin {
         
         guard let url = URL(string: "http://localhost:8080/api/users") else {
             throw NetworkError.invalidURL
@@ -76,13 +66,17 @@ class Service: ObservableObject {
         request.httpMethod = "PUT"
         request.httpBody = phoneEncoded // Set HTTP Request Body
         
-        do {
-            let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
+            let (data, response) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
             print(data)
             
-        } catch {
-            print(error.localizedDescription)
-        }
+            guard let response = response as? HTTPURLResponse,
+                  response.statusCode == 200 else {
+                throw NetworkError.invalidResponse
+            }
+
+            let decoded = try JSONDecoder().decode(Pin.self, from: data)
+            print(decoded.verified)
+            return decoded
     }
     
     
