@@ -12,38 +12,35 @@ struct HomeView: View {
     
     @ObservedObject var user: User
     
+    @State var showDrawerMenu = false
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            
-            HStack {
-                Image(systemName: "rectangle.grid.1x2")
-                    .resizable()
-                    .frame(width: 25, height: 25)
-                Spacer()
-                Image(systemName: "magnifyingglass")
-                    .resizable()
-                    .frame(width: 25, height: 25)
-            }.padding(.horizontal, 20)
-            
-            HStack {
-                Image(systemName: "person.circle")
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                VStack(alignment: .leading) {
-                    Text("Hello,")
-                    
-                        .fontWeight(.light)
-                    let joinedName = user.firstName + " " + user.lastName
-                    
-                    Text(joinedName)
-                        .bold()
+        
+        let drag = DragGesture()
+            .onEnded {
+                if $0.translation.width < -100 {
+                    withAnimation {
+                        self.showDrawerMenu = false
+                    }
                 }
-            } .padding(.horizontal, 20)
-            
-            Spacer()
-            
+            }
+        
+            GeometryReader { geo in
+                ZStack(alignment: .leading) {
+                    MainView(user: user, showDrawerMenu: self.$showDrawerMenu)
+                        .frame(width: geo.size.width, height: geo.size.height)
+                        .transition(.move(edge: .leading))
+                        .offset(x: self.showDrawerMenu ? geo.size.width * 0.0 : 0)
+                        .disabled(self.showDrawerMenu ? true : false)
+                    
+                    if self.showDrawerMenu {
+                        DrawerView(user: user)
+                            .frame(width: geo.size.width/2)
+                    }
+                }.gesture(drag)
+            }
            // Image(systemName: "plus.circle.fill")
-        }
+        
     }
 }
 
