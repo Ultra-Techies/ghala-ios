@@ -75,16 +75,31 @@ class Service: ObservableObject {
           request.httpBody = body
           
           do {
-              let (data, _) = try await URLSession.shared.upload(for: request, from: body!)
+              let (data, response) = try await URLSession.shared.upload(for: request, from: body!)
+              
+              //Status response
+              guard let response = response as? HTTPURLResponse,
+                response.statusCode == 200 else {
+                  print("Forbiden")
+                  throw NetworkError.invalidResponse
+                }
+              
+              //Get token
               let decoded = try JSONDecoder().decode(Token.self, from: data)
               print(decoded.accessToken)
           
+              //save token
+              UserDefaults.standard.set(decoded.accessToken, forKey: "access_token")
+   
+                    
+
+              
+              
           } catch {
               debugPrint(error.localizedDescription)
           }
           
       }
-    
     
     
     
