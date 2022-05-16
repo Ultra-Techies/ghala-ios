@@ -22,7 +22,7 @@ class Service: ObservableObject {
     
     //MARK: Check if User Exists
     func checkIfUserExists(user: User) async throws -> check {
-        guard let url = URL(string: "http://localhost:8080/api/users") else {
+        guard let url = URL(string: "http://localhost:8080/api/users/exists") else {
             throw NetworkError.invalidURL
         }
         
@@ -51,34 +51,39 @@ class Service: ObservableObject {
     
     
     //MARK: Verify User Password
-    func verifyUser(user: User) async throws -> Pin {
-        
-        guard let url = URL(string: "http://localhost:8080/api/users") else {
-            throw NetworkError.invalidURL
-        }
-        guard let phoneEncoded = try? JSONEncoder().encode(user) else {
-                print("Failed to encode")
-                throw NetworkError.invalidEncoding
-            }
-        
-        var request = URLRequest(url: url)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "PUT"
-        request.httpBody = phoneEncoded // Set HTTP Request Body
-        
-            let (data, response) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
-            print(data)
-            
-            guard let response = response as? HTTPURLResponse,
-                  response.statusCode == 200 else {
-                throw NetworkError.invalidResponse
-            }
+    func verifyUserLogin(user: User) async throws {
+          
+          guard let url = URL(string: "http://localhost:8080/login") else {
+              throw NetworkError.invalidURL
+          }
 
-            let decoded = try JSONDecoder().decode(Pin.self, from: data)
-            print(decoded.verified)
-            return decoded
-    }
-    
+          let number = user.phoneNumber
+          let pin = user.password
+          
+        //Passing x-www-form-urlencoded
+          var parameters: [String: String] {
+              return [
+              "phoneNumber": number,
+              "password": pin
+            ]
+          }
+          
+          var request = URLRequest(url: url)
+          request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+          request.httpMethod = "POST"
+          let body = parameters.percentEncoded()
+          request.httpBody = body
+          
+          do {
+              let (data, _) = try await URLSession.shared.upload(for: request, from: body!)
+              let decoded = try JSONDecoder().decode(Token.self, from: data)
+              print(decoded.accessToken)
+          
+          } catch {
+              debugPrint(error.localizedDescription)
+          }
+          
+      }
     
     
     
@@ -110,79 +115,12 @@ class Service: ObservableObject {
     }
     
     
-    //MARK: GET OTP
-    func getOTP1(user: User) async throws -> String {
-        guard let url = URL(string: "http://localhost:8080/api/otp") else {
-            throw NetworkError.invalidURL
-        }
-        guard let phoneEncoded = try? JSONEncoder().encode(user) else {
-                print("Failed to encode")
-                throw NetworkError.invalidEncoding
-            }
-        var request = URLRequest(url: url)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        request.httpBody = phoneEncoded // Set HTTP Request Body
-        
-       
-        let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
-        let decoded = try JSONDecoder().decode(OTP.self, from: data)
-       // print(decoded.otp)
-       
-        return decoded.otp
-    }
-    
-    
-    func getOTP2(user: User) async throws -> OTP {
-        guard let url = URL(string: "http://localhost:8080/api/otp") else {
-            throw NetworkError.invalidURL
-        }
-        guard let phoneEncoded = try? JSONEncoder().encode(user) else {
-                print("Failed to encode")
-                throw NetworkError.invalidEncoding
-            }
-        var request = URLRequest(url: url)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        request.httpBody = phoneEncoded // Set HTTP Request Body
-        
-       
-        let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
-        let decoded = try JSONDecoder().decode(OTP.self, from: data)
-       // print(decoded.otp)
-        self.otpCode = decoded
-        return decoded
-    }
-    
-    
-    func getOTP3(user: User) async throws -> String {
-        guard let url = URL(string: "http://localhost:8080/api/otp") else {
-            throw NetworkError.invalidURL
-        }
-        guard let phoneEncoded = try? JSONEncoder().encode(user) else {
-                print("Failed to encode")
-                throw NetworkError.invalidEncoding
-            }
-        var request = URLRequest(url: url)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        request.httpBody = phoneEncoded // Set HTTP Request Body
-        
-       
-        let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
-        let decoded = try JSONDecoder().decode(OTP.self, from: data)
-        //print(decoded.otp)
-        self.otpCode = decoded
-        return decoded.otp
-    }
-    
-    
     //MARK: Create User
     
     func createUser(user: User) async throws {
         
         //print(phone)
-        guard let url = URL(string: "http://localhost:8080/api/user") else {
+        guard let url = URL(string: "http://localhost:8080/api/users") else {
             throw NetworkError.invalidURL
         }
         

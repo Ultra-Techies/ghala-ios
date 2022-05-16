@@ -35,7 +35,7 @@ struct HomeView: View {
                     
                     if self.showDrawerMenu {
                         DrawerView(user: user)
-                            .frame(width: geo.size.width/2)
+                            .frame(width: geo.size.width/1.2)
                     }
                 }.gesture(drag)
             }

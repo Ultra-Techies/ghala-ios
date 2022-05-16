@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PinVerificationSubView: View {
     
-    @ObservedObject var userViewModel = UserViewModel(userService: Service())
+    @ObservedObject var userService =  Service()
     
     @ObservedObject var user: User
     
@@ -63,19 +63,22 @@ struct PinVerificationSubView: View {
             let phone = user.phoneNumber
             print(phone)
             
-            let arraryCode = [code1, code2, code3, code4]
-            let joined = arraryCode.joined(separator: "")
-            user.password = joined
+            let arraryPass = [code1, code2, code3, code4]
+            let joinedPassword = arraryPass.joined(separator: "")
+            user.password = joinedPassword
             print("joined pin: \(user.password)")
             
-            let pin = try await userViewModel.checkPin(user: user)
-            print("from service: \(pin)")
-
-            if pin == false {
-                print("password does not match")
-            } else {
-                print("to Home")
-            }
+            let access_token = try await userService.verifyUserLogin(user: user)
+            print(access_token)
+            
+            
+//            print("from service: \(pin)")
+//
+//            if pin == false {
+//                print("password does not match")
+//            } else {
+//                print("to Home")
+//            }
             
             //print("to Home")
 //            else {
