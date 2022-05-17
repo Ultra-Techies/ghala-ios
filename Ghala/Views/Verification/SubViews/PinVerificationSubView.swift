@@ -25,16 +25,16 @@ struct PinVerificationSubView: View {
             
             //MARK: -Code
            HStack(alignment: .center, spacing: 30) {
-               TextField("", text: $code1)
+               TextField("", text: $code1.max(1))
                    .vCodeStyle()
                
-               TextField("", text: $code2)
+               TextField("", text: $code2.max(1))
                    .vCodeStyle()
                
-               TextField("", text: $code3)
+               TextField("", text: $code3.max(1))
                    .vCodeStyle()
                
-               TextField("", text: $code4)
+               TextField("", text: $code4.max(1))
                    .vCodeStyle()
            }
                 .padding()
