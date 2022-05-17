@@ -10,7 +10,7 @@ import SwiftUI
 struct SubmittedSucessScreen: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject var userService = Service()
+    @ObservedObject var userService = UserService()
     
     @ObservedObject var user : User
     
@@ -46,20 +46,20 @@ struct SubmittedSucessScreen: View {
                     Image(systemName: "pencil")
                 }
                 
-                HStack {
-                   Text("Assigned Warehouse:")
-                        .bold()
-                    Text("1")
-                    Spacer()
-                    Image(systemName: "pencil")
-                }
-                HStack {
-                   Text("Assigned Role:")
-                        .bold()
-                    Text("Admin")
-                    Spacer()
-                    Image(systemName: "pencil")
-                }
+//                HStack {
+//                   Text("Assigned Warehouse:")
+//                        .bold()
+//                    Text("1")
+//                    Spacer()
+//                    Image(systemName: "pencil")
+//                }
+//                HStack {
+//                   Text("Assigned Role:")
+//                        .bold()
+//                    Text("Admin")
+//                    Spacer()
+//                    Image(systemName: "pencil")
+//                }
             } .padding(.horizontal, 25.0)
             //.frame(maxWidth: .infinity)
                 .padding(.top, 40)

@@ -9,9 +9,11 @@ import SwiftUI
 
 struct PinVerificationSubView: View {
     
-    @ObservedObject var userViewModel = UserViewModel(userService: Service())
+    @ObservedObject var userService =  UserService()
     
     @ObservedObject var user: User
+    
+    @State private var toHomeView = false
     
     @State var code1: String
     @State var code2: String
@@ -56,26 +58,34 @@ struct PinVerificationSubView: View {
         }
         .frame(minWidth: 0, maxWidth: .infinity)
         .padding(.top, 100)
+        
+        .fullScreenCover(isPresented: $toHomeView) {
+            HomeView(user: user)
+        }
     }
     
     func checkPassword() async {
         do {
-            let phone = user.phoneNumber
-            print(phone)
+           
+            let arraryPass = [code1, code2, code3, code4]
+            let joinedPassword = arraryPass.joined(separator: "")
+            user.password = joinedPassword
             
-            let arraryCode = [code1, code2, code3, code4]
-            let joined = arraryCode.joined(separator: "")
-            user.password = joined
-            print("joined pin: \(user.password)")
+            let response = try await userService.verifyUserLogin(user: user)
+            print("Status: \(response)")
             
-            let pin = try await userViewModel.checkPin(user: user)
-            print("from service: \(pin)")
-
-            if pin == false {
-                print("password does not match")
+            if response != 200 {
+                print("Forbiden")
             } else {
-                print("to Home")
+                toHomeView.toggle()
             }
+//            print("from service: \(pin)")
+//
+//            if pin == false {
+//                print("password does not match")
+//            } else {
+//                print("to Home")
+//            }
             
             //print("to Home")
 //            else {
@@ -84,7 +94,6 @@ struct PinVerificationSubView: View {
         
             
         } catch {
-            debugPrint(error.localizedDescription)
             print(error.localizedDescription)
         }
     }

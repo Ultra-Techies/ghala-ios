@@ -27,9 +27,9 @@ class UserViewModel: ObservableObject {
     
     var state: State = .notAvailable
     
-    var userService: Service
+    var userService: UserService
     
-    init(userService: Service) {
+    init(userService: UserService) {
         self.userService = userService
     }
         
@@ -44,13 +44,14 @@ class UserViewModel: ObservableObject {
     }
     
     //MARK: Verify user Pin
-    func checkPin(user: User) async throws -> Bool {
-        guard let pin = try? await userService.verifyUser(user: user) else {
-            throw ch.failedtoDecode
-        }
-        let userPin = pin.verified
-        return userPin
-    }
+//    func checkPin(user: User) async throws -> Bool {
+//        guard let pin = try? await userService.verifyUser(user: user) else {
+//            throw ch.failedtoDecode
+//        }
+//        let userPin = pin.verified
+//        return userPin
+//    }
+    
 }
 
 
