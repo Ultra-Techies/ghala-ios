@@ -102,15 +102,19 @@ class OTP: Codable, ObservableObject, Identifiable {
 
 
 /**
- {
-     "email":"idhfggfttgre@com",
-     "phoneNumber":"0756549580",
-     "assignedWarehouse":3,
-     "password":"jkf",
-     "firstName": "John",
-     "lastName": "Doe",
-     "profilePhoto": [-23,-34,56,78,78]
- }
+ 
+     {
+         "id": 4,
+         "email": "kk@gmail.com",
+         "phoneNumber": "+254748849086",
+         "assignedWarehouse": null,
+         "password": "$2a$10$JBAy9Zaqx9VksDRO51GKkuf1ANj.C8y2EbG.jM1nfhCsfZaFWSfre",
+         "role": "ADMIN",
+         "firstName": "Joshua",
+         "lastName": "Kilz",
+         "profilePhoto": null
+     }
+ 
  */
 
 

@@ -26,6 +26,18 @@ extension Color {
 }
 
 
+extension Binding where Value == String {
+    func max(_ limit: Int) -> Self {
+        if self.wrappedValue.count > limit {
+            DispatchQueue.main.async {
+                self.wrappedValue = String(self.wrappedValue.dropLast())
+            }
+        }
+        return self
+    }
+}
+
+
 //MARK: -Passing x-www-form-urlencoded Data
 extension Dictionary {
   func percentEncoded() -> Data? {
