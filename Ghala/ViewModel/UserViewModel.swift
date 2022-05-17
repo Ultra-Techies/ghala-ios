@@ -27,9 +27,9 @@ class UserViewModel: ObservableObject {
     
     var state: State = .notAvailable
     
-    var userService: Service
+    var userService: UserService
     
-    init(userService: Service) {
+    init(userService: UserService) {
         self.userService = userService
     }
         

@@ -14,7 +14,7 @@ struct OTPCodeSubView: View {
         case noOTPError
     }
     
-    @ObservedObject var userService = Service()
+    @ObservedObject var userService = UserService()
     
     @ObservedObject var user : User
     @ObservedObject var otpCode : OTP

@@ -11,9 +11,9 @@ import SwiftUI
 struct GhalaApp: App {
     var body: some Scene {
         WindowGroup {
-           // ContentView(user: User())
-            PhoneVerificationView()
-            //SplashScreen()
+           //ContentView(user: User())
+            //PhoneVerificationView()
+             SplashScreen()
             //enterOTP(user: User(), otpCode: OTP())
         }
     }

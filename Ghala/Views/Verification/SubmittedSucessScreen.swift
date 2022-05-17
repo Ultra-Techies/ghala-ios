@@ -10,7 +10,7 @@ import SwiftUI
 struct SubmittedSucessScreen: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject var userService = Service()
+    @ObservedObject var userService = UserService()
     
     @ObservedObject var user : User
     

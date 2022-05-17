@@ -9,9 +9,11 @@ import SwiftUI
 
 struct PinVerificationSubView: View {
     
-    @ObservedObject var userService =  Service()
+    @ObservedObject var userService =  UserService()
     
     @ObservedObject var user: User
+    
+    @State private var toHomeView = false
     
     @State var code1: String
     @State var code2: String
@@ -56,22 +58,27 @@ struct PinVerificationSubView: View {
         }
         .frame(minWidth: 0, maxWidth: .infinity)
         .padding(.top, 100)
+        
+        .fullScreenCover(isPresented: $toHomeView) {
+            HomeView(user: user)
+        }
     }
     
     func checkPassword() async {
         do {
-            let phone = user.phoneNumber
-            print(phone)
-            
+           
             let arraryPass = [code1, code2, code3, code4]
             let joinedPassword = arraryPass.joined(separator: "")
             user.password = joinedPassword
-            print("joined pin: \(user.password)")
             
-            let access_token = try await userService.verifyUserLogin(user: user)
-            print(access_token)
+            let response = try await userService.verifyUserLogin(user: user)
+            print("Status: \(response)")
             
-            
+            if response != 200 {
+                print("Forbiden")
+            } else {
+                toHomeView.toggle()
+            }
 //            print("from service: \(pin)")
 //
 //            if pin == false {
@@ -87,7 +94,6 @@ struct PinVerificationSubView: View {
         
             
         } catch {
-            debugPrint(error.localizedDescription)
             print(error.localizedDescription)
         }
     }

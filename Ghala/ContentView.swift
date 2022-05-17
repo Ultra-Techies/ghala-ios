@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var userService = Service()
+    @ObservedObject var userService = UserService()
     @ObservedObject var user : User
     @State var phone = ""
     @State var email = ""
@@ -32,9 +32,10 @@ struct ContentView: View {
             
             Button {
                 Task {
-                    try await userService.getOTP(user: user)
+                   // try await userService.getOTP(user: user)
                    //try await userService.createUser(user: user)
                     //try await userService.checkIfUserExists(user: user)
+                    try await userService.getAllUsers()
                 }
             } label: {
                 Text("Send")
