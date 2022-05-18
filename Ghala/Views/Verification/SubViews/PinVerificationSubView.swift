@@ -20,24 +20,38 @@ struct PinVerificationSubView: View {
     @State var code3: String
     @State var code4: String
     
+    
+    @State private var isPin1FirstResponder: Bool? = true
+    @State private var isPin2FirstResponder: Bool? = false
+    @State private var isPin3FirstResponder: Bool? = false
+    @State private var isPin4FirstResponder: Bool? = false
+    
+    
     var body: some View {
         VStack(alignment: .center, spacing: 80) {
             
-            //MARK: -Code
-           HStack(alignment: .center, spacing: 30) {
-               TextField("", text: $code1.max(1))
-                   .vCodeStyle()
-               
-               TextField("", text: $code2.max(1))
-                   .vCodeStyle()
-               
-               TextField("", text: $code3.max(1))
-                   .vCodeStyle()
-               
-               TextField("", text: $code4.max(1))
-                   .vCodeStyle()
-           }
-                .padding()
+            //MARK: -PIN
+            HStack {
+                Group {
+                    CodeTextField(text: self.$code1,
+                                    nextResponder: self.$isPin2FirstResponder,
+                                    isResponder: self.$isPin1FirstResponder, previousResponder: .constant(nil))
+                    
+                    CodeTextField(text: self.$code2,
+                                    nextResponder: self.$isPin3FirstResponder,
+                                    isResponder: self.$isPin2FirstResponder, previousResponder: self.$isPin1FirstResponder)
+                    
+                    CodeTextField(text: self.$code3,
+                                    nextResponder: self.$isPin4FirstResponder,
+                                    isResponder: self.$isPin3FirstResponder, previousResponder: self.$isPin2FirstResponder)
+                    
+                    CodeTextField(text: self.$code4,
+                                    nextResponder: .constant(nil),
+                                    isResponder: self.$isPin4FirstResponder, previousResponder: self.$isPin3FirstResponder)
+                    
+                }
+                .vCodeStyle()
+            }.padding()
             
             VStack {
                 
@@ -66,10 +80,9 @@ struct PinVerificationSubView: View {
     
     func checkPassword() async {
         do {
-           
-            let arraryPass = [code1, code2, code3, code4]
-            let joinedPassword = arraryPass.joined(separator: "")
-            user.password = joinedPassword
+            let pin = "\(self.code1)\(self.code2)\(self.code3)\(self.code4)"
+            print(pin)
+            user.password = pin
             
             let response = try await userService.verifyUserLogin(user: user)
             print("Status: \(response)")
@@ -79,20 +92,6 @@ struct PinVerificationSubView: View {
             } else {
                 toHomeView.toggle()
             }
-//            print("from service: \(pin)")
-//
-//            if pin == false {
-//                print("password does not match")
-//            } else {
-//                print("to Home")
-//            }
-            
-            //print("to Home")
-//            else {
-//                print("password match")
-//            }
-        
-            
         } catch {
             print(error.localizedDescription)
         }
