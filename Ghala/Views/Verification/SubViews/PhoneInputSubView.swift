@@ -42,7 +42,7 @@ struct PhoneInputSubView: View {
             let locationCode = countryInfo.codeCountry[selectedIndex2].dialCode //get country Code
 
             //MARK: -Phone Number
-            TextField("722 222 222", text: $number)
+            TextField("722 222 222", text: $number.max(9))
                 .frame(width: 350.0)
                 .overlay(VStack{Divider().frame(height: 2).background(Color.buttonColor).offset(x: 0, y: 15)})
                 .padding(.top, 10)
