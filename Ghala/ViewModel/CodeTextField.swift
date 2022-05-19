@@ -62,6 +62,7 @@ struct CodeTextField: UIViewRepresentable {
         textField.font = UIFont.systemFont(ofSize: 30.0)
         textField.textColor = .black
         textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        textField.isSecureTextEntry = true
         return textField
     }
     
