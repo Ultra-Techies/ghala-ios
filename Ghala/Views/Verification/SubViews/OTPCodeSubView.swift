@@ -28,7 +28,6 @@ struct OTPCodeSubView: View {
     @State var code4: String
     
     
-    
     @State private var isPin1FirstResponder: Bool? = true
     @State private var isPin2FirstResponder: Bool? = false
     @State private var isPin3FirstResponder: Bool? = false
@@ -137,25 +136,5 @@ struct OTPCodeSubView: View {
 struct OTPCodeView_Previews: PreviewProvider {
     static var previews: some View {
         OTPCodeSubView(user: User(), otpCode: OTP(), code1: "1", code2: "2", code3: "3", code4: "4")
-    }
-}
-
-
-                    //MARK: -Verification Code Text Styling
-struct codeTextStyle: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .frame(width: 50, height: 50)
-            .background(Color.gray).opacity(0.5)
-            .multilineTextAlignment(.center)
-            .cornerRadius(10)
-            .keyboardType(/*@START_MENU_TOKEN@*/.numberPad/*@END_MENU_TOKEN@*/)
-            .multilineTextAlignment(.center)
-    }
-}
-
-extension View {
-    func vCodeStyle() -> some View {
-        modifier(codeTextStyle())
     }
 }

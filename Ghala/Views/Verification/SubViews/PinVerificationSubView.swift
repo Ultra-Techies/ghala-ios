@@ -74,7 +74,8 @@ struct PinVerificationSubView: View {
         .padding(.top, 100)
         
         .fullScreenCover(isPresented: $toHomeView) {
-            HomeView(user: user)
+            //HomeView(user: user)
+            ContentView(user: user)
         }
     }
     
@@ -90,6 +91,7 @@ struct PinVerificationSubView: View {
             if response != 200 {
                 print("Forbiden")
             } else {
+                try await userService.findByPhone(user: user)
                 toHomeView.toggle()
             }
         } catch {

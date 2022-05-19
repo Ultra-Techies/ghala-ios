@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 
+//View Shape - Verification Views
 struct RoundedCornersShape: Shape {
     let corners: UIRectCorner
     let radius: CGFloat
@@ -21,9 +22,33 @@ struct RoundedCornersShape: Shape {
     }
 }
 
+
+//Standard Button Color from Assets
 extension Color {
     static let buttonColor = Color("buttonColor")
 }
+
+
+//MARK: -Verification Code Text Styling
+struct codeTextStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(width: 50, height: 50)
+            .background(Color.gray).opacity(0.5)
+            .multilineTextAlignment(.center)
+            .cornerRadius(10)
+            .keyboardType(/*@START_MENU_TOKEN@*/.numberPad/*@END_MENU_TOKEN@*/)
+            .multilineTextAlignment(.center)
+    }
+}
+
+extension View {
+    func vCodeStyle() -> some View {
+        modifier(codeTextStyle())
+    }
+}
+
+
 
 //Text limit
 extension Binding where Value == String {
