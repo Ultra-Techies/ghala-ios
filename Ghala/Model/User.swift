@@ -174,12 +174,23 @@ class User1: Codable, ObservableObject, Identifiable {
 
 
 // MARK: - User2
-struct User2: Codable {
+class User2: Codable {
     let id: Int
     let email, phoneNumber: String
-    let assignedWarehouse: JSONNull?
+    let assignedWarehouse: Int?
     let role, firstName, lastName: String
     let profilePhoto: JSONNull?
+
+    init(id: Int, email: String, phoneNumber: String, assignedWarehouse: Int?, role: String, firstName: String, lastName: String, profilePhoto: JSONNull?) {
+        self.id = id
+        self.email = email
+        self.phoneNumber = phoneNumber
+        self.assignedWarehouse = assignedWarehouse
+        self.role = role
+        self.firstName = firstName
+        self.lastName = lastName
+        self.profilePhoto = profilePhoto
+    }
 }
 
 // MARK: - Encode/decode helpers

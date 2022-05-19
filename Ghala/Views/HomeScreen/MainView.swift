@@ -18,7 +18,6 @@ struct MainView: View {
         VStack(alignment: .leading, spacing: 20) {
             
             HStack {
-                
                 Button {
                     self.showDrawerMenu = true
                 } label: {
@@ -41,20 +40,25 @@ struct MainView: View {
                     .frame(width: 50, height: 50)
                 VStack(alignment: .leading) {
                     Text("Hello,")
-                    
                         .fontWeight(.light)
-                    
-                    Text("\(userService.us.firstName)  \(userService.us.lastName)")
+
+                    Text("\(userService.us.firstName) \(userService.us.lastName)")
                         .bold()
+
+                        
                 }
             } .padding(.horizontal, 20)
+                .onAppear {
+                    let p = user.phoneNumber
+                    print(p)
+                    Task {
+                        try await userService.findByPhone(user:user)
+                    }
+                }
             
             Spacer()
-        }.onAppear {
-            Task {
-                try await userService.findByPhone(user:user)
-            }
         }
+        
     }
 }
 

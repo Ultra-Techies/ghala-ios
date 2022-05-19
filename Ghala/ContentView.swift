@@ -9,49 +9,52 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var userService = UserService()
-    @ObservedObject var user : User
-    
-    
-//    @State var phone = ""
-//    @State var email = ""
-//    @State var firstname = ""
-//    @State var lastname = ""
-//    @State var warehouse: Int = 2
+   // @ObservedObject var userService = UserService()
+    @ObservedObject var user: User
     
     var body: some View {
-        
-        VStack {
-            
-            Text(userService.us.firstName)
-            
-            TextField("Phone", text: $user.phoneNumber)
-          //  Text(userService.otpCode.otp)
-//            TextField("email", text: $user.email)
-//            TextField("first name", text: $user.firstName)
-//            TextField("last name", text: $user.lastName)
-//            TextField("Ware House", value: $user.assignedWarehouse, formatter: NumberFormatter())
-            
-            Button {
-                Task {
-                   // try await userService.getOTP(user: user)
-                   //try await userService.createUser(user: user)
-                    //try await userService.checkIfUserExists(user: user)
-                   // try await userService.getAllUsers()
-                   // try await userService.getUser()
-                    try await userService.findByPhone(user: user)
-                }
-            } label: {
-                Text("Send")
+        TabView {
+            HomeView(user: user)
+                .tabItem {
+                    Image(systemName: "house.fill")
+                    Text("Home")
             }
-
             
+            Text("Warehouse")
+                .tabItem {
+                    Image(systemName: "note.text")
+                    Text("Home")
+            }
+        }
+        
+        Text("Orders")
+            .tabItem {
+                Image(systemName: "shippingbox")
+                Text("Home")
+        }
+        
+        Text("Inventory")
+            .tabItem {
+                Image(systemName: "list.bullet.rectangle.fill")
+                Text("Home")
+        }
+        
+        Text("Dispatch")
+            .tabItem {
+                Image(systemName: "clock.fill")
+                Text("Home")
+        }
+        
+        Text("Settings")
+            .tabItem {
+                Image(systemName: "gear")
+                Text("Home")
         }
     }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView(user: User())
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView(user: User())
+    }
+}
