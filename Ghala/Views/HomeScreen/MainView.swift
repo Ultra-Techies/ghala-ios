@@ -10,6 +10,8 @@ import SwiftUI
 struct MainView: View {
     @ObservedObject var user: User
     
+    @ObservedObject var userService =  UserService()
+    
     @Binding var showDrawerMenu: Bool
     
     var body: some View {
@@ -41,14 +43,17 @@ struct MainView: View {
                     Text("Hello,")
                     
                         .fontWeight(.light)
-                    let joinedName = user.firstName + " " + user.lastName
                     
-                    Text(joinedName)
+                    Text("\(userService.us.firstName)  \(userService.us.lastName)")
                         .bold()
                 }
             } .padding(.horizontal, 20)
             
             Spacer()
+        }.onAppear {
+            Task {
+                try await userService.findByPhone(user:user)
+            }
         }
     }
 }
