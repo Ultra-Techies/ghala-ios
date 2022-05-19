@@ -13,6 +13,10 @@ struct DrawerView: View {
     
     @ObservedObject var userService =  UserService()
     
+    
+    
+    @State private var toWareHouse = false
+    
     var body: some View {
         VStack(alignment: .leading) {
             
@@ -105,6 +109,12 @@ struct DrawerView: View {
                 try await userService.findByPhone(user: user)
             }
         }
+        
+        
+        fullScreenCover(isPresented: $toWareHouse) {
+            WareHouseView()
+        }
+        
     }
 }
 

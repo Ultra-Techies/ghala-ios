@@ -74,8 +74,8 @@ struct PinVerificationSubView: View {
         .padding(.top, 100)
         
         .fullScreenCover(isPresented: $toHomeView) {
-            HomeView(user: user)
-            //ContentView(user: user)
+            //HomeView(user: user)
+            ContentView(user: user)
         }
     }
     
