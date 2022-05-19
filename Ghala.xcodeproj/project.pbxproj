@@ -22,6 +22,9 @@
 		206445E728366A770061689B /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E628366A770061689B /* InventoryView.swift */; };
 		206445E928366A890061689B /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E828366A890061689B /* OrderView.swift */; };
 		206445EB28366AA00061689B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445EA28366AA00061689B /* SettingsView.swift */; };
+		206445ED2836A0120061689B /* WareHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445EC2836A0110061689B /* WareHouse.swift */; };
+		206445EF2836A49D0061689B /* WareHouseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445EE2836A49D0061689B /* WareHouseService.swift */; };
+		206445F22836C17B0061689B /* WarehouseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445F12836C17B0061689B /* WarehouseCell.swift */; };
 		2073C429282D9714008E749F /* OTPCodeSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C428282D9714008E749F /* OTPCodeSubView.swift */; };
 		2073C42B282DA6D9008E749F /* PinVerificationSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C42A282DA6D8008E749F /* PinVerificationSubView.swift */; };
 		2073C42D282DA78A008E749F /* PinVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C42C282DA78A008E749F /* PinVerificationView.swift */; };
@@ -56,6 +59,9 @@
 		206445E628366A770061689B /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		206445E828366A890061689B /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		206445EA28366AA00061689B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		206445EC2836A0110061689B /* WareHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WareHouse.swift; sourceTree = "<group>"; };
+		206445EE2836A49D0061689B /* WareHouseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WareHouseService.swift; sourceTree = "<group>"; };
+		206445F12836C17B0061689B /* WarehouseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseCell.swift; sourceTree = "<group>"; };
 		2073C428282D9714008E749F /* OTPCodeSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCodeSubView.swift; sourceTree = "<group>"; };
 		2073C42A282DA6D8008E749F /* PinVerificationSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationSubView.swift; sourceTree = "<group>"; };
 		2073C42C282DA78A008E749F /* PinVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationView.swift; sourceTree = "<group>"; };
@@ -89,11 +95,10 @@
 		201B05A8282D0992002B6629 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				206445F02836C1590061689B /* WareHouse */,
 				20E3AE392831032700BE295E /* HomeScreen */,
 				201B05AF282D7E94002B6629 /* Verification */,
 				20B7F471282E40E600D29C5F /* SplashScreen.swift */,
-				20C26318282F1088008C6F58 /* AccountSetupView.swift */,
-				206445E228366A5D0061689B /* WareHouseView.swift */,
 				206445E428366A6C0061689B /* DispatchView.swift */,
 				206445E628366A770061689B /* InventoryView.swift */,
 				206445E828366A890061689B /* OrderView.swift */,
@@ -105,6 +110,7 @@
 		201B05AF282D7E94002B6629 /* Verification */ = {
 			isa = PBXGroup;
 			children = (
+				20C26318282F1088008C6F58 /* AccountSetupView.swift */,
 				201B05B5282D8E01002B6629 /* OTPVerificationView.swift */,
 				201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */,
 				2073C42C282DA78A008E749F /* PinVerificationView.swift */,
@@ -133,11 +139,21 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		206445F02836C1590061689B /* WareHouse */ = {
+			isa = PBXGroup;
+			children = (
+				206445E228366A5D0061689B /* WareHouseView.swift */,
+				206445F12836C17B0061689B /* WarehouseCell.swift */,
+			);
+			path = WareHouse;
+			sourceTree = "<group>";
+		};
 		207A076A282C5789003C7EBD /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				207A076C282C57AC003C7EBD /* User.swift */,
 				202939AB2833AD6700E79E28 /* Country.swift */,
+				206445EC2836A0110061689B /* WareHouse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				201B05A6282CE1A4002B6629 /* UserService.swift */,
+				206445EE2836A49D0061689B /* WareHouseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -283,10 +300,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				206445ED2836A0120061689B /* WareHouse.swift in Sources */,
 				201B05B3282D8226002B6629 /* PhoneInputSubView.swift in Sources */,
 				202939B02833C06800E79E28 /* ReadCountryCode.swift in Sources */,
 				20E3AE3D28314A7300BE295E /* MainView.swift in Sources */,
 				206445E728366A770061689B /* InventoryView.swift in Sources */,
+				206445EF2836A49D0061689B /* WareHouseService.swift in Sources */,
 				20C26319282F1088008C6F58 /* AccountSetupView.swift in Sources */,
 				201B05A7282CE1A4002B6629 /* UserService.swift in Sources */,
 				20C22702282C2255009BAD5C /* ContentView.swift in Sources */,
@@ -309,6 +328,7 @@
 				201B05B6282D8E04002B6629 /* OTPVerificationView.swift in Sources */,
 				2073C42B282DA6D9008E749F /* PinVerificationSubView.swift in Sources */,
 				206445E928366A890061689B /* OrderView.swift in Sources */,
+				206445F22836C17B0061689B /* WarehouseCell.swift in Sources */,
 				201B05B1282D7F1D002B6629 /* TopInfoSubView.swift in Sources */,
 				206445E528366A6C0061689B /* DispatchView.swift in Sources */,
 			);
