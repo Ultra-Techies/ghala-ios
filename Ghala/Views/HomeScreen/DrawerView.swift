@@ -11,6 +11,8 @@ struct DrawerView: View {
     
     @ObservedObject var user: User
     
+    @ObservedObject var userService =  UserService()
+    
     var body: some View {
         VStack(alignment: .leading) {
             
@@ -19,10 +21,10 @@ struct DrawerView: View {
                 Image(systemName: "person.circle")
                     .resizable()
                     .frame(width: 80, height: 80)
-                let joinedName = user.firstName + " " + user.lastName
-                Text(joinedName)
+               // let joinedName = user.firstName + " " + user.lastName
+                Text("\(userService.us.firstName) \(userService.us.lastName)")
                     .bold()
-                Text(user.email)
+                Text(userService.us.email)
                     
             }
             .padding(.top, 20)
@@ -98,6 +100,10 @@ struct DrawerView: View {
                 .padding(.top, 30)
             
             Spacer()
+        }.onAppear {
+            Task {
+                try await userService.findByPhone(user: user)
+            }
         }
     }
 }

@@ -166,7 +166,6 @@ class UserService: ObservableObject {
         do {
             let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
             let decoded = try JSONDecoder().decode(User2.self, from: data)
-            print(decoded)
             self.us = decoded
         } catch {
             print(error)
