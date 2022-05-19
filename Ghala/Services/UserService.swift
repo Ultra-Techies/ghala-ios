@@ -11,7 +11,7 @@ import Foundation
 class UserService: ObservableObject {
     
     @Published var otpCode = OTP()
-    @Published var us = [User2]()
+    @Published var us = User2(id: 0, email: "", phoneNumber: "", assignedWarehouse: nil, role: "", firstName: "", lastName: "", profilePhoto: nil)
     
     enum NetworkError: Error {
         case invalidURL
@@ -52,7 +52,7 @@ class UserService: ObservableObject {
     //MARK: Verify User Password
     func verifyUserLogin(user: User) async throws -> Int {
           
-          guard let url = URL(string: "http://localhost:8080/login") else {
+        guard let url = URL(string: APIConstant.UserLogin) else {
               throw NetworkError.invalidURL
           }
 
@@ -90,7 +90,7 @@ class UserService: ObservableObject {
     
     //MARK: GET OTP
     func getOTP(user: User) async throws {
-        guard let url = URL(string: "http://localhost:8080/api/otp") else {
+        guard let url = URL(string: APIConstant.getOTP) else {
             throw NetworkError.invalidURL
         }
         guard let phoneEncoded = try? JSONEncoder().encode(user) else {
@@ -119,7 +119,7 @@ class UserService: ObservableObject {
     
     func createUser(user: User) async throws {
         
-        guard let url = URL(string: "http://localhost:8080/api/users") else {
+        guard let url = URL(string: APIConstant.createUser) else {
             throw NetworkError.invalidURL
         }
         
@@ -144,6 +144,57 @@ class UserService: ObservableObject {
         }
     }
     
+    //MARK: FindByNumber
+    func findByPhone(user: User) async throws {
+        
+        guard let url = URL(string: APIConstant.findUserByNumber) else {
+            throw NetworkError.invalidURL
+        }
+        
+        guard let phoneEncoded = try? JSONEncoder().encode(user) else {
+                print("Failed to encode")
+                throw NetworkError.invalidEncoding
+            }
+        
+        
+        let token = UserDefaults.standard.string(forKey: "access_token")
+        var request = URLRequest(url: url)
+        request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST" // Set HTTP Request Body
+        
+        do {
+            let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
+            let decoded = try JSONDecoder().decode(User2.self, from: data)
+            print(decoded)
+            self.us = decoded
+        } catch {
+            print(error)
+        }
+        
+    }
+    
+    
+    //MARK: Find by ID
+    func getUser() async throws {
+        
+        let id = 6
+        print(id)
+        let idConv = String(describing: id)
+        print(idConv)
+        guard let url = URL(string: APIConstant.getUser.appending(idConv)) else {
+            throw NetworkError.invalidURL
+        }
+        print(url)
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            
+            let userData = try JSONDecoder().decode(User2.self, from: data)
+            print(userData)
+        } catch {
+            print(error)
+        }
+    }
     
     //get all users
     func getAllUsers() async throws {

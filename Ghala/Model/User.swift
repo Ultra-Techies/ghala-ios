@@ -14,7 +14,7 @@ class User: Codable, ObservableObject, Identifiable {
             
         }
       
-        @Published var id : String = ""
+        @Published var id : Int = 0
         @Published var phoneNumber = ""
         @Published var email = ""
         //@Published var assignedWarehouse: Int = 0
@@ -22,14 +22,13 @@ class User: Codable, ObservableObject, Identifiable {
         @Published var lastName = ""
         @Published var password = ""
         
-        init() {
-            
+    init() {
         }
         
         required init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
         
-            id = try container.decode(String.self, forKey: .id)
+            id = try container.decode(Int.self, forKey: .id)
             phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
             email = try container.decode(String.self, forKey: .email)
            // assignedWarehouse = try container.decode(Int.self, forKey: .assignedWarehouse)
@@ -100,7 +99,6 @@ class OTP: Codable, ObservableObject, Identifiable {
     }
 }
 
-
 /**
  
      {
@@ -126,19 +124,19 @@ class User1: Codable, ObservableObject, Identifiable {
             
         }
       
-    @Published var id : Int?
+    @Published var id : Int
     @Published var phoneNumber : String
     @Published var email : String
-    @Published var assignedWarehouse: Int
+    @Published var assignedWarehouse: Int?
     @Published var firstName : String
     @Published var lastName : String
-    @Published var password : String
+    @Published var password : String?
         
     init(id: Int, phoneNumber: String, email: String, assignedWarehouse: Int , firstName: String, lastName: String, password: String) {
         self.id = id
         self.phoneNumber = phoneNumber
         self.email = email
-        self.assignedWarehouse = assignedWarehouse
+        //self.assignedWarehouse = assignedWarehouse
         self.firstName = firstName
         self.lastName = lastName
         self.password = password
@@ -173,12 +171,40 @@ class User1: Codable, ObservableObject, Identifiable {
 
 
 
+
+
 // MARK: - User2
-
-
 struct User2: Codable {
     let id: Int
     let email, phoneNumber: String
+    let assignedWarehouse: JSONNull?
     let role, firstName, lastName: String
+    let profilePhoto: JSONNull?
 }
 
+// MARK: - Encode/decode helpers
+
+class JSONNull: Codable, Hashable {
+
+    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
+        return true
+    }
+
+    public var hashValue: Int {
+        return 0
+    }
+
+    public init() {}
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if !container.decodeNil() {
+            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encodeNil()
+    }
+}

@@ -90,6 +90,7 @@ struct PinVerificationSubView: View {
             if response != 200 {
                 print("Forbiden")
             } else {
+                try await userService.findByPhone(user: user)
                 toHomeView.toggle()
             }
         } catch {
