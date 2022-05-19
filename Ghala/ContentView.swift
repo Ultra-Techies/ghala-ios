@@ -14,41 +14,42 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            HomeView(user: user)
+                HomeView(user: user)
+                    .tabItem {
+                        Image(systemName: "house.fill")
+                        Text("Home")
+                }
+                
+                WareHouseView()
+                    .tabItem {
+                        Image(systemName: "note.text")
+                        Text("WareHouse")
+                }
+            
+            
+            OrderView()
                 .tabItem {
-                    Image(systemName: "house.fill")
-                    Text("Home")
+                    Image(systemName: "shippingbox")
+                    Text("Order")
             }
             
-            Text("Warehouse")
+            InventoryView()
                 .tabItem {
-                    Image(systemName: "note.text")
-                    Text("Home")
+                    Image(systemName: "list.bullet.rectangle.fill")
+                    Text("Inventory")
             }
-        }
-        
-        Text("Orders")
-            .tabItem {
-                Image(systemName: "shippingbox")
-                Text("Home")
-        }
-        
-        Text("Inventory")
-            .tabItem {
-                Image(systemName: "list.bullet.rectangle.fill")
-                Text("Home")
-        }
-        
-        Text("Dispatch")
-            .tabItem {
-                Image(systemName: "clock.fill")
-                Text("Home")
-        }
-        
-        Text("Settings")
-            .tabItem {
-                Image(systemName: "gear")
-                Text("Home")
+            
+            DispatchView()
+                .tabItem {
+                    Image(systemName: "clock.fill")
+                    Text("Dispatch")
+            }
+            
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+            }
         }
     }
 }

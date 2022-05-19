@@ -17,6 +17,11 @@
 		202939AA2833AD4100E79E28 /* countryCode.json in Resources */ = {isa = PBXBuildFile; fileRef = 202939A92833AD4100E79E28 /* countryCode.json */; };
 		202939AC2833AD6700E79E28 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202939AB2833AD6700E79E28 /* Country.swift */; };
 		202939B02833C06800E79E28 /* ReadCountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202939AF2833C06800E79E28 /* ReadCountryCode.swift */; };
+		206445E328366A5D0061689B /* WareHouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E228366A5D0061689B /* WareHouseView.swift */; };
+		206445E528366A6C0061689B /* DispatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E428366A6C0061689B /* DispatchView.swift */; };
+		206445E728366A770061689B /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E628366A770061689B /* InventoryView.swift */; };
+		206445E928366A890061689B /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E828366A890061689B /* OrderView.swift */; };
+		206445EB28366AA00061689B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445EA28366AA00061689B /* SettingsView.swift */; };
 		2073C429282D9714008E749F /* OTPCodeSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C428282D9714008E749F /* OTPCodeSubView.swift */; };
 		2073C42B282DA6D9008E749F /* PinVerificationSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C42A282DA6D8008E749F /* PinVerificationSubView.swift */; };
 		2073C42D282DA78A008E749F /* PinVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C42C282DA78A008E749F /* PinVerificationView.swift */; };
@@ -46,6 +51,11 @@
 		202939A92833AD4100E79E28 /* countryCode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countryCode.json; sourceTree = "<group>"; };
 		202939AB2833AD6700E79E28 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		202939AF2833C06800E79E28 /* ReadCountryCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadCountryCode.swift; sourceTree = "<group>"; };
+		206445E228366A5D0061689B /* WareHouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WareHouseView.swift; sourceTree = "<group>"; };
+		206445E428366A6C0061689B /* DispatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchView.swift; sourceTree = "<group>"; };
+		206445E628366A770061689B /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
+		206445E828366A890061689B /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		206445EA28366AA00061689B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2073C428282D9714008E749F /* OTPCodeSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCodeSubView.swift; sourceTree = "<group>"; };
 		2073C42A282DA6D8008E749F /* PinVerificationSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationSubView.swift; sourceTree = "<group>"; };
 		2073C42C282DA78A008E749F /* PinVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationView.swift; sourceTree = "<group>"; };
@@ -83,6 +93,11 @@
 				201B05AF282D7E94002B6629 /* Verification */,
 				20B7F471282E40E600D29C5F /* SplashScreen.swift */,
 				20C26318282F1088008C6F58 /* AccountSetupView.swift */,
+				206445E228366A5D0061689B /* WareHouseView.swift */,
+				206445E428366A6C0061689B /* DispatchView.swift */,
+				206445E628366A770061689B /* InventoryView.swift */,
+				206445E828366A890061689B /* OrderView.swift */,
+				206445EA28366AA00061689B /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -271,6 +286,7 @@
 				201B05B3282D8226002B6629 /* PhoneInputSubView.swift in Sources */,
 				202939B02833C06800E79E28 /* ReadCountryCode.swift in Sources */,
 				20E3AE3D28314A7300BE295E /* MainView.swift in Sources */,
+				206445E728366A770061689B /* InventoryView.swift in Sources */,
 				20C26319282F1088008C6F58 /* AccountSetupView.swift in Sources */,
 				201B05A7282CE1A4002B6629 /* UserService.swift in Sources */,
 				20C22702282C2255009BAD5C /* ContentView.swift in Sources */,
@@ -280,6 +296,7 @@
 				20F79B302834F9B400434065 /* CodeTextField.swift in Sources */,
 				201B05AE282D5D77002B6629 /* extensions.swift in Sources */,
 				208FC1F8282FB80000C78421 /* SubmittedSucessScreen.swift in Sources */,
+				206445E328366A5D0061689B /* WareHouseView.swift in Sources */,
 				207A0771282C59BA003C7EBD /* UserViewModel.swift in Sources */,
 				20B7F472282E40E600D29C5F /* SplashScreen.swift in Sources */,
 				2073C42D282DA78A008E749F /* PinVerificationView.swift in Sources */,
@@ -287,10 +304,13 @@
 				201B05AA282D09B5002B6629 /* PhoneVerificationView.swift in Sources */,
 				207A076D282C57AC003C7EBD /* User.swift in Sources */,
 				20E3AE3F28314B4F00BE295E /* DrawerView.swift in Sources */,
+				206445EB28366AA00061689B /* SettingsView.swift in Sources */,
 				202939A428339A1600E79E28 /* APIConstants.swift in Sources */,
 				201B05B6282D8E04002B6629 /* OTPVerificationView.swift in Sources */,
 				2073C42B282DA6D9008E749F /* PinVerificationSubView.swift in Sources */,
+				206445E928366A890061689B /* OrderView.swift in Sources */,
 				201B05B1282D7F1D002B6629 /* TopInfoSubView.swift in Sources */,
+				206445E528366A6C0061689B /* DispatchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
