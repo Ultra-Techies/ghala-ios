@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct WareHouseView: View {
-    
     @ObservedObject var house = WareHouseService()
     
     @State var toAddWareHouse = false
@@ -61,8 +60,6 @@ struct WareHouseView_Previews: PreviewProvider {
         WareHouseView()
     }
 }
-
-
 //
 //NavigationLink("Press Me", destination: Text("Detail").navigationTitle("Detail View"))
 //    .navigationBarTitleDisplayMode(.inline)

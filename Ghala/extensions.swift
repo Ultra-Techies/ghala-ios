@@ -30,7 +30,7 @@ extension Color {
 
 
 //MARK: -Verification Code Text Styling
-struct codeTextStyle: ViewModifier {
+struct CodeTextStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .frame(width: 50, height: 50)
@@ -44,7 +44,7 @@ struct codeTextStyle: ViewModifier {
 
 extension View {
     func vCodeStyle() -> some View {
-        modifier(codeTextStyle())
+        modifier(CodeTextStyle())
     }
 }
 
@@ -63,7 +63,7 @@ extension Binding where Value == String {
 }
 
 
-//MARK: -Passing x-www-form-urlencoded Data
+//MARK: Passing x-www-form-urlencoded Data
 extension Dictionary {
   func percentEncoded() -> Data? {
     return map { key, value in

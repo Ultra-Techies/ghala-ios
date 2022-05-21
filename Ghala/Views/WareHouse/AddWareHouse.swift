@@ -8,13 +8,9 @@
 import SwiftUI
 
 struct AddWareHouse: View {
-    
-    
-    
     @State private var wareHouseName = ""
     @State private var location = ""
-    
-    
+    //view
     @State private var toWareHouseView = false
     
     var body: some View {

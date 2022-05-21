@@ -11,14 +11,14 @@ struct WareHouseData: Codable {
     var wareInfo: [WareHouse]
 }
 
-
 class WareHouse: Codable, ObservableObject, Identifiable {
-    
     enum CodingKeys: CodingKey {
-        case id, name, location
+        case id
+        case name
+        case location
     }
     
-    @Published var id : Int = 0
+    @Published var warehouseID : Int = 0
     @Published var name: String = ""
     @Published var location: String = ""
     
@@ -30,7 +30,7 @@ class WareHouse: Codable, ObservableObject, Identifiable {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        id = try container.decode(Int.self, forKey: .id)
+        warehouseID = try container.decode(Int.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
         location = try container.decode(String.self, forKey: .location)
     }
@@ -38,7 +38,7 @@ class WareHouse: Codable, ObservableObject, Identifiable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        try container.encode(id, forKey: .id)
+        try container.encode(warehouseID, forKey: .id)
         try container.encode(name, forKey: .name)
         try container.encode(location, forKey: .location)
     }
