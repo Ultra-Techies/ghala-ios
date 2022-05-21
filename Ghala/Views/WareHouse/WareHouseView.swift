@@ -28,12 +28,6 @@ struct WareHouseView: View {
             
                 //search
                 .toolbar {
-//
-//                    ToolbarItem(placement: .navigationBarTrailing) {
-//                        Image(systemName: "magnifyingglass")
-//                            .foregroundColor(.black)
-//                    }
-                    
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             toAddWareHouse.toggle()
