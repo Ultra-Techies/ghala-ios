@@ -15,7 +15,7 @@ class WareHouseService: ObservableObject {
     let token = UserDefaults.standard.string(forKey: "access_token")
     
     enum NetworkError: Error {
-        case invalidURL, InvalideResponse, InvalideData
+        case invalidURL, failedEncode ,InvalideResponse, InvalideData
     }
     
     
@@ -39,5 +39,35 @@ class WareHouseService: ObservableObject {
             print(decodedData)
             self.warehouse = decodedData
         }
+    }
+    
+    func registerWareHouse(warehouse: Warehouse) async throws {
+        
+        //get url
+        guard let url = URL(string: APIConstant.registerWareHouse) else {
+            throw NetworkError.invalidURL
+        }
+        
+        //encodeData
+        
+        guard let addWarehouse = try? JSONEncoder().encode(warehouse) else {
+            throw NetworkError.failedEncode
+        }
+        
+        
+        //get token and URLRequest from url
+        
+        var request = URLRequest(url: url)
+        request.setValue("Bearer \(self.token!)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        
+        //Upload Encoded Warehouse
+        
+        let (data, _) = try await URLSession.shared.upload(for: request, from: addWarehouse)
+        
+        //get Json Response from data
+        
+        let dataDecoded = JSONDecoder()
     }
 }

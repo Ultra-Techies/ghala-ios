@@ -25,6 +25,7 @@
 		206445ED2836A0120061689B /* WareHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445EC2836A0110061689B /* WareHouse.swift */; };
 		206445EF2836A49D0061689B /* WareHouseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445EE2836A49D0061689B /* WareHouseService.swift */; };
 		206445F22836C17B0061689B /* WarehouseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445F12836C17B0061689B /* WarehouseCell.swift */; };
+		206BAB732839545E0050F22A /* AddWareHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206BAB722839545E0050F22A /* AddWareHouse.swift */; };
 		2073C429282D9714008E749F /* OTPCodeSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C428282D9714008E749F /* OTPCodeSubView.swift */; };
 		2073C42B282DA6D9008E749F /* PinVerificationSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C42A282DA6D8008E749F /* PinVerificationSubView.swift */; };
 		2073C42D282DA78A008E749F /* PinVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C42C282DA78A008E749F /* PinVerificationView.swift */; };
@@ -62,6 +63,7 @@
 		206445EC2836A0110061689B /* WareHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WareHouse.swift; sourceTree = "<group>"; };
 		206445EE2836A49D0061689B /* WareHouseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WareHouseService.swift; sourceTree = "<group>"; };
 		206445F12836C17B0061689B /* WarehouseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseCell.swift; sourceTree = "<group>"; };
+		206BAB722839545E0050F22A /* AddWareHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWareHouse.swift; sourceTree = "<group>"; };
 		2073C428282D9714008E749F /* OTPCodeSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCodeSubView.swift; sourceTree = "<group>"; };
 		2073C42A282DA6D8008E749F /* PinVerificationSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationSubView.swift; sourceTree = "<group>"; };
 		2073C42C282DA78A008E749F /* PinVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			children = (
 				206445E228366A5D0061689B /* WareHouseView.swift */,
 				206445F12836C17B0061689B /* WarehouseCell.swift */,
+				206BAB722839545E0050F22A /* AddWareHouse.swift */,
 			);
 			path = WareHouse;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				20C26319282F1088008C6F58 /* AccountSetupView.swift in Sources */,
 				201B05A7282CE1A4002B6629 /* UserService.swift in Sources */,
 				20C22702282C2255009BAD5C /* ContentView.swift in Sources */,
+				206BAB732839545E0050F22A /* AddWareHouse.swift in Sources */,
 				2073C429282D9714008E749F /* OTPCodeSubView.swift in Sources */,
 				20C22700282C2255009BAD5C /* GhalaApp.swift in Sources */,
 				202939AC2833AD6700E79E28 /* Country.swift in Sources */,

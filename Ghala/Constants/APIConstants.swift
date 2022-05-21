@@ -19,4 +19,5 @@ enum APIConstant {
     
     //MARK: WareHouse
     static let getAllWareHouse = "http://localhost:8080/api/warehouse/all"
+    static let registerWareHouse = "http://localhost:8080/api/warehouse"
 }

@@ -11,6 +11,8 @@ struct WareHouseView: View {
     
     @ObservedObject var house = WareHouseService()
     
+    @State var toAddWareHouse = false
+    
     var body: some View {
         
         NavigationView {
@@ -26,15 +28,28 @@ struct WareHouseView: View {
             
                 //search
                 .toolbar {
+//
+//                    ToolbarItem(placement: .navigationBarTrailing) {
+//                        Image(systemName: "magnifyingglass")
+//                            .foregroundColor(.black)
+//                    }
+                    
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.black)
+                        Button {
+                            toAddWareHouse.toggle()
+                        } label: {
+                            Image(systemName: "plus")
+                        }
                     }
                 }
         }
 
         .task {
            await getWareHouses()
+        }
+        
+        .fullScreenCover(isPresented: $toAddWareHouse) {
+            AddWareHouse()
         }
     }
     
@@ -52,3 +67,17 @@ struct WareHouseView_Previews: PreviewProvider {
         WareHouseView()
     }
 }
+
+
+//
+//NavigationLink("Press Me", destination: Text("Detail").navigationTitle("Detail View"))
+//    .navigationBarTitleDisplayMode(.inline)
+//    // this sets the Back button text when a new screen is pushed
+//    .navigationTitle("Back to Primary View")
+//    .toolbar {
+//        ToolbarItem(placement: .principal) {
+//            // this sets the screen title in the navigation bar, when the screen is visible
+//            Text("Primary View")
+//        }
+//    }
+//}

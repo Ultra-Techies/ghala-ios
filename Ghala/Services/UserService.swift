@@ -30,6 +30,7 @@ class UserService: ObservableObject {
         guard let phoneEncoded = try? JSONEncoder().encode(user) else {
                 throw NetworkError.invalidEncoding
             }
+        
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
