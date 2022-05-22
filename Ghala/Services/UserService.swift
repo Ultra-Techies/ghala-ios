@@ -19,7 +19,6 @@ class UserService: ObservableObject {
         case invalidEncoding
         case invalidData
     }
-    
     //MARK: Check if User Exists
     func checkIfUserExists(user: User) async throws -> check {
         guard let url = URL(string: APIConstant.checkUserExists) else {
@@ -47,7 +46,6 @@ class UserService: ObservableObject {
 
         return decoded
     }
-    
     //MARK: Verify User Password
     func verifyUserLogin(user: User) async throws -> Int {
           
@@ -65,7 +63,6 @@ class UserService: ObservableObject {
               "password": pin
             ]
           }
-          
           var request = URLRequest(url: url)
           request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
           request.httpMethod = "POST"
@@ -85,7 +82,7 @@ class UserService: ObservableObject {
         return response.statusCode
       }
     
-    //MARK: GET OTP
+    //MARK: -GET OTP
     func getOTP(user: User) async throws {
         guard let url = URL(string: APIConstant.getOTP) else {
             throw NetworkError.invalidURL

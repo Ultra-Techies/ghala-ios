@@ -8,7 +8,6 @@
 import Foundation
 
 class User: Codable, ObservableObject, Identifiable {
-    
     enum CodingKeys: CodingKey{
             case id
             case phoneNumber

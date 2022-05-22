@@ -22,12 +22,10 @@ struct RoundedCornersShape: Shape {
     }
 }
 
-
 //Standard Button Color from Assets
 extension Color {
     static let buttonColor = Color("buttonColor")
 }
-
 
 //MARK: -Verification Code Text Styling
 struct CodeTextStyle: ViewModifier {
@@ -48,8 +46,6 @@ extension View {
     }
 }
 
-
-
 //Text limit
 extension Binding where Value == String {
     func max(_ limit: Int) -> Self {
@@ -61,7 +57,6 @@ extension Binding where Value == String {
         return self
     }
 }
-
 
 //MARK: Passing x-www-form-urlencoded Data
 extension Dictionary {
