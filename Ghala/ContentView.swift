@@ -9,38 +9,47 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var userService = Service()
-    @ObservedObject var user : User
-    @State var phone = ""
-    @State var email = ""
-    @State var firstname = ""
-    @State var lastname = ""
-    @State var warehouse: Int = 2
-    
+   // @ObservedObject var userService = UserService()
+    @ObservedObject var user: User
     
     var body: some View {
-        
-        VStack {
-    
-            
-            TextField("Phone", text: $user.phoneNumber)
-            Text(userService.otpCode.otp)
-//            TextField("email", text: $user.email)
-//            TextField("first name", text: $user.firstName)
-//            TextField("last name", text: $user.lastName)
-//            TextField("Ware House", value: $user.assignedWarehouse, formatter: NumberFormatter())
-            
-            Button {
-                Task {
-                    try await userService.getOTP(user: user)
-                   //try await userService.createUser(user: user)
-                    //try await userService.checkIfUserExists(user: user)
+        TabView {
+                HomeView(user: user)
+                    .tabItem {
+                        Image(systemName: "house.fill")
+                        Text("Home")
                 }
-            } label: {
-                Text("Send")
-            }
-
+                
+                WareHouseView()
+                    .tabItem {
+                        Image(systemName: "note.text")
+                        Text("WareHouse")
+                }
             
+            
+            OrderView()
+                .tabItem {
+                    Image(systemName: "shippingbox")
+                    Text("Order")
+            }
+            
+            InventoryView()
+                .tabItem {
+                    Image(systemName: "list.bullet.rectangle.fill")
+                    Text("Inventory")
+            }
+            
+            DispatchView()
+                .tabItem {
+                    Image(systemName: "clock.fill")
+                    Text("Dispatch")
+            }
+            
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+            }
         }
     }
 }

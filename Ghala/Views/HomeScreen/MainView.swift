@@ -10,13 +10,14 @@ import SwiftUI
 struct MainView: View {
     @ObservedObject var user: User
     
+    @ObservedObject var userService =  UserService()
+    
     @Binding var showDrawerMenu: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             
             HStack {
-                
                 Button {
                     self.showDrawerMenu = true
                 } label: {
@@ -39,17 +40,25 @@ struct MainView: View {
                     .frame(width: 50, height: 50)
                 VStack(alignment: .leading) {
                     Text("Hello,")
-                    
                         .fontWeight(.light)
-                    let joinedName = user.firstName + " " + user.lastName
-                    
-                    Text(joinedName)
+
+                    Text("\(userService.us.firstName) \(userService.us.lastName)")
                         .bold()
+
+                        
                 }
             } .padding(.horizontal, 20)
+                .onAppear {
+                    let p = user.phoneNumber
+                    print(p)
+                    Task {
+                        try await userService.findByPhone(user:user)
+                    }
+                }
             
             Spacer()
         }
+        
     }
 }
 
