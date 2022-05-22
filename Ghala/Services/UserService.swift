@@ -9,7 +9,6 @@ import Foundation
 
 @MainActor
 class UserService: ObservableObject {
-    
     @Published var otpCode = OTP()
     @Published var us = User2(id: 0, email: "", phoneNumber: "", assignedWarehouse: nil, role: "", firstName: "", lastName: "", profilePhoto: nil)
     
@@ -28,7 +27,6 @@ class UserService: ObservableObject {
         guard let phoneEncoded = try? JSONEncoder().encode(user) else {
                 throw NetworkError.invalidEncoding
             }
-        
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
