@@ -41,7 +41,7 @@ class WareHouseService: ObservableObject {
         }
     }
     
-    func registerWareHouse(warehouse: Warehouse) async throws {
+    func registerWareHouse(warehouse: WareHouse) async throws {
         
         //get url
         guard let url = URL(string: APIConstant.registerWareHouse) else {
@@ -68,6 +68,7 @@ class WareHouseService: ObservableObject {
         
         //get Json Response from data
         
-        let dataDecoded = JSONDecoder()
+        let dataDecoded = try JSONDecoder().decode(createResponse.self, from: data)
+        print(dataDecoded)
     }
 }

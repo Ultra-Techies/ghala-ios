@@ -22,7 +22,6 @@ class WareHouse: Codable, ObservableObject, Identifiable {
     @Published var name: String = ""
     @Published var location: String = ""
     
-    
     init() {
         
     }
@@ -51,3 +50,8 @@ struct WarehouseElement1: Codable {
 }
 
 typealias Warehouse = [WarehouseElement1]
+
+//retrurn response on create
+struct createResponse: Codable {
+    let warehouseId: Int
+}

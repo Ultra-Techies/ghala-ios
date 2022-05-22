@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct WareHouseView: View {
-    @ObservedObject var house = WareHouseService()
-    
+    @ObservedObject var wareHouseService = WareHouseService()
     @State var toAddWareHouse = false
     
     var body: some View {
-        
         NavigationView {
             VStack {
                 List {
-                    ForEach(house.warehouse, id: \.id) { ware in
+                    ForEach(wareHouseService.warehouse, id: \.id) { ware in
                         WarehouseCell(name: ware.name, location: ware.location)
                             .listRowSeparator(.hidden)
                     }
@@ -36,19 +34,18 @@ struct WareHouseView: View {
                     }
                 }
         }
-
         .task {
            await getWareHouses()
         }
         
         .fullScreenCover(isPresented: $toAddWareHouse) {
-            AddWareHouse()
+            AddWareHouse(warehouse: WareHouse())
         }
     }
     
     func getWareHouses() async {
         do {
-            try await house.getAllWareHouse()
+            try await wareHouseService.getAllWareHouse()
         } catch {
             print(error)
         }

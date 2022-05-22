@@ -8,22 +8,27 @@
 import SwiftUI
 
 struct AddWareHouse: View {
-    @State private var wareHouseName = ""
-    @State private var location = ""
-    //view
+    @ObservedObject private var wareHouseService = WareHouseService()
+    @ObservedObject var warehouse: WareHouse
+//    @State private var wareHouseName = ""
+//    @State private var location = ""
+    //Backto WH view
     @State private var toWareHouseView = false
+    
     
     var body: some View {
         
         NavigationView {
             VStack {
-                TextField("Warehouse Name", text: $wareHouseName)
-                TextField("Location", text: $location)
+                TextField("Warehouse Name", text: $warehouse.name)
+                TextField("Location", text: $warehouse.location)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        print("add warehouse")
+                        Task {
+                           await register()
+                        }
                     } label: {
                         Image(systemName: "checkmark")
                     }
@@ -39,10 +44,17 @@ struct AddWareHouse: View {
             }
         }
     }
+    private func register() async {
+        do {
+            try await wareHouseService.registerWareHouse(warehouse:warehouse)
+        } catch {
+            print(error)
+        }
+    }
 }
 
 struct AddWareHouse_Previews: PreviewProvider {
     static var previews: some View {
-        AddWareHouse()
+        AddWareHouse(warehouse: WareHouse())
     }
 }

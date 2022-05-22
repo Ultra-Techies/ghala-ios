@@ -20,7 +20,6 @@ class UserService: ObservableObject {
         case invalidData
     }
     
-    
     //MARK: Check if User Exists
     func checkIfUserExists(user: User) async throws -> check {
         guard let url = URL(string: APIConstant.checkUserExists) else {
@@ -48,7 +47,6 @@ class UserService: ObservableObject {
 
         return decoded
     }
-    
     
     //MARK: Verify User Password
     func verifyUserLogin(user: User) async throws -> Int {
@@ -87,8 +85,6 @@ class UserService: ObservableObject {
         return response.statusCode
       }
     
-    
-    
     //MARK: GET OTP
     func getOTP(user: User) async throws {
         guard let url = URL(string: APIConstant.getOTP) else {
@@ -112,29 +108,23 @@ class UserService: ObservableObject {
         } catch {
             print(error.localizedDescription)
         }
-        
     }
     
     
     //MARK: Create User
-    
     func createUser(user: User) async throws {
         
         guard let url = URL(string: APIConstant.createUser) else {
             throw NetworkError.invalidURL
         }
-        
-        
         guard let phoneEncoded = try? JSONEncoder().encode(user) else {
                 print("Failed to encode")
                 throw NetworkError.invalidEncoding
             }
-        
-            
-            var request = URLRequest(url: url)
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpMethod = "POST"
-            request.httpBody = phoneEncoded // Set HTTP Request Body
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = phoneEncoded // Set HTTP Request Body
             
         do {
             let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
@@ -156,14 +146,11 @@ class UserService: ObservableObject {
                 print("Failed to encode")
                 throw NetworkError.invalidEncoding
             }
-        
-        
         let token = UserDefaults.standard.string(forKey: "access_token")
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST" // Set HTTP Request Body
-        
         do {
             let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
             let decoded = try JSONDecoder().decode(User2.self, from: data)
@@ -174,7 +161,6 @@ class UserService: ObservableObject {
         }
         
     }
-    
     
     //MARK: Find by ID
     func getUser() async throws {
@@ -214,9 +200,6 @@ class UserService: ObservableObject {
         
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
-            
-            
-            
             let decoded = try JSONDecoder().decode([User].self, from: data)
             print(decoded)
             
