@@ -8,13 +8,18 @@
 import Foundation
 
 class User: Codable, ObservableObject, Identifiable {
-    
     enum CodingKeys: CodingKey{
-            case id, phoneNumber, email, assignedWarehouse, firstName, lastName, password
+            case id
+            case phoneNumber
+            case email
+            case assignedWarehouse
+            case firstName
+            case lastName
+            case password
             
         }
       
-        @Published var id : Int = 0
+        @Published var id: Int = 0
         @Published var phoneNumber = ""
         @Published var email = ""
         //@Published var assignedWarehouse: Int = 0

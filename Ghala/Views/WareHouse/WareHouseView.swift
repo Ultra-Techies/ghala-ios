@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct WareHouseView: View {
-    
-    @ObservedObject var house = WareHouseService()
+    @ObservedObject var wareHouseService = WareHouseService()
+    @State var toAddWareHouse = false
     
     var body: some View {
-        
         NavigationView {
             VStack {
                 List {
-                    ForEach(house.warehouse, id: \.id) { ware in
+                    ForEach(wareHouseService.warehouse, id: \.id) { ware in
                         WarehouseCell(name: ware.name, location: ware.location)
                             .listRowSeparator(.hidden)
                     }
@@ -27,20 +26,26 @@ struct WareHouseView: View {
                 //search
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.black)
+                        Button {
+                            toAddWareHouse.toggle()
+                        } label: {
+                            Image(systemName: "plus")
+                        }
                     }
                 }
         }
-
         .task {
            await getWareHouses()
+        }
+        
+        .fullScreenCover(isPresented: $toAddWareHouse) {
+            AddWareHouse(warehouse: WareHouse())
         }
     }
     
     func getWareHouses() async {
         do {
-            try await house.getAllWareHouse()
+            try await wareHouseService.getAllWareHouse()
         } catch {
             print(error)
         }
@@ -52,3 +57,15 @@ struct WareHouseView_Previews: PreviewProvider {
         WareHouseView()
     }
 }
+//
+//NavigationLink("Press Me", destination: Text("Detail").navigationTitle("Detail View"))
+//    .navigationBarTitleDisplayMode(.inline)
+//    // this sets the Back button text when a new screen is pushed
+//    .navigationTitle("Back to Primary View")
+//    .toolbar {
+//        ToolbarItem(placement: .principal) {
+//            // this sets the screen title in the navigation bar, when the screen is visible
+//            Text("Primary View")
+//        }
+//    }
+//}

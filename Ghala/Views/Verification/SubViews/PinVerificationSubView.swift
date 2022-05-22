@@ -8,28 +8,23 @@
 import SwiftUI
 
 struct PinVerificationSubView: View {
-    
     @ObservedObject var userService =  UserService()
-    
     @ObservedObject var user: User
-    
+    //to Home View
     @State private var toHomeView = false
-    
+    //user pin
     @State var code1: String
     @State var code2: String
     @State var code3: String
     @State var code4: String
-    
-    
+    //to next textfield
     @State private var isPin1FirstResponder: Bool? = true
     @State private var isPin2FirstResponder: Bool? = false
     @State private var isPin3FirstResponder: Bool? = false
     @State private var isPin4FirstResponder: Bool? = false
     
-    
     var body: some View {
         VStack(alignment: .center, spacing: 80) {
-            
             //MARK: -PIN
             HStack {
                 Group {
@@ -48,16 +43,12 @@ struct PinVerificationSubView: View {
                     CodeTextField(text: self.$code4,
                                     nextResponder: .constant(nil),
                                     isResponder: self.$isPin4FirstResponder, previousResponder: self.$isPin3FirstResponder)
-                    
                 }
                 .vCodeStyle()
             }.padding()
-            
             VStack {
-                
                 Button  {
                     print("Login")
-                
                     Task {
                         await checkPassword()
                     }

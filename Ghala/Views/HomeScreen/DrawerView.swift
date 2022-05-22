@@ -8,20 +8,13 @@
 import SwiftUI
 
 struct DrawerView: View {
-    
     @ObservedObject var user: User
-    
     @ObservedObject var userService =  UserService()
-    
-    
-    
     @State private var toWareHouse = false
     
     var body: some View {
         VStack(alignment: .leading) {
-            
             VStack(spacing: 10) {
-                
                 Image(systemName: "person.circle")
                     .resizable()
                     .frame(width: 80, height: 80)
@@ -35,21 +28,16 @@ struct DrawerView: View {
             .padding(.bottom, 20)
             .frame(maxWidth: .infinity)
             .background(Color.yellow)
-            
-            
             //MARK: Drawer Views
             VStack(alignment: .leading, spacing: 40) {
-                    
                     Button {
                         print("Home")
                     } label: {
- 
                     Image(systemName: "house.fill")
                         .resizable()
                         .drawerHStyle()
                     Text("Home")
                     }.foregroundColor(.black)
-                
                     Button {
                         print("WareHouse")
                     } label: {
@@ -58,9 +46,6 @@ struct DrawerView: View {
                             .drawerHStyle()
                         Text("Warehouse")
                     }.foregroundColor(.black)
-
-            
-                    
                     Button {
                         print("Orders")
                     } label: {
@@ -69,8 +54,6 @@ struct DrawerView: View {
                             .drawerHStyle()
                         Text("Orders")
                     }.foregroundColor(.black)
-                    
-                
                     Button {
                         print("Inventory")
                     } label: {
@@ -79,8 +62,6 @@ struct DrawerView: View {
                             .drawerHStyle()
                         Text("Inventory")
                     }.foregroundColor(.black)
-                
-                
                 Button {
                     print("Dispatch")
                 } label: {
@@ -89,8 +70,6 @@ struct DrawerView: View {
                         .drawerHStyle()
                     Text("Dispatch")
                 }.foregroundColor(.black)
-
-
                 Button {
                     print("Settings")
                 } label: {
@@ -99,22 +78,17 @@ struct DrawerView: View {
                         .drawerHStyle()
                     Text("Settings")
                 }.foregroundColor(.black)
-                
             } .padding()
                 .padding(.top, 30)
-            
             Spacer()
         }.onAppear {
             Task {
                 try await userService.findByPhone(user: user)
             }
         }
-        
-        
         fullScreenCover(isPresented: $toWareHouse) {
             WareHouseView()
         }
-        
     }
 }
 
@@ -123,12 +97,6 @@ struct DrawerView_Previews: PreviewProvider {
         DrawerView(user: User())
     }
 }
-
-
-
-
-
-
 
 struct drawerStyle: ViewModifier {
     func body(content: Content) -> some View {

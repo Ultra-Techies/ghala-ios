@@ -13,7 +13,6 @@ struct WarehouseCell: View {
     @State var location = ""
     
     var body: some View {
-        
         VStack(alignment: .leading, spacing: 10) {
             Text(name)
                 .bold()

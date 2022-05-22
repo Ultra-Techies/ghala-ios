@@ -10,35 +10,27 @@ import UIKit
 import Combine
 
 struct OTPCodeSubView: View {
-    
-    
     enum CodeError: Error {
         case noOTPError
     }
-    
     @ObservedObject var userService = UserService()
-    
     @ObservedObject var user : User
     @ObservedObject var otpCode : OTP
-    
-    
+    //verification code
     @State var code1: String
     @State var code2: String
     @State var code3: String
     @State var code4: String
-    
-    
+    //move to next textfield
     @State private var isPin1FirstResponder: Bool? = true
     @State private var isPin2FirstResponder: Bool? = false
     @State private var isPin3FirstResponder: Bool? = false
     @State private var isPin4FirstResponder: Bool? = false
-    
+    //to AccountSetup View
     @State private var toAccSetup = false
-    
     
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
-            
             //MARK: -Code
             HStack {
                 Group {
@@ -57,17 +49,14 @@ struct OTPCodeSubView: View {
                     CodeTextField(text: self.$code4,
                                     nextResponder: .constant(nil),
                                     isResponder: self.$isPin4FirstResponder, previousResponder: self.$isPin3FirstResponder)
-                    
                 }
                 .vCodeStyle()
             }.padding()
-            
             VStack(spacing: 20) {
                 Text("Didn't receive an OTP?")
                     .foregroundColor(.gray)
                     .fontWeight(.light)
                     .multilineTextAlignment(.center)
-                
                 let _ = print(String(describing: "OTP is on OTP Screen:  \(userService.otpCode.otp)"))
                 
                 Button  {
@@ -81,22 +70,16 @@ struct OTPCodeSubView: View {
                         .bold()
                         .foregroundColor(Color.buttonColor)
                 }.buttonStyle(BorderlessButtonStyle())
-                
-                
-                Button  {
-
+                Button {
                     let userOTPCode = "\(self.code1)\(self.code2)\(self.code3)\(self.code4)"
                     print(userOTPCode)
-                    
                 let code = userService.otpCode.otp
-                    
                 if  userOTPCode != code {
                     print("not same")
                 } else {
                     toAccSetup.toggle()
                     print("Same!!! to create account")
                 }
-                    
                 } label: {
                     Text("Verify")
                         .foregroundColor(.white)
@@ -104,7 +87,6 @@ struct OTPCodeSubView: View {
                 }
                 .background(Color.buttonColor)
             } .padding(.top, 30)
-            
             .fullScreenCover(isPresented: $toAccSetup) {
                 AccountSetupView(user: user)
             }
@@ -120,12 +102,10 @@ struct OTPCodeSubView: View {
     }
     
     func getOTP() async {
-        
         do {
 
             try await userService.getOTP(user: user)
            print(otpCode)
-            
         } catch {
             print(error)
             debugPrint(error)
