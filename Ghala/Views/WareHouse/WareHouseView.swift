@@ -9,8 +9,7 @@ import SwiftUI
 
 struct WareHouseView: View {
     @ObservedObject var wareHouseService = WareHouseService()
-    @State var toAddWareHouse = false
-    
+   
     var body: some View {
         NavigationView {
             VStack {
@@ -21,14 +20,16 @@ struct WareHouseView: View {
                     }
                 }.listStyle(PlainListStyle())
                 .navigationTitle("Warehouses")
-            }   .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
+                .refreshable {
+                    Task {
+                        await getWareHouses() //swipe down to refresh
+                    }
+                }
+            }
                 //search
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            toAddWareHouse.toggle()
-                        } label: {
+                        NavigationLink(destination: AddWareHouse(warehouse: WareHouse())) {
                             Image(systemName: "plus")
                         }
                     }
@@ -36,10 +37,6 @@ struct WareHouseView: View {
         }
         .task {
            await getWareHouses()
-        }
-        
-        .fullScreenCover(isPresented: $toAddWareHouse) {
-            AddWareHouse(warehouse: WareHouse())
         }
     }
     
@@ -57,15 +54,3 @@ struct WareHouseView_Previews: PreviewProvider {
         WareHouseView()
     }
 }
-//
-//NavigationLink("Press Me", destination: Text("Detail").navigationTitle("Detail View"))
-//    .navigationBarTitleDisplayMode(.inline)
-//    // this sets the Back button text when a new screen is pushed
-//    .navigationTitle("Back to Primary View")
-//    .toolbar {
-//        ToolbarItem(placement: .principal) {
-//            // this sets the screen title in the navigation bar, when the screen is visible
-//            Text("Primary View")
-//        }
-//    }
-//}

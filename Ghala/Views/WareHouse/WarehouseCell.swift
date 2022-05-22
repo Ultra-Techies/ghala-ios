@@ -19,7 +19,7 @@ struct WarehouseCell: View {
                 .font(.title2)
             Text(location)
                 .fontWeight(.medium)
-        }   .padding()
+        }.padding()
     }
 }
 
