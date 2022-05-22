@@ -9,9 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @ObservedObject var user: User
-    
     @ObservedObject var userService =  UserService()
-    
     @Binding var showDrawerMenu: Bool
     
     var body: some View {
@@ -26,14 +24,11 @@ struct MainView: View {
                         .frame(width: 25, height: 25)
                         .foregroundColor(.black)
                 }
-
-                
                 Spacer()
                 Image(systemName: "magnifyingglass")
                     .resizable()
                     .frame(width: 25, height: 25)
             }.padding(.horizontal, 20)
-            
             HStack {
                 Image(systemName: "person.circle")
                     .resizable()
@@ -44,8 +39,6 @@ struct MainView: View {
 
                     Text("\(userService.us.firstName) \(userService.us.lastName)")
                         .bold()
-
-                        
                 }
             } .padding(.horizontal, 20)
                 .onAppear {
@@ -55,10 +48,8 @@ struct MainView: View {
                         try await userService.findByPhone(user:user)
                     }
                 }
-            
             Spacer()
         }
-        
     }
 }
 

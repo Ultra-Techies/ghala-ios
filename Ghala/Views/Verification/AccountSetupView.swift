@@ -8,23 +8,15 @@
 import SwiftUI
 
 struct AccountSetupView: View {
-    
     @Environment(\.presentationMode) var presentationMode
-    
-    
-    
     @ObservedObject var user : User
-    
     @State var firstName = ""
     @State var lastName = ""
     @State var email = ""
-    @State var wareHouse : Int = 1
     @State var accountPin = ""
-    
     @State private var toAccSetup = false
     
     var body: some View {
-        
         VStack {
             
             HStack {
@@ -36,9 +28,6 @@ struct AccountSetupView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: 50 , alignment: .center)
             .background(Color.yellow)
-                
-            
-            
             Text("Welcome to Ghala. Please setup your account to start using the app")
                 .padding(.horizontal, 25.0)
                 .multilineTextAlignment(.center)
@@ -46,25 +35,19 @@ struct AccountSetupView: View {
             VStack(spacing: 40) {
                 let _ = print(String(describing: user.phoneNumber))
                 TextField("First Name", text: $user.firstName)
-                    .TextFieldStyling()
+                    .textFieldStyling()
                 TextField("Last Name", text: $user.lastName)
-                    .TextFieldStyling()
+                    .textFieldStyling()
                 TextField("Email Address", text: $user.email )
-                    .TextFieldStyling()
-//                TextField("Warehouse", value: $user.assignedWarehouse, formatter: NumberFormatter())
-//                    .TextFieldStyling()
+                    .textFieldStyling()
                 SecureField("Account Pin",text: $user.password)
-                    .TextFieldStyling()
+                    .textFieldStyling()
                     .keyboardType(/*@START_MENU_TOKEN@*/.numberPad/*@END_MENU_TOKEN@*/)
-                    
-
-                
             }
             .padding(.horizontal, 25.0)
             .padding(.top, 50)
             .padding(.bottom, 100)
-            
-            Button  {
+            Button {
                 toAccSetup.toggle()
             } label: {
                 Text("VERIFY")
@@ -72,7 +55,6 @@ struct AccountSetupView: View {
                     .frame(width: 350, height: 50)
             }
             .background(Color.buttonColor)
-            
             //MARK: Add condion when button pressed wait for...  ---on (Environment dismiss)
 //            ProgressView()
 //                .scaleEffect(2)
@@ -95,7 +77,6 @@ struct AccountSetupView_Previews: PreviewProvider {
     }
 }
 
-
 //MARK: -Text Field Styling
 struct TextFieldStyle: ViewModifier {
     func body(content: Content) -> some View {
@@ -106,8 +87,7 @@ struct TextFieldStyle: ViewModifier {
 }
 
 extension View {
-    func TextFieldStyling() -> some View {
+    func textFieldStyling() -> some View {
         modifier(TextFieldStyle())
     }
 }
-
