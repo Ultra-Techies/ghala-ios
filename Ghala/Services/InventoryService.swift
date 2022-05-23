@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+@MainActor
 class InventoryService: ObservableObject {
     enum NetworkError: Error {
         case invalidURL
