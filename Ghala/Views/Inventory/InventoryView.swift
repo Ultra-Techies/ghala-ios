@@ -17,6 +17,10 @@ struct InventoryView: View {
                     ForEach(inventoryService.inventory, id: \.sku) { inventoryItem in
                         InventoryCell(name: inventoryItem.name, Category: inventoryItem.category, SKU: inventoryItem.skuCode, price: inventoryItem.ppu, quantity: inventoryItem.quantity, status: inventoryItem.status)
                     }
+                }.refreshable {
+                    Task {
+                        await getAll()
+                    }
                 }
             }.navigationTitle("Inventory")
         }.task {
