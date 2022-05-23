@@ -15,10 +15,10 @@ struct InventoryView: View {
             VStack {
                 List {
                     ForEach(inventoryService.inventory, id: \.sku) { inventoryItem in
-                        Text(inventoryItem.name)
+                        InventoryCell(name: inventoryItem.name, Category: inventoryItem.category, SKU: inventoryItem.skuCode, price: inventoryItem.ppu, quantity: inventoryItem.quantity, status: inventoryItem.status)
                     }
                 }
-            }
+            }.navigationTitle("Inventory")
         }.task {
             await getAll()
         }
