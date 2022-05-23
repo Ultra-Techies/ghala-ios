@@ -10,14 +10,8 @@ import SwiftUI
 struct AddWareHouse: View {
     @ObservedObject private var wareHouseService = WareHouseService()
     @ObservedObject var warehouse: WareHouse
-//    @State private var wareHouseName = ""
-//    @State private var location = ""
-    //Backto WH view
-    @State private var toWareHouseView = false
-    
     
     var body: some View {
-        
         NavigationView {
             VStack {
                 TextField("Warehouse Name", text: $warehouse.name)
@@ -33,17 +27,10 @@ struct AddWareHouse: View {
                         Image(systemName: "checkmark")
                     }
                 }
-                
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    Button {
-//                        <#code#>
-//                    } label: {
-//                        Image(systemName: "")
-//                    }
-//                }
             }
         }
     }
+    //register warehouse
     private func register() async {
         do {
             try await wareHouseService.registerWareHouse(warehouse:warehouse)
