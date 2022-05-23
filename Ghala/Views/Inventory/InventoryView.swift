@@ -12,32 +12,49 @@ struct InventoryView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                
-                //Filter
-                HStack {
-                    Image("filter")
-                    Text("Filter")
+            ZStack {
+                VStack {
+                    //Filter
+                    HStack {
+                        Image("filter")
+                        Text("Filter")
+                        Spacer()
+                        Text("Category:")
+                        Image(systemName: "arrowtriangle.down.fill")
+                            .resizable()
+                            .frame(width: 11, height: 11)
+                    }.padding(.horizontal, 10)
+                        .padding(.top, 10)
+                    
+                    //Inventory List
+                    List {
+                        ForEach(inventoryService.inventory, id: \.sku) { inventoryItem in
+                            InventoryCell(name: inventoryItem.name, Category: inventoryItem.category, SKU: inventoryItem.skuCode, price: inventoryItem.ppu, quantity: inventoryItem.quantity, status: inventoryItem.status)
+                        }
+                    }
+                    .refreshable {
+                        Task {
+                            await getAll()
+                        }
+                    }
+                }.navigationTitle("Inventory")
+            //Add Inventory Button
+                VStack {
                     Spacer()
-                    Text("Category:")
-                    Image(systemName: "arrowtriangle.down.fill")
-                        .resizable()
-                        .frame(width: 11, height: 11)
-                }.padding(.horizontal, 10)
-                    .padding(.top, 10)
-                
-                //Inventory List
-                List {
-                    ForEach(inventoryService.inventory, id: \.sku) { inventoryItem in
-                        InventoryCell(name: inventoryItem.name, Category: inventoryItem.category, SKU: inventoryItem.skuCode, price: inventoryItem.ppu, quantity: inventoryItem.quantity, status: inventoryItem.status)
+                    HStack {
+                        Spacer()
+                        Button {
+                            print("add Inventory")
+                        } label: {
+                            Image(systemName: "plus.circle.fill")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(.yellow)
+                        }
+                        .padding()
                     }
                 }
-                .refreshable {
-                    Task {
-                        await getAll()
-                    }
-                }
-            }.navigationTitle("Inventory")
+            }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Image(systemName: "magnifyingglass")
