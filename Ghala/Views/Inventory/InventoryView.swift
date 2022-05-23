@@ -43,15 +43,14 @@ struct InventoryView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        Button {
-                            print("add Inventory")
-                        } label: {
+                        //to Add Inventory
+                        NavigationLink(destination: AddInventory()) {
                             Image(systemName: "plus.circle.fill")
                                 .resizable()
                                 .frame(width: 50, height: 50)
                                 .foregroundColor(.yellow)
+                                .padding()
                         }
-                        .padding()
                     }
                 }
             }

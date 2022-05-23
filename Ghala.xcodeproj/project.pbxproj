@@ -41,6 +41,7 @@
 		20CE094B283B9E4900E36673 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE094A283B9E4900E36673 /* Inventory.swift */; };
 		20CE094D283B9F0900E36673 /* InventoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE094C283B9F0900E36673 /* InventoryService.swift */; };
 		20CE0950283BA4E000E36673 /* InventoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE094F283BA4DF00E36673 /* InventoryCell.swift */; };
+		20CE0952283BCB3600E36673 /* AddInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE0951283BCB3600E36673 /* AddInventory.swift */; };
 		20E3AE3B2831034400BE295E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E3AE3A2831034400BE295E /* HomeView.swift */; };
 		20E3AE3D28314A7300BE295E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E3AE3C28314A7300BE295E /* MainView.swift */; };
 		20E3AE3F28314B4F00BE295E /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E3AE3E28314B4F00BE295E /* DrawerView.swift */; };
@@ -83,6 +84,7 @@
 		20CE094A283B9E4900E36673 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
 		20CE094C283B9F0900E36673 /* InventoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryService.swift; sourceTree = "<group>"; };
 		20CE094F283BA4DF00E36673 /* InventoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCell.swift; sourceTree = "<group>"; };
+		20CE0951283BCB3600E36673 /* AddInventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInventory.swift; sourceTree = "<group>"; };
 		20E3AE3A2831034400BE295E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		20E3AE3C28314A7300BE295E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		20E3AE3E28314B4F00BE295E /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			children = (
 				206445E628366A770061689B /* InventoryView.swift */,
 				20CE094F283BA4DF00E36673 /* InventoryCell.swift */,
+				20CE0951283BCB3600E36673 /* AddInventory.swift */,
 			);
 			path = Inventory;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				20CE094B283B9E4900E36673 /* Inventory.swift in Sources */,
 				2073C42B282DA6D9008E749F /* PinVerificationSubView.swift in Sources */,
 				206445E928366A890061689B /* OrderView.swift in Sources */,
+				20CE0952283BCB3600E36673 /* AddInventory.swift in Sources */,
 				206445F22836C17B0061689B /* WarehouseCell.swift in Sources */,
 				201B05B1282D7F1D002B6629 /* TopInfoSubView.swift in Sources */,
 				206445E528366A6C0061689B /* DispatchView.swift in Sources */,
