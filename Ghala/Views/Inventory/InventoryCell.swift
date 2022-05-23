@@ -13,7 +13,7 @@ struct InventoryCell: View {
     @State var SKU: String
     @State var price: Int
     @State var quantity: Int
-    @State var status: String
+    @State var status: Status
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -25,16 +25,26 @@ struct InventoryCell: View {
             HStack {
                 Text("Category: \(Category)")
                 Spacer()
-                Text(status)
+                Text(status.rawValue)
+                    .foregroundColor(statusColor(status: status))
             }
             Text("SKU: \(SKU)")
             Text("Price: \(price)")
+        }
+    }
+    //Color for status
+    private func statusColor(status: Status) -> Color {
+        switch status {
+        case .available:
+            return .green
+        case .outOfStock:
+            return .red
         }
     }
 }
 
 struct InventoryCell_Previews: PreviewProvider {
     static var previews: some View {
-        InventoryCell(name: "Kimbo", Category: "Oil", SKU: "FFNJDF", price: 400, quantity: 25, status: "AVAILABLE")
+        InventoryCell(name: "Kimbo", Category: "Oil", SKU: "FFNJDF", price: 400, quantity: 25, status: .available)
     }
 }

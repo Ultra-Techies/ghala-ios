@@ -13,7 +13,12 @@ struct Inventory: Codable {
     let category: String
     let quantity: Int
     let ppu: Int //pricePerUnit
-    let status: String //make bool
+    let status: Status //make bool
     let skuCode: String
     let warehouseId: Int
+}
+//status enum
+enum Status: String, Codable {
+    case available = "AVAILABLE"
+    case outOfStock = "Out Of Stock"
 }
