@@ -38,6 +38,8 @@
 		20C22704282C2259009BAD5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20C22703282C2259009BAD5C /* Assets.xcassets */; };
 		20C22707282C2259009BAD5C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20C22706282C2259009BAD5C /* Preview Assets.xcassets */; };
 		20C26319282F1088008C6F58 /* AccountSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C26318282F1088008C6F58 /* AccountSetupView.swift */; };
+		20CE094B283B9E4900E36673 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE094A283B9E4900E36673 /* Inventory.swift */; };
+		20CE094D283B9F0900E36673 /* InventoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE094C283B9F0900E36673 /* InventoryService.swift */; };
 		20E3AE3B2831034400BE295E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E3AE3A2831034400BE295E /* HomeView.swift */; };
 		20E3AE3D28314A7300BE295E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E3AE3C28314A7300BE295E /* MainView.swift */; };
 		20E3AE3F28314B4F00BE295E /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E3AE3E28314B4F00BE295E /* DrawerView.swift */; };
@@ -77,6 +79,8 @@
 		20C22703282C2259009BAD5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20C22706282C2259009BAD5C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		20C26318282F1088008C6F58 /* AccountSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupView.swift; sourceTree = "<group>"; };
+		20CE094A283B9E4900E36673 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
+		20CE094C283B9F0900E36673 /* InventoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryService.swift; sourceTree = "<group>"; };
 		20E3AE3A2831034400BE295E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		20E3AE3C28314A7300BE295E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		20E3AE3E28314B4F00BE295E /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
@@ -97,12 +101,12 @@
 		201B05A8282D0992002B6629 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				20CE094E283BA1DE00E36673 /* Inventory */,
 				206445F02836C1590061689B /* WareHouse */,
 				20E3AE392831032700BE295E /* HomeScreen */,
 				201B05AF282D7E94002B6629 /* Verification */,
 				20B7F471282E40E600D29C5F /* SplashScreen.swift */,
 				206445E428366A6C0061689B /* DispatchView.swift */,
-				206445E628366A770061689B /* InventoryView.swift */,
 				206445E828366A890061689B /* OrderView.swift */,
 				206445EA28366AA00061689B /* SettingsView.swift */,
 			);
@@ -157,6 +161,7 @@
 				207A076C282C57AC003C7EBD /* User.swift */,
 				202939AB2833AD6700E79E28 /* Country.swift */,
 				206445EC2836A0110061689B /* WareHouse.swift */,
+				20CE094A283B9E4900E36673 /* Inventory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 			children = (
 				201B05A6282CE1A4002B6629 /* UserService.swift */,
 				206445EE2836A49D0061689B /* WareHouseService.swift */,
+				20CE094C283B9F0900E36673 /* InventoryService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -220,6 +226,14 @@
 				20C22706282C2259009BAD5C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		20CE094E283BA1DE00E36673 /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				206445E628366A770061689B /* InventoryView.swift */,
+			);
+			path = Inventory;
 			sourceTree = "<group>";
 		};
 		20E3AE392831032700BE295E /* HomeScreen */ = {
@@ -315,6 +329,7 @@
 				206BAB732839545E0050F22A /* AddWareHouse.swift in Sources */,
 				2073C429282D9714008E749F /* OTPCodeSubView.swift in Sources */,
 				20C22700282C2255009BAD5C /* GhalaApp.swift in Sources */,
+				20CE094D283B9F0900E36673 /* InventoryService.swift in Sources */,
 				202939AC2833AD6700E79E28 /* Country.swift in Sources */,
 				20F79B302834F9B400434065 /* CodeTextField.swift in Sources */,
 				201B05AE282D5D77002B6629 /* extensions.swift in Sources */,
@@ -330,6 +345,7 @@
 				206445EB28366AA00061689B /* SettingsView.swift in Sources */,
 				202939A428339A1600E79E28 /* APIConstants.swift in Sources */,
 				201B05B6282D8E04002B6629 /* OTPVerificationView.swift in Sources */,
+				20CE094B283B9E4900E36673 /* Inventory.swift in Sources */,
 				2073C42B282DA6D9008E749F /* PinVerificationSubView.swift in Sources */,
 				206445E928366A890061689B /* OrderView.swift in Sources */,
 				206445F22836C17B0061689B /* WarehouseCell.swift in Sources */,
