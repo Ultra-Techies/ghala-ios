@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InventoryView: View {
     @ObservedObject var inventoryService = InventoryService()
+    @ObservedObject var user: User
     
     var body: some View {
         NavigationView {
@@ -44,7 +45,7 @@ struct InventoryView: View {
                     HStack {
                         Spacer()
                         //to Add Inventory
-                        NavigationLink(destination: AddInventory()) {
+                        NavigationLink(destination: AddInventory(inventoryD: InventoryEncode(), user: user)) {
                             Image(systemName: "plus.circle.fill")
                                 .resizable()
                                 .frame(width: 50, height: 50)
@@ -75,6 +76,6 @@ struct InventoryView: View {
 
 struct InventoryView_Previews: PreviewProvider {
     static var previews: some View {
-        InventoryView()
+        InventoryView(user: User())
     }
 }

@@ -38,4 +38,30 @@ class InventoryService: ObservableObject {
             print(error)
         }
     }
+    //MARK: -ADD INVENTORY
+    func addInventory(inventory: InventoryEncode) async throws {
+        //get Url
+        guard let url = URL(string: APIConstant.addInventory) else {
+            throw NetworkError.invalidURL
+        }
+        //encode inventory from Add Inventory
+        let encodedInventory = try JSONEncoder().encode(inventory)
+        
+        //get Request and set headers
+        var request = URLRequest(url: url)
+        request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+       
+        do {
+        //URLSession upload encoded Inventory
+        let (data, _) = try await URLSession.shared.upload(for: request, from: encodedInventory)
+        
+        //Decode the uploaded data
+        let decodedInventory = try JSONDecoder().decode(inventoryResponse.self, from: data)
+        print(decodedInventory)
+        } catch {
+            print(error)
+        }
+    }
 }

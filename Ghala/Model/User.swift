@@ -128,11 +128,11 @@ class OTP: Codable, ObservableObject, Identifiable {
 class User2: Codable {
     let id: Int
     let email, phoneNumber: String
-    let assignedWarehouse: Int?
+    let assignedWarehouse: Int
     let role, firstName, lastName: String
     let profilePhoto: JSONNull?
 
-    init(id: Int, email: String, phoneNumber: String, assignedWarehouse: Int?, role: String, firstName: String, lastName: String, profilePhoto: JSONNull?) {
+    init(id: Int, email: String, phoneNumber: String, assignedWarehouse: Int, role: String, firstName: String, lastName: String, profilePhoto: JSONNull?) {
         self.id = id
         self.email = email
         self.phoneNumber = phoneNumber
