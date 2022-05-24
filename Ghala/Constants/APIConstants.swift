@@ -21,4 +21,6 @@ enum APIConstant {
     //MARK: - Inventory
     static let getAllInventory = "http://localhost:8080/api/inventory/all"
     static let addInventory = "http://localhost:8080/api/inventory"
+    //MARK: - Orders
+    static let getOrderById = "http://localhost:8080/api/order/wh/"
 }

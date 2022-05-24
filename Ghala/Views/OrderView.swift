@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct OrderView: View {
+    @ObservedObject var orderService = OrderService()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                List {
+                    ForEach(orderService.orderDTO, id: \.id) { order in
+                        Text(order.customerName)
+                    }
+                }
+            }
+        }.task {
+           await getOrderId()
+        }
+    }
+    func getOrderId() async {
+        do {
+            try await orderService.getOrderById()
+        } catch {
+            print(error)
+        }
     }
 }
 
