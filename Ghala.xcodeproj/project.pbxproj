@@ -48,6 +48,7 @@
 		20F79B302834F9B400434065 /* CodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F79B2F2834F9B400434065 /* CodeTextField.swift */; };
 		20FDBB9A283D300C003FFC76 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBB99283D300C003FFC76 /* Order.swift */; };
 		20FDBB9C283D302C003FFC76 /* OrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBB9B283D302C003FFC76 /* OrderService.swift */; };
+		20FDBBA0283D5C6E003FFC76 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBB9F283D5C6E003FFC76 /* OrderCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 		20F79B2F2834F9B400434065 /* CodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextField.swift; sourceTree = "<group>"; };
 		20FDBB99283D300C003FFC76 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		20FDBB9B283D302C003FFC76 /* OrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderService.swift; sourceTree = "<group>"; };
+		20FDBB9F283D5C6E003FFC76 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,13 +111,13 @@
 		201B05A8282D0992002B6629 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				20FDBB9D283D5C4E003FFC76 /* Order */,
 				20CE094E283BA1DE00E36673 /* Inventory */,
 				206445F02836C1590061689B /* WareHouse */,
 				20E3AE392831032700BE295E /* HomeScreen */,
 				201B05AF282D7E94002B6629 /* Verification */,
 				20B7F471282E40E600D29C5F /* SplashScreen.swift */,
 				206445E428366A6C0061689B /* DispatchView.swift */,
-				206445E828366A890061689B /* OrderView.swift */,
 				206445EA28366AA00061689B /* SettingsView.swift */,
 			);
 			path = Views;
@@ -258,6 +260,15 @@
 			path = HomeScreen;
 			sourceTree = "<group>";
 		};
+		20FDBB9D283D5C4E003FFC76 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				206445E828366A890061689B /* OrderView.swift */,
+				20FDBB9F283D5C6E003FFC76 /* OrderCell.swift */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -348,6 +359,7 @@
 				20F79B302834F9B400434065 /* CodeTextField.swift in Sources */,
 				201B05AE282D5D77002B6629 /* extensions.swift in Sources */,
 				208FC1F8282FB80000C78421 /* SubmittedSucessScreen.swift in Sources */,
+				20FDBBA0283D5C6E003FFC76 /* OrderCell.swift in Sources */,
 				206445E328366A5D0061689B /* WareHouseView.swift in Sources */,
 				207A0771282C59BA003C7EBD /* UserViewModel.swift in Sources */,
 				20B7F472282E40E600D29C5F /* SplashScreen.swift in Sources */,
