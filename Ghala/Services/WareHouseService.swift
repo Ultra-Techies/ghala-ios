@@ -37,7 +37,7 @@ class WareHouseService: ObservableObject {
         }
     }
     
-    //MARK: -Register Warehouse
+    //MARK: - Register Warehouse
     func registerWareHouse(warehouse: WareHouse) async throws {
         //get url
         guard let url = URL(string: APIConstant.registerWareHouse) else {
