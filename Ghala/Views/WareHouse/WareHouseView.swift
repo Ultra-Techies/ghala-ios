@@ -12,7 +12,8 @@ struct WareHouseView: View {
    
     var body: some View {
         NavigationView {
-            VStack {
+           ZStack {
+               VStack {
                 List {
                     ForEach(wareHouseService.warehouse, id: \.id) { ware in
                         WarehouseCell(name: ware.name, location: ware.location)
@@ -26,6 +27,21 @@ struct WareHouseView: View {
                     }
                 }
             }
+               VStack {
+                   Spacer()
+                   HStack {
+                       Spacer()
+                       //to Add WareHouse
+                       NavigationLink(destination: AddWareHouse(warehouse: WareHouse())) {
+                           Image(systemName: "plus.circle.fill")
+                               .resizable()
+                               .frame(width: 50, height: 50)
+                               .foregroundColor(.yellow)
+                               .padding()
+                       }
+                   }
+               }
+           }
                 //search
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
