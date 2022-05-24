@@ -14,7 +14,6 @@ struct AddInventory: View {
     @ObservedObject var user: User
     var category = ["Sugar", "Flour", "Milk", "Cooking Oil"]
     @State var selectCategory = 0
-    
     var body: some View {
         NavigationView {
             VStack {
@@ -32,7 +31,7 @@ struct AddInventory: View {
                     Section(header: Text("Price")) {
                         TextField("", value: $inventoryD.ppu, formatter: NumberFormatter())
                     }
-                    Section (header: Text("Quantity")){
+                    Section (header: Text("Quantity")) {
                         TextField("", value: $inventoryD.quantity, formatter: NumberFormatter())
                     }
                 }
@@ -52,12 +51,12 @@ struct AddInventory: View {
             .navigationTitle("Add New Inventory")
         }.onAppear {
             Task {
-                try await userService.findByPhone(user:user)
+                try await userService.findByPhone(user: user)
             }
         }
     }
     
-    //MARK: -Add Inventory
+    //MARK: - Add Inventory
     private func addInventoryItem() async {
         do {
             //passing warehouseID from User

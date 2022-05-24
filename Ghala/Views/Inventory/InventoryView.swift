@@ -10,7 +10,6 @@ import SwiftUI
 struct InventoryView: View {
     @ObservedObject var inventoryService = InventoryService()
     @ObservedObject var user: User
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -30,7 +29,7 @@ struct InventoryView: View {
                     //Inventory List
                     List {
                         ForEach(inventoryService.inventory, id: \.sku) { inventoryItem in
-                            InventoryCell(name: inventoryItem.name, Category: inventoryItem.category, SKU: inventoryItem.skuCode, price: inventoryItem.ppu, quantity: inventoryItem.quantity, status: inventoryItem.status)
+                            InventoryCell(name: inventoryItem.name, category: inventoryItem.category, SKU: inventoryItem.skuCode, price: inventoryItem.ppu, quantity: inventoryItem.quantity, status: inventoryItem.status)
                         }
                     }
                     .refreshable {

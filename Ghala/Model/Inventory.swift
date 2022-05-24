@@ -41,11 +41,8 @@ class InventoryEncode: Codable, ObservableObject, Identifiable {
     @Published var skuCode: String = ""
     @Published var ppu: Int = 0
     @Published var warehouseId: Int = 0
-    
     init() {
-        
     }
-    
     //Decode
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -74,6 +71,6 @@ class InventoryEncode: Codable, ObservableObject, Identifiable {
         }
 }
 //responce
-struct inventoryResponse: Codable {
+struct InventoryResponse: Codable {
     let sku: Int
 }

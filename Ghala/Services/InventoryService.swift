@@ -15,18 +15,15 @@ class InventoryService: ObservableObject {
     }
     let token = UserDefaults.standard.string(forKey: "access_token") //get current access token from user Device
     @Published var inventory = [Inventory]()
-    
-    //MARK: -GET ALL INVENTORY
+    //MARK: - GET ALL INVENTORY
     func getAllInventory() async throws {
         guard let url = URL(string: APIConstant.getAllInventory) else {
             throw NetworkError.invalidURL
         }
-        
         //urlRequest
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization") //place access_token to header
         request.httpMethod = "GET"
-        
         do {
             //UrlSession
             let (data, _) = try await URLSession.shared.data(for: request)
@@ -38,7 +35,8 @@ class InventoryService: ObservableObject {
             print(error)
         }
     }
-    //MARK: -ADD INVENTORY
+    
+    //MARK: - ADD INVENTORY
     func addInventory(inventory: InventoryEncode) async throws {
         //get Url
         guard let url = URL(string: APIConstant.addInventory) else {
@@ -46,7 +44,6 @@ class InventoryService: ObservableObject {
         }
         //encode inventory from Add Inventory
         let encodedInventory = try JSONEncoder().encode(inventory)
-        
         //get Request and set headers
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
@@ -58,7 +55,7 @@ class InventoryService: ObservableObject {
         let (data, _) = try await URLSession.shared.upload(for: request, from: encodedInventory)
         
         //Decode the uploaded data
-        let decodedInventory = try JSONDecoder().decode(inventoryResponse.self, from: data)
+        let decodedInventory = try JSONDecoder().decode(InventoryResponse.self, from: data)
         print(decodedInventory)
         } catch {
             print(error)
