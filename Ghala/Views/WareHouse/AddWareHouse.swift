@@ -13,26 +13,12 @@ struct AddWareHouse: View {
     
     var body: some View {
         NavigationView {
-            
-//            VStack {
-//                TextField("Warehouse Name", text: $warehouse.name)
-//                TextField("Location", text: $warehouse.location)
-//            }
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button {
-//                        Task {
-//                           await register()
-//                        }
-//                    } label: {
-//                        Image(systemName: "checkmark")
-//                    }
-//                }
-            
             VStack {
                 Form {
                     Section(header: Text("Add WareHouse")) {
                         TextField("Warehouse Name", text: $warehouse.name)
+                    }
+                    Section {
                         TextField("Location", text: $warehouse.location)
                     }
                 }
@@ -51,6 +37,7 @@ struct AddWareHouse: View {
             }
         }
     }
+    
     //register warehouse
     private func register() async {
         do {
