@@ -39,23 +39,19 @@ class WareHouseService: ObservableObject {
     
     //MARK: -Register Warehouse
     func registerWareHouse(warehouse: WareHouse) async throws {
-        
         //get url
         guard let url = URL(string: APIConstant.registerWareHouse) else {
             throw NetworkError.invalidURL
         }
-        
         //encodeData
         guard let addWarehouse = try? JSONEncoder().encode(warehouse) else {
             throw NetworkError.failedEncode
         }
-        
         //get token and URLRequest from url
         var request = URLRequest(url: url)
         request.setValue("Bearer \(self.token!)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        
         //Upload Encoded Warehouse
         let (data, _) = try await URLSession.shared.upload(for: request, from: addWarehouse)
         
