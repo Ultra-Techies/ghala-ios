@@ -18,7 +18,7 @@ struct WarehouseCell: View {
                 .bold()
                 .font(.title2)
             Text(location)
-                .fontWeight(.medium)
+                .fontWeight(.light)
         }.padding()
     }
 }
