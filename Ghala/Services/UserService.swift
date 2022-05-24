@@ -10,7 +10,7 @@ import Foundation
 @MainActor
 class UserService: ObservableObject {
     @Published var otpCode = OTP()
-    @Published var us = User2(id: 0, email: "", phoneNumber: "", assignedWarehouse: nil, role: "", firstName: "", lastName: "", profilePhoto: nil)
+    @Published var us = User2(id: 0, email: "", phoneNumber: "", assignedWarehouse: 0, role: "", firstName: "", lastName: "", profilePhoto: nil)
     
     enum NetworkError: Error {
         case invalidURL

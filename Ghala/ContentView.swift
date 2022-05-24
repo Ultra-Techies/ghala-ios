@@ -33,7 +33,7 @@ struct ContentView: View {
                     Text("Order")
             }
             
-            InventoryView()
+            InventoryView(user: user)
                 .tabItem {
                     Image(systemName: "list.bullet.rectangle.fill")
                     Text("Inventory")
