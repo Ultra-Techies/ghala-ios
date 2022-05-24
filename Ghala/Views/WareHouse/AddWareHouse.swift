@@ -13,20 +13,41 @@ struct AddWareHouse: View {
     
     var body: some View {
         NavigationView {
+            
+//            VStack {
+//                TextField("Warehouse Name", text: $warehouse.name)
+//                TextField("Location", text: $warehouse.location)
+//            }
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button {
+//                        Task {
+//                           await register()
+//                        }
+//                    } label: {
+//                        Image(systemName: "checkmark")
+//                    }
+//                }
+            
             VStack {
-                TextField("Warehouse Name", text: $warehouse.name)
-                TextField("Location", text: $warehouse.location)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        Task {
-                           await register()
-                        }
-                    } label: {
-                        Image(systemName: "checkmark")
+                Form {
+                    Section(header: Text("Add WareHouse")) {
+                        TextField("Warehouse Name", text: $warehouse.name)
+                        TextField("Location", text: $warehouse.location)
                     }
                 }
+                //Add Button
+                Button {
+                    Task {
+                        await register()
+                    }
+                } label: {
+                    Text("ADD")
+                        .foregroundColor(.white)
+                        .frame(width: 350, height: 50)
+                }
+                .background(Color.yellow)
+                .padding()
             }
         }
     }

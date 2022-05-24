@@ -45,9 +45,7 @@ struct WareHouseView: View {
                 //search
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink(destination: AddWareHouse(warehouse: WareHouse())) {
-                            Image(systemName: "plus")
-                        }
+                        Image(systemName: "magnifyingglass")
                     }
                 }
         }
