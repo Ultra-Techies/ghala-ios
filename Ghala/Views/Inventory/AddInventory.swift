@@ -12,37 +12,59 @@ struct AddInventory: View {
     @ObservedObject var userService = UserService()
     @ObservedObject var inventoryD: InventoryEncode
     @ObservedObject var user: User
+    var category = ["Sugar", "Flour", "Milk", "Cooking Oil"]
+    @State var selectCategory = 0
     
     var body: some View {
-        VStack(spacing: 10) {
-            TextField("Product Name", text: $inventoryD.name)
-            TextField("Product Category", text: $inventoryD.category) //To-Do add Picker
-            TextField("Price Per Unit", value: $inventoryD.ppu, formatter: NumberFormatter())
-            TextField("Quantity", value: $inventoryD.quantity, formatter: NumberFormatter())
-            //Add Item
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            Task {
-                                await addInventoryItem()
+        NavigationView {
+            VStack {
+                Form {
+                    Section(header: Text("Product Name")) {
+                                    TextField("", text: $inventoryD.name)
+                    }
+                    Section {
+                        Picker(selection: $selectCategory, label: Text("Category")) {
+                            ForEach(0 ..< category.count) {
+                                Text(self.category[$0])
                             }
-                        } label: {
-                            Text("Add")
                         }
                     }
+                    Section(header: Text("Price")) {
+                        TextField("", value: $inventoryD.ppu, formatter: NumberFormatter())
+                    }
+                    Section (header: Text("Quantity")){
+                        TextField("", value: $inventoryD.quantity, formatter: NumberFormatter())
+                    }
                 }
+                //Add inventory Button
+                Button {
+                    Task {
+                        await addInventoryItem()
+                    }
+                } label: {
+                    Text("ADD")
+                        .foregroundColor(.white)
+                        .frame(width: 350, height: 50)
+                }
+                .background(Color.yellow)
+                .padding()
+            }
+            .navigationTitle("Add New Inventory")
         }.onAppear {
             Task {
                 try await userService.findByPhone(user:user)
             }
         }
     }
-    //add Inventory
+    
+    //MARK: -Add Inventory
     private func addInventoryItem() async {
         do {
             //passing warehouseID from User
             let warehouseID = userService.us.assignedWarehouse
             print(warehouseID)
+            let categorySelected = category[selectCategory]
+            inventoryD.category = categorySelected
             inventoryD.warehouseId = warehouseID
             try await inventoryService.addInventory(inventory: inventoryD)
         } catch {
