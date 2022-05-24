@@ -8,7 +8,8 @@
 import Foundation
 @MainActor
 class OrderService: ObservableObject {
-    @Published var orderDTO = [Order]()
+    @Published var orderDTO = [OrderElement]()
+    @Published var itemsDTO = [Item]()
     //NetworkAPI Status
     enum NetworkError: Error {
         case invalidURL
@@ -30,7 +31,7 @@ class OrderService: ObservableObject {
         //get Session
         let (data,_) = try await URLSession.shared.data(for: request)
         //decode data
-        let decodeOrder = try JSONDecoder().decode([Order].self, from: data)
+        let decodeOrder = try JSONDecoder().decode([OrderElement].self, from: data)
         print(decodeOrder)
         self.orderDTO = decodeOrder
     }

@@ -6,8 +6,12 @@
 //
 
 import Foundation
-// MARK: - OrderElement
+// MARK: - Order
 struct Order: Codable {
+    let order: [Order]
+}
+// MARK: - OrderElement
+struct OrderElement: Codable {
     let id: Int
     let createdDate, createdTime, due, deliveryWindow: String
     let customerName, orderCode: String

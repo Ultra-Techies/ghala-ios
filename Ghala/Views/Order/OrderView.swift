@@ -15,6 +15,10 @@ struct OrderView: View {
                 List {
                     ForEach(orderService.orderDTO, id: \.id) { order in
                         Text(order.customerName)
+                        ForEach(order.items, id: \.sku) { item in
+                            //Text(item.name)
+                            Text("\(item.quantity)")
+                        }
                     }
                 }
             }
