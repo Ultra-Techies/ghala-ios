@@ -30,8 +30,11 @@ struct InventoryView: View {
                     List {
                         ForEach(inventoryService.inventory, id: \.sku) { inventoryItem in
                             InventoryCell(name: inventoryItem.name, category: inventoryItem.category, SKU: inventoryItem.skuCode, price: inventoryItem.ppu, quantity: inventoryItem.quantity, status: inventoryItem.status)
-                        }
-                    }
+                                .padding()
+                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+                        }.listRowBackground(Color.clear)
+                            .background(Color.listBackground)
+                    }.listStyle(SidebarListStyle())
                     .refreshable {
                         Task {
                             await getAll()
