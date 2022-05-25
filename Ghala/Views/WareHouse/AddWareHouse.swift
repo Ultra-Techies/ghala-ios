@@ -12,10 +12,9 @@ struct AddWareHouse: View {
     @ObservedObject var warehouse: WareHouse
     
     var body: some View {
-        NavigationView {
             VStack {
                 Form {
-                    Section(header: Text("Add WareHouse")) {
+                    Section {
                         TextField("Warehouse Name", text: $warehouse.name)
                     }
                     Section {
@@ -34,8 +33,8 @@ struct AddWareHouse: View {
                 }
                 .background(Color.yellow)
                 .padding()
+                .navigationTitle("Add WareHouse")
             }
-        }
     }
     
     //register warehouse
