@@ -23,7 +23,7 @@ struct OrderView: View {
                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
                     }.listRowBackground(Color.clear)
                     .background(Color.white)
-                }.environment(\.defaultMinListRowHeight, 50)
+                }
                 .listStyle(SidebarListStyle())
             }
             .navigationTitle("Orders")
