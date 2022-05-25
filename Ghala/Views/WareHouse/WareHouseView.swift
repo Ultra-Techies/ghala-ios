@@ -15,11 +15,14 @@ struct WareHouseView: View {
            ZStack {
                VStack {
                 List {
-                    ForEach(wareHouseService.warehouse, id: \.id) { ware in
-                        WarehouseCell(name: ware.name, location: ware.location)
-                            .listRowSeparator(.hidden)
-                    }
-                }.listStyle(PlainListStyle())
+                    ForEach(wareHouseService.warehouse, id: \.id) { wHouse in
+                        WarehouseCell(name: wHouse.name, location: wHouse.location)
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+                    }.listRowBackground(Color.clear)
+                    .background(Color.listBackground)
+                }.listStyle(SidebarListStyle())
                 .navigationTitle("Warehouses")
                 .refreshable {
                     Task {

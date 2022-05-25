@@ -13,13 +13,13 @@ struct WarehouseCell: View {
     @State var location = ""
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(name)
                 .bold()
                 .font(.title2)
             Text(location)
                 .fontWeight(.light)
-        }.padding()
+        }
     }
 }
 
