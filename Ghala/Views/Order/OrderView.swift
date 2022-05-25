@@ -14,7 +14,7 @@ struct OrderView: View {
             VStack {
                 FilterView()
                 List {
-                    ForEach(orderService.orderDTO, id: \.id) { order in
+                    ForEach(orderService.orderDTO, id: \.Order_id) { order in
                         OrderCell(customer: order.customerName, orderCode: order.orderCode, deliveryDate: order.due, price: order.value, items: order.items, status: order.status)
                             .padding()
                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
