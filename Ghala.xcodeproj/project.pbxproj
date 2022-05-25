@@ -33,6 +33,7 @@
 		207A0771282C59BA003C7EBD /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A0770282C59BA003C7EBD /* UserViewModel.swift */; };
 		208FC1F8282FB80000C78421 /* SubmittedSucessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC1F7282FB80000C78421 /* SubmittedSucessScreen.swift */; };
 		20B7F472282E40E600D29C5F /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B7F471282E40E600D29C5F /* SplashScreen.swift */; };
+		20B9C802283E502B0091999F /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9C801283E502B0091999F /* FilterView.swift */; };
 		20C22700282C2255009BAD5C /* GhalaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C226FF282C2255009BAD5C /* GhalaApp.swift */; };
 		20C22702282C2255009BAD5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22701282C2255009BAD5C /* ContentView.swift */; };
 		20C22704282C2259009BAD5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20C22703282C2259009BAD5C /* Assets.xcassets */; };
@@ -78,6 +79,7 @@
 		207A0770282C59BA003C7EBD /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		208FC1F7282FB80000C78421 /* SubmittedSucessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmittedSucessScreen.swift; sourceTree = "<group>"; };
 		20B7F471282E40E600D29C5F /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		20B9C801283E502B0091999F /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		20C226FC282C2255009BAD5C /* Ghala.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ghala.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20C226FF282C2255009BAD5C /* GhalaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhalaApp.swift; sourceTree = "<group>"; };
 		20C22701282C2255009BAD5C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				20B7F471282E40E600D29C5F /* SplashScreen.swift */,
 				206445E428366A6C0061689B /* DispatchView.swift */,
 				206445EA28366AA00061689B /* SettingsView.swift */,
+				20B9C801283E502B0091999F /* FilterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				201B05AA282D09B5002B6629 /* PhoneVerificationView.swift in Sources */,
 				207A076D282C57AC003C7EBD /* User.swift in Sources */,
 				20E3AE3F28314B4F00BE295E /* DrawerView.swift in Sources */,
+				20B9C802283E502B0091999F /* FilterView.swift in Sources */,
 				206445EB28366AA00061689B /* SettingsView.swift in Sources */,
 				202939A428339A1600E79E28 /* APIConstants.swift in Sources */,
 				201B05B6282D8E04002B6629 /* OTPVerificationView.swift in Sources */,
