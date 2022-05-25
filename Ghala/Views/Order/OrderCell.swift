@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct OrderCell: View {
-    @ObservedObject var orderService = OrderService()
-    var order = [Order]()
     @State var customer: String
     @State var orderCode: String
     @State var deliveryDate: String
     @State var price: Int
     @State var items: [Item]
-    @State var quantity: [Item]
-    @State var status: String
+    @State var status: OrderStatus
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -28,7 +25,8 @@ struct OrderCell: View {
             HStack{
                 Text("Order ID: \(orderCode)")
                 Spacer()
-                Text(status)
+                Text(status.rawValue)
+                    .foregroundColor(orderStatusColor(status: status))
             }
             Text("Delivery date: \(deliveryDate)")
             Text("Price: \(price)")
@@ -36,6 +34,14 @@ struct OrderCell: View {
 //            ForEach(items, id: \.sku) { item in
 //                Text("\(item.totalPrice)")
 //            }
+        }
+    }
+    private func orderStatusColor(status: OrderStatus) -> Color {
+        switch status {
+        case .submitted:
+            return .green
+        case .pending:
+            return .red
         }
     }
 }

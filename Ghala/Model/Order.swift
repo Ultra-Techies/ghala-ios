@@ -16,7 +16,7 @@ struct OrderElement: Codable {
     let createdDate, createdTime, due, deliveryWindow: String
     let customerName, orderCode: String
     let value: Int
-    let status: String
+    let status: OrderStatus
     let items: [Item]
     let route: String
     let warehouseID: Int
@@ -32,4 +32,9 @@ struct Item: Codable {
     let sku, quantity: Int
     let name: String
     let ppu, totalPrice: Int
+}
+// MARK: Status
+enum OrderStatus: String, Codable {
+    case submitted = "SUBMITTED"
+    case pending = "PENDING"
 }
