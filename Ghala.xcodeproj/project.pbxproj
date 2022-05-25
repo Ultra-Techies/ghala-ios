@@ -33,6 +33,7 @@
 		207A0771282C59BA003C7EBD /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A0770282C59BA003C7EBD /* UserViewModel.swift */; };
 		208FC1F8282FB80000C78421 /* SubmittedSucessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC1F7282FB80000C78421 /* SubmittedSucessScreen.swift */; };
 		20B7F472282E40E600D29C5F /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B7F471282E40E600D29C5F /* SplashScreen.swift */; };
+		20B9C802283E502B0091999F /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9C801283E502B0091999F /* FilterView.swift */; };
 		20C22700282C2255009BAD5C /* GhalaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C226FF282C2255009BAD5C /* GhalaApp.swift */; };
 		20C22702282C2255009BAD5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22701282C2255009BAD5C /* ContentView.swift */; };
 		20C22704282C2259009BAD5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20C22703282C2259009BAD5C /* Assets.xcassets */; };
@@ -46,6 +47,9 @@
 		20E3AE3D28314A7300BE295E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E3AE3C28314A7300BE295E /* MainView.swift */; };
 		20E3AE3F28314B4F00BE295E /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E3AE3E28314B4F00BE295E /* DrawerView.swift */; };
 		20F79B302834F9B400434065 /* CodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F79B2F2834F9B400434065 /* CodeTextField.swift */; };
+		20FDBB9A283D300C003FFC76 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBB99283D300C003FFC76 /* Order.swift */; };
+		20FDBB9C283D302C003FFC76 /* OrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBB9B283D302C003FFC76 /* OrderService.swift */; };
+		20FDBBA0283D5C6E003FFC76 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBB9F283D5C6E003FFC76 /* OrderCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +79,7 @@
 		207A0770282C59BA003C7EBD /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		208FC1F7282FB80000C78421 /* SubmittedSucessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmittedSucessScreen.swift; sourceTree = "<group>"; };
 		20B7F471282E40E600D29C5F /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		20B9C801283E502B0091999F /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		20C226FC282C2255009BAD5C /* Ghala.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ghala.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20C226FF282C2255009BAD5C /* GhalaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhalaApp.swift; sourceTree = "<group>"; };
 		20C22701282C2255009BAD5C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,6 +94,9 @@
 		20E3AE3C28314A7300BE295E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		20E3AE3E28314B4F00BE295E /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
 		20F79B2F2834F9B400434065 /* CodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextField.swift; sourceTree = "<group>"; };
+		20FDBB99283D300C003FFC76 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		20FDBB9B283D302C003FFC76 /* OrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderService.swift; sourceTree = "<group>"; };
+		20FDBB9F283D5C6E003FFC76 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,14 +113,15 @@
 		201B05A8282D0992002B6629 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				20FDBB9D283D5C4E003FFC76 /* Order */,
 				20CE094E283BA1DE00E36673 /* Inventory */,
 				206445F02836C1590061689B /* WareHouse */,
 				20E3AE392831032700BE295E /* HomeScreen */,
 				201B05AF282D7E94002B6629 /* Verification */,
 				20B7F471282E40E600D29C5F /* SplashScreen.swift */,
 				206445E428366A6C0061689B /* DispatchView.swift */,
-				206445E828366A890061689B /* OrderView.swift */,
 				206445EA28366AA00061689B /* SettingsView.swift */,
+				20B9C801283E502B0091999F /* FilterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,6 +175,7 @@
 				202939AB2833AD6700E79E28 /* Country.swift */,
 				206445EC2836A0110061689B /* WareHouse.swift */,
 				20CE094A283B9E4900E36673 /* Inventory.swift */,
+				20FDBB99283D300C003FFC76 /* Order.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,6 +186,7 @@
 				201B05A6282CE1A4002B6629 /* UserService.swift */,
 				206445EE2836A49D0061689B /* WareHouseService.swift */,
 				20CE094C283B9F0900E36673 /* InventoryService.swift */,
+				20FDBB9B283D302C003FFC76 /* OrderService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -250,6 +261,15 @@
 				20E3AE3E28314B4F00BE295E /* DrawerView.swift */,
 			);
 			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		20FDBB9D283D5C4E003FFC76 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				206445E828366A890061689B /* OrderView.swift */,
+				20FDBB9F283D5C6E003FFC76 /* OrderCell.swift */,
+			);
+			path = Order;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +351,7 @@
 				206445EF2836A49D0061689B /* WareHouseService.swift in Sources */,
 				20C26319282F1088008C6F58 /* AccountSetupView.swift in Sources */,
 				201B05A7282CE1A4002B6629 /* UserService.swift in Sources */,
+				20FDBB9C283D302C003FFC76 /* OrderService.swift in Sources */,
 				20C22702282C2255009BAD5C /* ContentView.swift in Sources */,
 				206BAB732839545E0050F22A /* AddWareHouse.swift in Sources */,
 				2073C429282D9714008E749F /* OTPCodeSubView.swift in Sources */,
@@ -341,6 +362,7 @@
 				20F79B302834F9B400434065 /* CodeTextField.swift in Sources */,
 				201B05AE282D5D77002B6629 /* extensions.swift in Sources */,
 				208FC1F8282FB80000C78421 /* SubmittedSucessScreen.swift in Sources */,
+				20FDBBA0283D5C6E003FFC76 /* OrderCell.swift in Sources */,
 				206445E328366A5D0061689B /* WareHouseView.swift in Sources */,
 				207A0771282C59BA003C7EBD /* UserViewModel.swift in Sources */,
 				20B7F472282E40E600D29C5F /* SplashScreen.swift in Sources */,
@@ -349,11 +371,13 @@
 				201B05AA282D09B5002B6629 /* PhoneVerificationView.swift in Sources */,
 				207A076D282C57AC003C7EBD /* User.swift in Sources */,
 				20E3AE3F28314B4F00BE295E /* DrawerView.swift in Sources */,
+				20B9C802283E502B0091999F /* FilterView.swift in Sources */,
 				206445EB28366AA00061689B /* SettingsView.swift in Sources */,
 				202939A428339A1600E79E28 /* APIConstants.swift in Sources */,
 				201B05B6282D8E04002B6629 /* OTPVerificationView.swift in Sources */,
 				20CE094B283B9E4900E36673 /* Inventory.swift in Sources */,
 				2073C42B282DA6D9008E749F /* PinVerificationSubView.swift in Sources */,
+				20FDBB9A283D300C003FFC76 /* Order.swift in Sources */,
 				206445E928366A890061689B /* OrderView.swift in Sources */,
 				20CE0952283BCB3600E36673 /* AddInventory.swift in Sources */,
 				206445F22836C17B0061689B /* WarehouseCell.swift in Sources */,

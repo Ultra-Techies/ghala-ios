@@ -150,11 +150,11 @@ class UserService: ObservableObject {
             let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
             let decoded = try JSONDecoder().decode(User2.self, from: data)
             self.us = decoded
-            print(decoded)
+           //save Warehouse Id to userDefaults
+            UserDefaults.standard.set(decoded.assignedWarehouse, forKey: "warehouse_Id")
         } catch {
             print(error)
         }
-        
     }
     
     //MARK: Find by ID
