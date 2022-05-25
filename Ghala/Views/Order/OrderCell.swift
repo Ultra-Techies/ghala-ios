@@ -22,7 +22,7 @@ struct OrderCell: View {
                 Spacer()
                 Text("\(items.count) items")
             }
-            HStack{
+            HStack {
                 Text("Order ID: \(orderCode)")
                 Spacer()
                 Text(status.rawValue)
