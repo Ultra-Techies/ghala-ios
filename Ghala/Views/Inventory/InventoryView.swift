@@ -14,18 +14,8 @@ struct InventoryView: View {
         NavigationView {
             ZStack {
                 VStack {
-                    //Filter
-                    HStack {
-                        Image("filter")
-                        Text("Filter")
-                        Spacer()
-                        Text("Category:")
-                        Image(systemName: "arrowtriangle.down.fill")
-                            .resizable()
-                            .frame(width: 11, height: 11)
-                    }.padding(.horizontal, 10)
-                        .padding(.top, 10)
-                    
+                    //Filter View
+                    FilterView()
                     //Inventory List
                     List {
                         ForEach(inventoryService.inventory, id: \.sku) { inventoryItem in
