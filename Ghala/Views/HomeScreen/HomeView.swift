@@ -24,10 +24,11 @@ struct HomeView: View {
                         }
                     }
                 }
-            
+        //MARK: - Drawer
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {
-                        MainView(user: user, showDrawerMenu: self.$showDrawerMenu)
+                       // MainView(user: user, showDrawerMenu: self.$showDrawerMenu)
+                        MainView(user: user)
                             .frame(width: geo.size.width, height: geo.size.height)
                             .transition(.move(edge: .leading))
                             .offset(x: self.showDrawerMenu ? geo.size.width * 0 : 0)

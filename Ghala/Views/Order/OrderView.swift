@@ -9,13 +9,11 @@ import SwiftUI
 
 struct OrderView: View {
     @ObservedObject var orderService = OrderService()
-    
     var body: some View {
         NavigationView {
             VStack {
                 FilterView()
                 List {
-                    
                     ForEach(orderService.orderDTO, id: \.id) { order in
                         OrderCell(customer: order.customerName, orderCode: order.orderCode, deliveryDate: order.due, price: order.value, items: order.items, status: order.status)
                             .padding()

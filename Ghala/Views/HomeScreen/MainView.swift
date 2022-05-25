@@ -10,20 +10,18 @@ import SwiftUI
 struct MainView: View {
     @ObservedObject var user: User
     @ObservedObject var userService =  UserService()
-    @Binding var showDrawerMenu: Bool
-    
+   // @Binding var showDrawerMenu: Bool
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            
             HStack {
-                Button {
-                    self.showDrawerMenu = true
-                } label: {
-                    Image(systemName: "rectangle.grid.1x2")
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                        .foregroundColor(.black)
-                }
+//                Button {
+//                    self.showDrawerMenu = true
+//                } label: {
+//                    Image(systemName: "rectangle.grid.1x2")
+//                        .resizable()
+//                        .frame(width: 25, height: 25)
+//                        .foregroundColor(.black)
+//                }
                 Spacer()
                 Image(systemName: "magnifyingglass")
                     .resizable()
