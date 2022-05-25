@@ -13,12 +13,28 @@ struct OrderView: View {
         NavigationView {
             VStack {
                 List {
+//                    ForEach(orderService.orderDTO, id: \.id) { order in
+//                        VStack(alignment: .leading) {
+//                            HStack {
+//                                    Text(order.customerName)
+//                            Spacer()
+//                                ForEach(order.items, id: \.sku) { item in
+//                                    //Text(item.name)
+//                                    Text("\(item.quantity)")
+//                                }
+//                            }
+//                                HStack {
+//                                Text("Order ID: \(order.orderCode)")
+//                                    Spacer()
+//                                    Text(order.status)
+//                                }
+//                                Text(order.due)
+//                        }
+//                    }
+                    
                     ForEach(orderService.orderDTO, id: \.id) { order in
-                        Text(order.customerName)
-                        ForEach(order.items, id: \.sku) { item in
-                            //Text(item.name)
-                            Text("\(item.quantity)")
-                        }
+//                        OrderCell(customer: order.customerName, orderCode: order.orderCode, deliveryDate: order.due, items: order.items, quantity: order.items, status: order.status)
+                        OrderCell(customer: order.customerName, orderCode: order.orderCode, deliveryDate: order.due, price: order.value, items: order.items, quantity: order.items, status: order.status)
                     }
                 }
             }

@@ -8,19 +8,22 @@
 import SwiftUI
 
 struct OrderCell: View {
+    @ObservedObject var orderService = OrderService()
+    var order = [Order]()
     @State var customer: String
     @State var orderCode: String
     @State var deliveryDate: String
     @State var price: Int
-    @State var quantity: Int
+    @State var items: [Item]
+    @State var quantity: [Item]
     @State var status: String
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack {
                 Text(customer)
                     .bold()
                 Spacer()
-                Text("\(quantity) items")
+                Text("\(items.count) items")
             }
             HStack{
                 Text("Order ID: \(orderCode)")
@@ -29,12 +32,10 @@ struct OrderCell: View {
             }
             Text("Delivery date: \(deliveryDate)")
             Text("Price: \(price)")
+            //looping through item in array
+//            ForEach(items, id: \.sku) { item in
+//                Text("\(item.totalPrice)")
+//            }
         }
     }
 }
-
-//struct OrderCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        OrderCell(customer: <#T##String#>, orderCode: <#T##String#>, deliveryDate: <#T##String#>, price: <#T##Int#>, quantity: <#T##Int#>, status: <#T##String#>)
-//    }
-//}

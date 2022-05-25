@@ -32,7 +32,6 @@ class OrderService: ObservableObject {
         let (data,_) = try await URLSession.shared.data(for: request)
         //decode data
         let decodeOrder = try JSONDecoder().decode([OrderElement].self, from: data)
-        print(decodeOrder)
         self.orderDTO = decodeOrder
     }
 }
