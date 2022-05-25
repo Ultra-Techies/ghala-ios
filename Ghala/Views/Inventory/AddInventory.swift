@@ -15,39 +15,37 @@ struct AddInventory: View {
     var category = ["Sugar", "Flour", "Milk", "Cooking Oil"]
     @State var selectCategory = 0
     var body: some View {
-        NavigationView {
-            VStack {
-                Form {
-                    Section(header: Text("Product Name")) {
-                                    TextField("", text: $inventoryD.name)
-                    }
-                    Section {
-                        Picker(selection: $selectCategory, label: Text("Category")) {
-                            ForEach(0 ..< category.count) {
-                                Text(self.category[$0])
-                            }
+        VStack {
+            Form {
+                Section(header: Text("Product Name")) {
+                                TextField("", text: $inventoryD.name)
+                }
+                Section {
+                    Picker(selection: $selectCategory, label: Text("Category")) {
+                        ForEach(0 ..< category.count) {
+                            Text(self.category[$0])
                         }
                     }
-                    Section(header: Text("Price")) {
-                        TextField("", value: $inventoryD.ppu, formatter: NumberFormatter())
-                    }
-                    Section (header: Text("Quantity")) {
-                        TextField("", value: $inventoryD.quantity, formatter: NumberFormatter())
-                    }
                 }
-                //Add inventory Button
-                Button {
-                    Task {
-                        await addInventoryItem()
-                    }
-                } label: {
-                    Text("ADD")
-                        .foregroundColor(.white)
-                        .frame(width: 350, height: 50)
+                Section(header: Text("Price")) {
+                    TextField("", value: $inventoryD.ppu, formatter: NumberFormatter())
                 }
-                .background(Color.yellow)
-                .padding()
+                Section (header: Text("Quantity")) {
+                    TextField("", value: $inventoryD.quantity, formatter: NumberFormatter())
+                }
             }
+            //Add inventory Button
+            Button {
+                Task {
+                    await addInventoryItem()
+                }
+            } label: {
+                Text("ADD")
+                    .foregroundColor(.white)
+                    .frame(width: 350, height: 50)
+            }
+            .background(Color.yellow)
+            .padding()
             .navigationTitle("Add New Inventory")
         }.onAppear {
             Task {
