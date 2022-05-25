@@ -34,14 +34,17 @@ struct OrderCell: View {
 //            ForEach(items, id: \.sku) { item in
 //                Text("\(item.totalPrice)")
 //            }
+
         }
     }
     private func orderStatusColor(status: OrderStatus) -> Color {
         switch status {
         case .submitted:
-            return .green
+            return .gray
         case .pending:
             return .red
+        case .delivered:
+            return .green
         }
     }
 }

@@ -37,4 +37,5 @@ struct Item: Codable {
 enum OrderStatus: String, Codable {
     case submitted = "SUBMITTED"
     case pending = "PENDING"
+    case delivered = "DELIVERED"
 }
