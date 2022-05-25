@@ -25,6 +25,7 @@ struct RoundedCornersShape: Shape {
 //Standard Button Color from Assets
 extension Color {
     static let buttonColor = Color("buttonColor")
+    static let listBackground = Color("listBackground")
 }
 
 //MARK: -Verification Code Text Styling
