@@ -24,3 +24,7 @@ enum APIConstant {
     //MARK: Orders
     static let getOrderById = "http://localhost:8080/api/order/wh/"
 }
+
+enum userWarehouseId {
+    static let wareHouse_Id = Int(UserDefaults.standard.string(forKey: "warehouse_Id")!) //get warehouseId
+}

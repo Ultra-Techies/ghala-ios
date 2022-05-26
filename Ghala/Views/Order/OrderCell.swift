@@ -14,27 +14,31 @@ struct OrderCell: View {
     @State var price: Int
     @State var items: [Item]
     @State var status: OrderStatus
+    var isSelected: Bool //check if item on list is selected
+    var action: () -> Void
     var body: some View {
-        VStack(alignment: .leading) {
+        Button(action: self.action) {
             HStack {
-                Text(customer)
-                    .bold()
-                Spacer()
-                Text("\(items.count) items")
+                if isSelected {
+                Image(systemName: "checkmark")
+                }
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text(customer)
+                            .bold()
+                        Spacer()
+                        Text("\(items.count) items")
+                    }
+                    HStack {
+                        Text("Order ID: \(orderCode)")
+                        Spacer()
+                        Text(status.rawValue)
+                            .foregroundColor(orderStatusColor(status: status))
+                    }
+                    Text("Delivery date: \(deliveryDate)")
+                    Text("Price: \(price)")
+                }
             }
-            HStack {
-                Text("Order ID: \(orderCode)")
-                Spacer()
-                Text(status.rawValue)
-                    .foregroundColor(orderStatusColor(status: status))
-            }
-            Text("Delivery date: \(deliveryDate)")
-            Text("Price: \(price)")
-            //looping through item in array
-//            ForEach(items, id: \.sku) { item in
-//                Text("\(item.totalPrice)")
-//            }
-
         }
     }
     private func orderStatusColor(status: OrderStatus) -> Color {
@@ -48,3 +52,7 @@ struct OrderCell: View {
         }
     }
 }
+//looping through item in array
+//            ForEach(items, id: \.sku) { item in
+//                Text("\(item.totalPrice)")
+//            }
