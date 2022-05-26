@@ -34,12 +34,20 @@ struct OrderView: View {
                 let _ = print("Item: \(selectedItems)")
                 let array = selectedItems
                 if array != [] {
-                    Button  {
-                        print("To Dispatch")
+                    Button {
+                        Task {
+                            //MARK: To-DO Create Delivery Note
+                            print("add")
+                        }
                     } label: {
-                        Text("Dispatch")
+                        Text("DELIVERY NOTE")
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                          //  .padding(.top,20)
                     }
-
+                    .frame(height: 50)
+                    .background(Color.yellow)
+                    .padding(.bottom, 20)
                 }
             }
             .navigationTitle("Orders")
