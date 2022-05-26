@@ -14,10 +14,8 @@ struct OrderCell: View {
     @State var price: Int
     @State var items: [Item]
     @State var status: OrderStatus
-    
-    var isSelected: Bool
+    var isSelected: Bool //check if item on list is selected
     var action: () -> Void
-    
     var body: some View {
         Button(action: self.action) {
             HStack {
@@ -42,7 +40,6 @@ struct OrderCell: View {
                 }
             }
         }
-        //.background(isSelected ? Color.gray : Color.listBackground)
     }
     private func orderStatusColor(status: OrderStatus) -> Color {
         switch status {

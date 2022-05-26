@@ -31,9 +31,9 @@ struct OrderView: View {
                         .background(Color.listBackground)
                 }
                 .listStyle(SidebarListStyle())
-                let _ = print("Item: \(selectedItems)")
-                let array = selectedItems
-                if array != [] {
+                //Check if item on list has been checked
+                if selectedItems != [] {
+                    //Delivery Button
                     Button {
                         Task {
                             //MARK: To-DO Create Delivery Note
@@ -43,7 +43,6 @@ struct OrderView: View {
                         Text("DELIVERY NOTE")
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity, alignment: .center)
-                          //  .padding(.top,20)
                     }
                     .frame(height: 50)
                     .background(Color.yellow)
