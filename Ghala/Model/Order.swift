@@ -11,7 +11,11 @@ struct Order: Codable {
     let order: [Order]
 }
 // MARK: - OrderElement
-struct OrderElement: Codable {
+struct OrderElement: Codable, Equatable {
+    static func == (lhs: OrderElement, rhs: OrderElement) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     let id: Int
     let createdDate, createdTime, due, deliveryWindow: String
     let customerName, orderCode: String
