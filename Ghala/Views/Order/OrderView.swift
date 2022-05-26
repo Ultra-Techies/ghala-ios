@@ -9,13 +9,14 @@ import SwiftUI
 
 struct OrderView: View {
     @ObservedObject var orderService = OrderService()
+    @ObservedObject var orderDelivery: OrderElementForDelivery
     @State var selectedItems: [Int] = []
-    @State var selectedRow: Bool = false
     var body: some View {
         NavigationView {
             VStack {
                 FilterView()
                 List {
+                    //MARK: with ID
                     ForEach(orderService.orderDTO, id: \.id) { order in
                         OrderCell(customer: order.customerName, orderCode: order.orderCode, deliveryDate: order.due, price: order.value, items: order.items, status: order.status, isSelected: self.selectedItems.contains(order.id)) {
                             if self.selectedItems.contains(order.id) {
@@ -29,7 +30,11 @@ struct OrderView: View {
                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
                     }.listRowBackground(Color.clear)
                         .background(Color.listBackground)
-                }
+                }.refreshable(action: {
+                    Task {
+                        await getOrderId()
+                    }
+                })
                 .listStyle(SidebarListStyle())
                 //Check if item on list has been checked
                 if selectedItems != [] {
@@ -37,7 +42,7 @@ struct OrderView: View {
                     Button {
                         Task {
                             //MARK: To-DO Create Delivery Note
-                            print("add")
+                           await createDelivery()
                         }
                     } label: {
                         Text("DELIVERY NOTE")
@@ -54,9 +59,20 @@ struct OrderView: View {
            await getOrderId()
         }
     }
-    func getOrderId() async {
+    //get Orders from Warehouse
+   private func getOrderId() async {
         do {
             try await orderService.getOrderById()
+        } catch {
+            print(error)
+        }
+    }
+    //create Delivery Note
+    private func createDelivery() async {
+        do {
+            let selectedIds = selectedItems
+            orderDelivery.orderIds = selectedIds
+            try await orderService.createDeliveryNote(order: orderDelivery)
         } catch {
             print(error)
         }
@@ -65,6 +81,6 @@ struct OrderView: View {
 
 struct OrderView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderView()
+        OrderView(orderDelivery: OrderElementForDelivery())
     }
 }

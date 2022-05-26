@@ -43,3 +43,39 @@ enum OrderStatus: String, Codable {
     case pending = "PENDING"
     case delivered = "DELIVERED"
 }
+
+struct DispachResponse: Codable {
+    let id: Int
+}
+//Mark: Order struct for Create delivery
+class OrderElementForDelivery: Codable, ObservableObject, Identifiable {
+    enum CodingKeys: CodingKey {
+        case orderIds
+        case route
+        case warehouseId
+        case deliveryWindow
+    }
+    @Published var orderIds: [Int] = [0]
+    @Published var route = "route1" //MARK: TO-DO fetch from view
+    @Published var warehouseId: Int = userWarehouseId.wareHouse_Id!
+    @Published var deliveryWindow = "MORNING" //MARK: TO-DO fetch from view
+    init() {
+    }
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        orderIds = try container.decode([Int].self, forKey: .orderIds)
+        route = try container.decode(String.self, forKey: .route)
+        warehouseId = try container.decode(Int.self, forKey: .warehouseId)
+        deliveryWindow = try container.decode(String.self, forKey: .deliveryWindow)
+
+    }
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try container.encode(orderIds, forKey: .orderIds)
+            try container.encode(route, forKey: .route)
+            try container.encode(warehouseId, forKey: .warehouseId)
+            try container.encode(deliveryWindow, forKey: .deliveryWindow)
+        }
+}
