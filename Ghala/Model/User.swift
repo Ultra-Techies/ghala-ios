@@ -149,9 +149,9 @@ class JSONNull: Codable, Hashable {
 
 // MARK: handles get User by ID
 struct User3: Codable {
-    let id: Int
-    let email, phoneNumber: String
-    let assignedWarehouse: Int
-    let role, firstName, lastName: String
-    let profilePhoto: JSONNull?
+    var id: Int
+    var email, phoneNumber: String
+    var assignedWarehouse: Int
+    var role, firstName, lastName: String
+    var profilePhoto: JSONNull?
 }

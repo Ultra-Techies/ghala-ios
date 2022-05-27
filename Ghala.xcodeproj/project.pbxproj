@@ -123,6 +123,7 @@
 		201B05A8282D0992002B6629 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				205201E2284167F000115339 /* Settings */,
 				205201DF2840CFD400115339 /* Dispatch */,
 				20FDBB9D283D5C4E003FFC76 /* Order */,
 				20CE094E283BA1DE00E36673 /* Inventory */,
@@ -130,7 +131,6 @@
 				20E3AE392831032700BE295E /* HomeScreen */,
 				201B05AF282D7E94002B6629 /* Verification */,
 				20B7F471282E40E600D29C5F /* SplashScreen.swift */,
-				206445EA28366AA00061689B /* SettingsView.swift */,
 				20B9C801283E502B0091999F /* FilterView.swift */,
 			);
 			path = Views;
@@ -177,6 +177,14 @@
 				205201E02840D30700115339 /* DispatchCell.swift */,
 			);
 			path = Dispatch;
+			sourceTree = "<group>";
+		};
+		205201E2284167F000115339 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				206445EA28366AA00061689B /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		206445F02836C1590061689B /* WareHouse */ = {

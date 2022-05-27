@@ -11,7 +11,7 @@ import Foundation
 class UserService: ObservableObject {
     @Published var otpCode = OTP()
     @Published var us = User2(id: 0, email: "", phoneNumber: "", assignedWarehouse: 0, role: "", firstName: "", lastName: "", profilePhoto: nil)
-    @Published var userID = CreateUserResponse(id: 0)
+    @Published var userID = User3(id: 0, email: "", phoneNumber: "", assignedWarehouse: 0, role: "", firstName: "", lastName: "", profilePhoto: nil)
     
     enum NetworkError: Error {
         case invalidURL
@@ -153,11 +153,6 @@ class UserService: ObservableObject {
     
     // MARK: Find by ID
     func getUser() async throws {
-        // MARK: TO-DO get userID from UserDefault
-//        let id = 6
-//        print(id)
-//        let idConv = String(describing: id)
-//        print(idConv)
         guard let url = URL(string: APIConstant.getUser.appending(FromUserDefault.userID!)) else {
             throw NetworkError.invalidURL
         }
@@ -165,7 +160,8 @@ class UserService: ObservableObject {
         let (data, _) = try await URLSession.shared.data(from: url)
         //decoded JSON
         let decodedUserData = try JSONDecoder().decode(User3.self, from: data)
-        print(decodedUserData)
+        self.userID = decodedUserData
+        print(decodedUserData.firstName)
     }
     
     // MARK: Get all users
