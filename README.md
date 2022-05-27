@@ -1,5 +1,6 @@
 # Ghala-IOS
 This is an IOS version of a warehouse management system, that helps in managing day-to-day operations in a warehouse.
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/fd628ecc6a9d4e3caf19b9c5f134a7c7)](https://www.codacy.com/gh/Ultra-Techies/ghala-ios/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Ultra-Techies/ghala-ios&amp;utm_campaign=Badge_Grade)
 
 ## About the App
 The app has the following key features:
