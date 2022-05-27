@@ -1,4 +1,7 @@
 # Ghala-IOS
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5a55262b9151485e89bec4e8e5df321c)](https://app.codacy.com/gh/Ultra-Techies/ghala-ios?utm_source=github.com&utm_medium=referral&utm_content=Ultra-Techies/ghala-ios&utm_campaign=Badge_Grade_Settings)
+
 This is an IOS version of a warehouse management system, that helps in managing day-to-day operations in a warehouse.
 
 ## About the App
