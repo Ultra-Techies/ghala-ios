@@ -14,7 +14,7 @@ struct DispatchCell: View {
     @State var status: String
     @State var deliveryWindows: String
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 15) {
             HStack {
                 Text(noteCode)
                     .bold()

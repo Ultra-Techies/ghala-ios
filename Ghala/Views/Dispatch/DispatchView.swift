@@ -11,13 +11,27 @@ struct DispatchView: View {
     @ObservedObject var deliveryService = DeliveryService()
     var body: some View {
         NavigationView {
-            FilterView()
             VStack {
+                FilterView()
                 //Dispatch ListView
                 List {
                     ForEach(deliveryService.deliveryDTO, id: \.id) { delivery in
-                        
+                        DispatchCell(noteCode: delivery.noteCode, orders: delivery.orders, route: delivery.route ?? "", status: delivery.status, deliveryWindows: delivery.deliveryWindow ?? "")
+                            .padding()
+                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+                    }.listRowBackground(Color.clear)
+                        .background(Color.listBackground)
+                }.listStyle(SidebarListStyle())
+                .refreshable {
+                    Task {
+                        await getDispatchByWH()
                     }
+                }
+            }
+            .navigationTitle("Dispatch")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Image(systemName: "magnifyingglass")
                 }
             }
         } .task {
