@@ -21,6 +21,7 @@
 		205201DA2840CC0800115339 /* DeliveryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205201D92840CC0800115339 /* DeliveryService.swift */; };
 		205201DC2840CC6400115339 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205201DB2840CC6400115339 /* NetworkError.swift */; };
 		205201DE2840CD2700115339 /* UserFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205201DD2840CD2700115339 /* UserFiles.swift */; };
+		205201E12840D30700115339 /* DispatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205201E02840D30700115339 /* DispatchCell.swift */; };
 		206445E328366A5D0061689B /* WareHouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E228366A5D0061689B /* WareHouseView.swift */; };
 		206445E528366A6C0061689B /* DispatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E428366A6C0061689B /* DispatchView.swift */; };
 		206445E728366A770061689B /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E628366A770061689B /* InventoryView.swift */; };
@@ -71,6 +72,7 @@
 		205201D92840CC0800115339 /* DeliveryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryService.swift; sourceTree = "<group>"; };
 		205201DB2840CC6400115339 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		205201DD2840CD2700115339 /* UserFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFiles.swift; sourceTree = "<group>"; };
+		205201E02840D30700115339 /* DispatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchCell.swift; sourceTree = "<group>"; };
 		206445E228366A5D0061689B /* WareHouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WareHouseView.swift; sourceTree = "<group>"; };
 		206445E428366A6C0061689B /* DispatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchView.swift; sourceTree = "<group>"; };
 		206445E628366A770061689B /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				206445E428366A6C0061689B /* DispatchView.swift */,
+				205201E02840D30700115339 /* DispatchCell.swift */,
 			);
 			path = Dispatch;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				202939AC2833AD6700E79E28 /* Country.swift in Sources */,
 				205201DE2840CD2700115339 /* UserFiles.swift in Sources */,
 				20F79B302834F9B400434065 /* CodeTextField.swift in Sources */,
+				205201E12840D30700115339 /* DispatchCell.swift in Sources */,
 				205201DA2840CC0800115339 /* DeliveryService.swift in Sources */,
 				201B05AE282D5D77002B6629 /* extensions.swift in Sources */,
 				208FC1F8282FB80000C78421 /* SubmittedSucessScreen.swift in Sources */,

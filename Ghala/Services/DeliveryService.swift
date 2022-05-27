@@ -8,6 +8,7 @@
 import Foundation
 @MainActor
 class DeliveryService: ObservableObject {
+    @Published var deliveryDTO = [Delivery]()
     //func get Delivery Note by wareHouse
     func getDeliveryByWH() async throws {
         //get url
@@ -23,6 +24,7 @@ class DeliveryService: ObservableObject {
         //decode Delivery Data
         let deliveryDecoded = try JSONDecoder().decode([Delivery].self, from: data)
         print(deliveryDecoded)
-        //TO-DO Bind with delivery Model
+        //Pass delivery data to Model
+        self.deliveryDTO = deliveryDecoded
     }
 }

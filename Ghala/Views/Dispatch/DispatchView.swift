@@ -13,8 +13,11 @@ struct DispatchView: View {
         NavigationView {
             FilterView()
             VStack {
+                //Dispatch ListView
                 List {
-                    
+                    ForEach(deliveryService.deliveryDTO, id: \.id) { delivery in
+                        
+                    }
                 }
             }
         } .task {
