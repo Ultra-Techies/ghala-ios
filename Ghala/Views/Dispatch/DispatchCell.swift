@@ -19,7 +19,7 @@ struct DispatchCell: View {
                 Text(noteCode)
                     .bold()
                 Spacer()
-                Text("\(orders.count) Orders")
+                Text("\(orders.count) Order")
             }
             HStack {
                 Text("Route: \(route)")
@@ -33,7 +33,14 @@ struct DispatchCell: View {
                 Button {
                     print("")
                 } label: {
-                    Text("return")
+                    Text("Return")
+                        .padding(5)
+                        .frame(width: 100, alignment: .center)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(lineWidth: 1)
+                        )
+                        .foregroundColor(.gray)
                 }
             }
         }
