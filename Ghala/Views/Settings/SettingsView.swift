@@ -12,6 +12,8 @@ struct SettingsView: View {
     @State var firstName = ""
     @State var lasttName = ""
     @State var email = ""
+    @State var pin = ""
+    @State var verifyPin = ""
     var body: some View {
         NavigationView {
             ScrollView {
@@ -21,6 +23,10 @@ struct SettingsView: View {
                     TextField("",text: $userService.userID.lastName)
                         .textFieldStyling()
                     TextField("",text: $userService.userID.email)
+                        .textFieldStyling()
+                    TextField("PIN", text: $pin)
+                        .textFieldStyling()
+                    TextField("Verify Pin", text: $verifyPin)
                         .textFieldStyling()
                 }
                 .padding(.horizontal, 25.0)
