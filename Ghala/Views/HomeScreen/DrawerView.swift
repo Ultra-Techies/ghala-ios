@@ -22,7 +22,6 @@ struct DrawerView: View {
                 Text("\(userService.us.firstName) \(userService.us.lastName)")
                     .bold()
                 Text(userService.us.email)
-                    
             }
             .padding(.top, 20)
             .padding(.bottom, 20)

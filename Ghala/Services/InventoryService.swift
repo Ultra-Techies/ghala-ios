@@ -35,7 +35,6 @@ class InventoryService: ObservableObject {
             print(error)
         }
     }
-    
     //MARK: - ADD INVENTORY
     func addInventory(inventory: InventoryEncode) async throws {
         //get Url

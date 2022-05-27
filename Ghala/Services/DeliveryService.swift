@@ -9,7 +9,7 @@ import Foundation
 @MainActor
 class DeliveryService: ObservableObject {
     @Published var deliveryDTO = [Delivery]()
-    //func get Delivery Note by wareHouse
+    // MARK: func get Delivery Note by wareHouse
     func getDeliveryByWH() async throws {
         //get url
         guard let url = URL(string: APIConstant.getDeliveryByWareHouse.appending(FromUserDefault.warehouse_ID!)) else {
@@ -23,7 +23,6 @@ class DeliveryService: ObservableObject {
         let (data, _) = try await URLSession.shared.data(for: request)
         //decode Delivery Data
         let deliveryDecoded = try JSONDecoder().decode([Delivery].self, from: data)
-        print(deliveryDecoded)
         //Pass delivery data to Model
         self.deliveryDTO = deliveryDecoded
     }

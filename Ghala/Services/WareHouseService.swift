@@ -17,8 +17,7 @@ class WareHouseService: ObservableObject {
     enum NetworkError: Error {
         case invalidURL, failedEncode ,InvalideResponse, InvalideData
     }
-    
-    
+    // MARK: GET ALL WAREHOUSE
     func getAllWareHouse() async throws {
         //get url
         guard let url = URL(string: APIConstant.getAllWareHouse) else {
@@ -36,7 +35,6 @@ class WareHouseService: ObservableObject {
             self.warehouse = decodedData
         }
     }
-    
     //MARK: - Register Warehouse
     func registerWareHouse(warehouse: WareHouse) async throws {
         //get url
@@ -56,7 +54,7 @@ class WareHouseService: ObservableObject {
         let (data, _) = try await URLSession.shared.upload(for: request, from: addWarehouse)
         
         //get Json Response from data
-        let dataDecoded = try JSONDecoder().decode(createResponse.self, from: data)
+        let dataDecoded = try JSONDecoder().decode(CreateResponse.self, from: data)
         print(dataDecoded)
     }
 }

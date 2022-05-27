@@ -18,39 +18,34 @@ class UserService: ObservableObject {
         case invalidEncoding
         case invalidData
     }
-    //MARK: Check if User Exists
+    // MARK: Check if User Exists
     func checkIfUserExists(user: User) async throws -> check {
         guard let url = URL(string: APIConstant.checkUserExists) else {
             throw NetworkError.invalidURL
         }
-        
+        //encode phone number
         guard let phoneEncoded = try? JSONEncoder().encode(user) else {
                 throw NetworkError.invalidEncoding
-            }
+        }
+        //get urlRequest
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         request.httpBody = phoneEncoded // Set HTTP Request Body
-        
-            let (data, response) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
-            print(data)
-        
-            //get the status report from server
-                 guard let response = response as? HTTPURLResponse,
-                       response.statusCode == 200 else {
-                     throw NetworkError.invalidResponse
-                 }
-            let decoded = try JSONDecoder().decode(check.self, from: data)
-
+        let (data, response) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
+        //get the status report from server
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw NetworkError.invalidResponse
+        }
+        let decoded = try JSONDecoder().decode(check.self, from: data)
         return decoded
     }
-    //MARK: Verify User Password
+    // MARK: Verify User Password
     func verifyUserLogin(user: User) async throws -> Int {
           
         guard let url = URL(string: APIConstant.UserLogin) else {
               throw NetworkError.invalidURL
           }
-
           let number = user.phoneNumber
           let pin = user.password
           
@@ -79,8 +74,7 @@ class UserService: ObservableObject {
         }
         return response.statusCode
       }
-    
-    //MARK: -GET OTP
+    // MARK: GET OTP
     func getOTP(user: User) async throws {
         guard let url = URL(string: APIConstant.getOTP) else {
             throw NetworkError.invalidURL
@@ -104,9 +98,7 @@ class UserService: ObservableObject {
             print(error.localizedDescription)
         }
     }
-    
-    
-    //MARK: Create User
+    // MARK: Create User
     func createUser(user: User) async throws {
         
         guard let url = URL(string: APIConstant.createUser) else {
@@ -129,8 +121,7 @@ class UserService: ObservableObject {
             debugPrint(error)
         }
     }
-    
-    //MARK: FindByNumber
+    // MARK: FindByNumber
     func findByPhone(user: User) async throws {
         
         guard let url = URL(string: APIConstant.findUserByNumber) else {
@@ -156,8 +147,7 @@ class UserService: ObservableObject {
             print(error)
         }
     }
-    
-    //MARK: Find by ID
+    // MARK: Find by ID
     func getUser() async throws {
         
         let id = 6
@@ -177,8 +167,7 @@ class UserService: ObservableObject {
             print(error)
         }
     }
-    
-    //get all users
+    // MARK: Get all users
     func getAllUsers() async throws {
         
         //print(phone)

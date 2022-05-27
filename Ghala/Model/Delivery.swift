@@ -18,12 +18,16 @@ struct Delivery: Codable {
     let noteCode, createdTime: String
 
     enum CodingKeys: String, CodingKey {
-        case id, route, orders, status, deliveryWindow
+        case id
+        case route
+        case orders
+        case status
+        case deliveryWindow
         case warehouseID = "warehouseId"
-        case noteCode, createdTime
+        case noteCode
+        case createdTime
     }
 }
-
 // MARK: Status
 enum DeliveryStatus: String, Codable {
     case completed = "COMPLETED"

@@ -18,7 +18,7 @@ class OrderService: ObservableObject {
     }
     let token = UserDefaults.standard.string(forKey: "access_token") //get current access token from
     let wareHouse_Id = UserDefaults.standard.string(forKey: "warehouse_Id") //get warehouseId
-    //MARK: - GetOrdersByID
+    // MARK: - GetOrdersByID
     func getOrderById() async throws {
         //get URL
         guard let url = URL(string: APIConstant.getOrderById.appending(wareHouse_Id!)) else {
@@ -34,8 +34,7 @@ class OrderService: ObservableObject {
         let decodeOrder = try JSONDecoder().decode([OrderElement].self, from: data)
         self.orderDTO = decodeOrder
     }
-    
-    //MARK: - Create A Delivery note
+    // MARK: - Create A Delivery note
     func createDeliveryNote(order: OrderElementForDelivery) async throws {
         //get url
         guard let url = URL(string: "http://localhost:8080/api/deliverynotes") else {
