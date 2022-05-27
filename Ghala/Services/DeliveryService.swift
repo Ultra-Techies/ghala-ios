@@ -12,7 +12,7 @@ class DeliveryService: ObservableObject {
     // MARK: func get Delivery Note by wareHouse
     func getDeliveryByWH() async throws {
         //get url
-        guard let url = URL(string: APIConstant.getDeliveryByWareHouse.appending(FromUserDefault.warehouse_ID!)) else {
+        guard let url = URL(string: APIConstant.getDeliveryByWareHouse.appending(FromUserDefault.warehouseID!)) else {
             throw NetworkError.invalidURL
         }
         //Url Request

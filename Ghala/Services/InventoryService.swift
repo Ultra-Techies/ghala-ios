@@ -15,7 +15,7 @@ class InventoryService: ObservableObject {
     }
     let token = UserDefaults.standard.string(forKey: "access_token") //get current access token from user Device
     @Published var inventory = [Inventory]()
-    //MARK: - GET ALL INVENTORY
+    // MARK: GET ALL INVENTORY
     func getAllInventory() async throws {
         guard let url = URL(string: APIConstant.getAllInventory) else {
             throw NetworkError.invalidURL
@@ -35,7 +35,7 @@ class InventoryService: ObservableObject {
             print(error)
         }
     }
-    //MARK: - ADD INVENTORY
+    //MARK: ADD INVENTORY
     func addInventory(inventory: InventoryEncode) async throws {
         //get Url
         guard let url = URL(string: APIConstant.addInventory) else {
@@ -48,7 +48,6 @@ class InventoryService: ObservableObject {
         request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-       
         do {
         //URLSession upload encoded Inventory
         let (data, _) = try await URLSession.shared.upload(for: request, from: encodedInventory)
