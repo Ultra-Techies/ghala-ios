@@ -10,7 +10,6 @@ import SwiftUI
 struct OTPVerificationView: View {
     @ObservedObject var userService = UserService()
     @ObservedObject var user : User
-    
     var body: some View {
         NavigationView {
             VStack {

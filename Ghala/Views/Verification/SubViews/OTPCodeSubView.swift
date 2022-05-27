@@ -28,7 +28,6 @@ struct OTPCodeSubView: View {
     @State private var isPin4FirstResponder: Bool? = false
     //to AccountSetup View
     @State private var toAccSetup = false
-    
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
             //MARK: -Code
@@ -59,7 +58,7 @@ struct OTPCodeSubView: View {
                     .multilineTextAlignment(.center)
                 let _ = print(String(describing: "OTP is on OTP Screen:  \(userService.otpCode.otp)"))
                 
-                Button  {
+                Button {
                     Task {
                         await getOTP()
                     }

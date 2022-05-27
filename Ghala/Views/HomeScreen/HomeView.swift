@@ -9,12 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(\.presentationMode) var presentationMode
-    
     @ObservedObject var user: User
     @ObservedObject var userService =  UserService()
-    
     @State var showDrawerMenu = false
-    
     var body: some View {
             let drag = DragGesture()
                 .onEnded {

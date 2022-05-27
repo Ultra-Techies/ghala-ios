@@ -35,7 +35,6 @@ struct PhoneInputSubView: View {
                     }
                 }
                 .foregroundColor(.black)
-                
             } .padding(.top, 100)
                 .padding(.horizontal, 20)
             
@@ -48,7 +47,6 @@ struct PhoneInputSubView: View {
                 .padding(.top, 10)
                 .keyboardType(.numberPad)
                 .foregroundColor(.black)
-
             //MARK: -Next Button
             Button(action: {
                 Task {
@@ -67,7 +65,6 @@ struct PhoneInputSubView: View {
              .disabled(number.isEmpty)
         } .frame(minWidth: 0, maxWidth: .infinity)
             .padding()
-        
         .sheet(isPresented: $toOTPView) {
             OTPVerificationView(user: user)
         }
@@ -75,12 +72,9 @@ struct PhoneInputSubView: View {
             PinVerificationView(user: user)
         }
     }
-    
     var disableButton: Bool {
-        
         number.count < 9
     }
-    
     //MARK: -To OTP and Pin View
     //checkUser
     func checkNumberStatus(locationCode: String, pNumber: String) async {
@@ -103,7 +97,6 @@ struct PhoneInputSubView: View {
             print(error)
         }
     }
-    
 }
 
 struct phoneInputView_Previews: PreviewProvider {

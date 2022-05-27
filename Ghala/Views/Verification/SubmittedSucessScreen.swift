@@ -9,13 +9,9 @@ import SwiftUI
 
 struct SubmittedSucessScreen: View {
     @Environment(\.presentationMode) var presentationMode
-    
     @ObservedObject var userService = UserService()
-    
     @ObservedObject var user : User
-    
     @State private var toHomeView = false
-    
     var body: some View {
         VStack {
          Image(systemName: "checkmark.circle")

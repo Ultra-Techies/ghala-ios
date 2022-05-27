@@ -12,7 +12,6 @@ import Foundation
 struct CountryCode: Codable {
     let countryCode: [CountryData]
 }
-
 struct CountryData: Codable {
     let name, flag, code, dialCode: String
 
