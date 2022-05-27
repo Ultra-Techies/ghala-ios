@@ -18,6 +18,9 @@
 		202939AC2833AD6700E79E28 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202939AB2833AD6700E79E28 /* Country.swift */; };
 		202939B02833C06800E79E28 /* ReadCountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202939AF2833C06800E79E28 /* ReadCountryCode.swift */; };
 		205201D82840CAB400115339 /* Delivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205201D72840CAB400115339 /* Delivery.swift */; };
+		205201DA2840CC0800115339 /* DeliveryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205201D92840CC0800115339 /* DeliveryService.swift */; };
+		205201DC2840CC6400115339 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205201DB2840CC6400115339 /* NetworkError.swift */; };
+		205201DE2840CD2700115339 /* UserFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205201DD2840CD2700115339 /* UserFiles.swift */; };
 		206445E328366A5D0061689B /* WareHouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E228366A5D0061689B /* WareHouseView.swift */; };
 		206445E528366A6C0061689B /* DispatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E428366A6C0061689B /* DispatchView.swift */; };
 		206445E728366A770061689B /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E628366A770061689B /* InventoryView.swift */; };
@@ -65,6 +68,9 @@
 		202939AB2833AD6700E79E28 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		202939AF2833C06800E79E28 /* ReadCountryCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadCountryCode.swift; sourceTree = "<group>"; };
 		205201D72840CAB400115339 /* Delivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delivery.swift; sourceTree = "<group>"; };
+		205201D92840CC0800115339 /* DeliveryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryService.swift; sourceTree = "<group>"; };
+		205201DB2840CC6400115339 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		205201DD2840CD2700115339 /* UserFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFiles.swift; sourceTree = "<group>"; };
 		206445E228366A5D0061689B /* WareHouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WareHouseView.swift; sourceTree = "<group>"; };
 		206445E428366A6C0061689B /* DispatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchView.swift; sourceTree = "<group>"; };
 		206445E628366A770061689B /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
@@ -156,6 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				202939A328339A1600E79E28 /* APIConstants.swift */,
+				205201DB2840CC6400115339 /* NetworkError.swift */,
+				205201DD2840CD2700115339 /* UserFiles.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -190,6 +198,7 @@
 				206445EE2836A49D0061689B /* WareHouseService.swift */,
 				20CE094C283B9F0900E36673 /* InventoryService.swift */,
 				20FDBB9B283D302C003FFC76 /* OrderService.swift */,
+				205201D92840CC0800115339 /* DeliveryService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -362,7 +371,9 @@
 				20CE094D283B9F0900E36673 /* InventoryService.swift in Sources */,
 				20CE0950283BA4E000E36673 /* InventoryCell.swift in Sources */,
 				202939AC2833AD6700E79E28 /* Country.swift in Sources */,
+				205201DE2840CD2700115339 /* UserFiles.swift in Sources */,
 				20F79B302834F9B400434065 /* CodeTextField.swift in Sources */,
+				205201DA2840CC0800115339 /* DeliveryService.swift in Sources */,
 				201B05AE282D5D77002B6629 /* extensions.swift in Sources */,
 				208FC1F8282FB80000C78421 /* SubmittedSucessScreen.swift in Sources */,
 				20FDBBA0283D5C6E003FFC76 /* OrderCell.swift in Sources */,
@@ -377,6 +388,7 @@
 				20B9C802283E502B0091999F /* FilterView.swift in Sources */,
 				206445EB28366AA00061689B /* SettingsView.swift in Sources */,
 				202939A428339A1600E79E28 /* APIConstants.swift in Sources */,
+				205201DC2840CC6400115339 /* NetworkError.swift in Sources */,
 				201B05B6282D8E04002B6629 /* OTPVerificationView.swift in Sources */,
 				20CE094B283B9E4900E36673 /* Inventory.swift in Sources */,
 				2073C42B282DA6D9008E749F /* PinVerificationSubView.swift in Sources */,
