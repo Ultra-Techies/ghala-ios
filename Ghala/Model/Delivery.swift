@@ -12,7 +12,7 @@ struct Delivery: Codable {
     let id: Int
     let route: String?
     let orders: [OrderElement] //from Order Model
-    let status: String
+    let status: DeliveryStatus
     let deliveryWindow: String?
     let warehouseID: Int
     let noteCode, createdTime: String
@@ -22,4 +22,10 @@ struct Delivery: Codable {
         case warehouseID = "warehouseId"
         case noteCode, createdTime
     }
+}
+
+// MARK: Status
+enum DeliveryStatus: String, Codable {
+    case completed = "COMPLETED"
+    case pending = "PENDING"
 }

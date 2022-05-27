@@ -11,7 +11,7 @@ struct DispatchCell: View {
     @State var noteCode: String
     @State var orders: [OrderElement]
     @State var route: String
-    @State var status: String
+    @State var status: DeliveryStatus
     @State var deliveryWindows: String
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
@@ -24,7 +24,8 @@ struct DispatchCell: View {
             HStack {
                 Text("Route: \(route)")
                 Spacer()
-                Text(status)
+                Text(status.rawValue)
+                    .foregroundColor(deliveryStatusColor(status: status))
             }
             Text("Delivery Window: \(deliveryWindows)")
             HStack {
@@ -35,6 +36,15 @@ struct DispatchCell: View {
                     Text("return")
                 }
             }
+        }
+    }
+    //Delivery Status color change
+    private func deliveryStatusColor(status: DeliveryStatus) -> Color {
+        switch status {
+        case .completed:
+            return .green
+        case .pending:
+            return .red
         }
     }
 }
