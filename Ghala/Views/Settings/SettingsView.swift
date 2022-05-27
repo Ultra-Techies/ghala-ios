@@ -18,9 +18,9 @@ struct SettingsView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 30) {
-                    TextField("",text: $userService.userID.firstName)
+                    TextField("First Name",text: $userService.userID.firstName)
                         .textFieldStyling()
-                    TextField("",text: $userService.userID.lastName)
+                    TextField("Last Name",text: $userService.userID.lastName)
                         .textFieldStyling()
                     TextField("",text: $userService.userID.email)
                         .textFieldStyling()
