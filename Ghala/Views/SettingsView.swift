@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @ObservedObject var userService = UserService()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+        }.task {
+           await getUser()
+        }
+    }
+    func getUser() async {
+        do {
+            try await userService.getUser()
+        }catch {
+            print(error)
+        }
     }
 }
 
