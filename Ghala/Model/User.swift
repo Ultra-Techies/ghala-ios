@@ -152,6 +152,7 @@ struct User3: Codable {
     var id: Int
     var email, phoneNumber: String
     var assignedWarehouse: Int
-    var role, firstName, lastName: String
+    var role: String
+    var firstName, lastName: String
     var profilePhoto: JSONNull?
 }
