@@ -11,7 +11,7 @@ import Foundation
 struct Delivery: Codable {
     let id: Int
     let route: String?
-    let orders: [Order] //from Order Model
+    let orders: [OrderElement] //from Order Model
     let status: String
     let deliveryWindow: String?
     let warehouseID: Int
