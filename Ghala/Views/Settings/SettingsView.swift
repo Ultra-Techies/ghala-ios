@@ -18,11 +18,11 @@ struct SettingsView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 40) {
-                    TextField("First Name",text: $userService.userID.firstName)
+                    TextField("First Name", text: $userService.userID.firstName)
                         .textFieldStyling()
-                    TextField("Last Name",text: $userService.userID.lastName)
+                    TextField("Last Name", text: $userService.userID.lastName)
                         .textFieldStyling()
-                    TextField("Email",text: $userService.userID.email)
+                    TextField("Email", text: $userService.userID.email)
                         .textFieldStyling()
                     TextField("PIN", text: $pin)
                         .textFieldStyling()
@@ -50,7 +50,7 @@ struct SettingsView: View {
     func getUser() async {
         do {
             try await userService.getUser()
-        }catch {
+        } catch {
             print(error)
         }
     }
