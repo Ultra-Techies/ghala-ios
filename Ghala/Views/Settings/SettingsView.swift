@@ -22,7 +22,7 @@ struct SettingsView: View {
                         .textFieldStyling()
                     TextField("Last Name",text: $userService.userID.lastName)
                         .textFieldStyling()
-                    TextField("",text: $userService.userID.email)
+                    TextField("Email",text: $userService.userID.email)
                         .textFieldStyling()
                     TextField("PIN", text: $pin)
                         .textFieldStyling()
