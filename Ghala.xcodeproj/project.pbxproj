@@ -17,6 +17,7 @@
 		202939AA2833AD4100E79E28 /* countryCode.json in Resources */ = {isa = PBXBuildFile; fileRef = 202939A92833AD4100E79E28 /* countryCode.json */; };
 		202939AC2833AD6700E79E28 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202939AB2833AD6700E79E28 /* Country.swift */; };
 		202939B02833C06800E79E28 /* ReadCountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202939AF2833C06800E79E28 /* ReadCountryCode.swift */; };
+		205201D82840CAB400115339 /* Delivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205201D72840CAB400115339 /* Delivery.swift */; };
 		206445E328366A5D0061689B /* WareHouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E228366A5D0061689B /* WareHouseView.swift */; };
 		206445E528366A6C0061689B /* DispatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E428366A6C0061689B /* DispatchView.swift */; };
 		206445E728366A770061689B /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E628366A770061689B /* InventoryView.swift */; };
@@ -63,6 +64,7 @@
 		202939A92833AD4100E79E28 /* countryCode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countryCode.json; sourceTree = "<group>"; };
 		202939AB2833AD6700E79E28 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		202939AF2833C06800E79E28 /* ReadCountryCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadCountryCode.swift; sourceTree = "<group>"; };
+		205201D72840CAB400115339 /* Delivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delivery.swift; sourceTree = "<group>"; };
 		206445E228366A5D0061689B /* WareHouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WareHouseView.swift; sourceTree = "<group>"; };
 		206445E428366A6C0061689B /* DispatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchView.swift; sourceTree = "<group>"; };
 		206445E628366A770061689B /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				206445EC2836A0110061689B /* WareHouse.swift */,
 				20CE094A283B9E4900E36673 /* Inventory.swift */,
 				20FDBB99283D300C003FFC76 /* Order.swift */,
+				205201D72840CAB400115339 /* Delivery.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				20CE0952283BCB3600E36673 /* AddInventory.swift in Sources */,
 				206445F22836C17B0061689B /* WarehouseCell.swift in Sources */,
 				201B05B1282D7F1D002B6629 /* TopInfoSubView.swift in Sources */,
+				205201D82840CAB400115339 /* Delivery.swift in Sources */,
 				206445E528366A6C0061689B /* DispatchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
