@@ -8,10 +8,10 @@
 import Foundation
 
 struct Starts: Codable {
-    let iventoryValue: Int
+    let inventoryValue: Int
     let orderValue: [OrderValueElement]
 }
-struct OrderValueElement: Codable {
+struct OrderValueElement: Codable, Hashable {
     let sum: Int
     let month: Double
     let year: Double
