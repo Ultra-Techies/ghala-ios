@@ -11,8 +11,7 @@ struct ContentView: View {
     @ObservedObject var user: User
     var body: some View {
         TabView {
-           // HomeView(user: user)
-            H(user: user)
+            HomeView(user: user)
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Home")

@@ -11,7 +11,7 @@ struct SubmittedSucessScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var userService = UserService()
     @ObservedObject var user : User
-    @State private var toHomeView = false
+    @State private var toLoginView = false
     var body: some View {
         VStack {
          Image(systemName: "checkmark.circle")
@@ -41,33 +41,14 @@ struct SubmittedSucessScreen: View {
                     Spacer()
                     Image(systemName: "pencil")
                 }
-                
-//                HStack {
-//                   Text("Assigned Warehouse:")
-//                        .bold()
-//                    Text("1")
-//                    Spacer()
-//                    Image(systemName: "pencil")
-//                }
-//                HStack {
-//                   Text("Assigned Role:")
-//                        .bold()
-//                    Text("Admin")
-//                    Spacer()
-//                    Image(systemName: "pencil")
-//                }
             } .padding(.horizontal, 25.0)
-            //.frame(maxWidth: .infinity)
                 .padding(.top, 40)
-            
             Button {
                 Task {
                     print("Verify Details")
                     try await userService.createUser(user: user)
                 }
-                
-                toHomeView.toggle()
-                
+                toLoginView.toggle()
                 print("confirm")
             } label: {
                 Text("CONFIRM")
@@ -77,8 +58,8 @@ struct SubmittedSucessScreen: View {
             .background(Color.buttonColor)
             .padding(.top, 50)
         }
-        .fullScreenCover(isPresented: $toHomeView) {
-            HomeView(user: user)
+        .fullScreenCover(isPresented: $toLoginView) {
+            PhoneVerificationView()
         }
     }
 }

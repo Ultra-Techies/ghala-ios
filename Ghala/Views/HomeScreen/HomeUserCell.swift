@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct HomeUserCell: View {
     @ObservedObject var user: User
     @ObservedObject var userService =  UserService()
     var body: some View {
@@ -42,9 +42,3 @@ struct MainView: View {
         }
     }
 }
-
-//struct MainView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MainView(user: User(), showDrawerMenu: true)
-//    }
-//}

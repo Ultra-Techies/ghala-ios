@@ -7,18 +7,20 @@
 
 import SwiftUI
 
-struct H: View {
+struct HomeView: View {
     @ObservedObject var user: User
     var body: some View {
         VStack {
-        MainView(user: user)
+        HomeUserCell(user: user)
+                .padding(.bottom, 20)
         ChartView()
+            Spacer()
         }
     }
 }
 
 struct H_Previews: PreviewProvider {
     static var previews: some View {
-        H(user:User())
+        HomeView(user:User())
     }
 }

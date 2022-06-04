@@ -11,25 +11,27 @@ import SwiftUICharts
 struct ChartView: View {
     @ObservedObject var startsService = StartsService()
     var body: some View {
-        NavigationView {
-            VStack {
+        VStack {
                 Text("All products including Taxes 2022")
-                    .bold()
-                let data: BarChartData = StartsData()
-                BarChart(chartData: data)
-                            .xAxisGrid(chartData: data)
-                            .yAxisGrid(chartData: data)
-                            .xAxisLabels(chartData: data)
-                            .yAxisLabels(chartData: data, colourIndicator: .custom(colour: ColourStyle(colour: .red), size: 12))
-                            .headerBox(chartData: data)
-                            .id(data.id)
-                            .frame(minWidth: 150, maxWidth: 900, minHeight: 50, idealHeight: 250, maxHeight: 400, alignment: .center)
-                            .accessibilityElement(children: .combine)
-            }
+                    .fontWeight(.bold)
+                    .foregroundColor(.gray)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 10)
+            let data: BarChartData = StartsData()
+            BarChart(chartData: data)
+                        .xAxisGrid(chartData: data)
+                        .yAxisGrid(chartData: data)
+                        .xAxisLabels(chartData: data)
+                        .yAxisLabels(chartData: data, colourIndicator: .custom(colour: ColourStyle(colour: .red), size: 12))
+                        .headerBox(chartData: data)
+                        .id(data.id)
+                        .frame(minWidth: 150, maxWidth: 900, minHeight: 50, idealHeight: 250, maxHeight: 400, alignment: .center)
+                        .accessibilityElement(children: .combine)
         }.task {
             await startsData()
         }
     }
+    // MARK: - Get Starts
     func startsData() async {
         do {
             try await startsService.getStarts()
