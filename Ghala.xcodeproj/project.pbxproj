@@ -34,6 +34,8 @@
 		2073C429282D9714008E749F /* OTPCodeSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C428282D9714008E749F /* OTPCodeSubView.swift */; };
 		2073C42B282DA6D9008E749F /* PinVerificationSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C42A282DA6D8008E749F /* PinVerificationSubView.swift */; };
 		2073C42D282DA78A008E749F /* PinVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2073C42C282DA78A008E749F /* PinVerificationView.swift */; };
+		2075672B2847828000F5931D /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2075672A2847828000F5931D /* ChartView.swift */; };
+		207567332848068A00F5931D /* H.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207567322848068A00F5931D /* H.swift */; };
 		207A076D282C57AC003C7EBD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A076C282C57AC003C7EBD /* User.swift */; };
 		207A0771282C59BA003C7EBD /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A0770282C59BA003C7EBD /* UserViewModel.swift */; };
 		207A25872843A83F00786FBB /* Starts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A25862843A83F00786FBB /* Starts.swift */; };
@@ -41,7 +43,7 @@
 		208FC1F8282FB80000C78421 /* SubmittedSucessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FC1F7282FB80000C78421 /* SubmittedSucessScreen.swift */; };
 		20B7F472282E40E600D29C5F /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B7F471282E40E600D29C5F /* SplashScreen.swift */; };
 		20B9C802283E502B0091999F /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9C801283E502B0091999F /* FilterView.swift */; };
-		20C042C02843ADE1009A757E /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 20C042BF2843ADE1009A757E /* SwiftUICharts */; };
+		20C13CC9284BD36200EB8C97 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 20C13CC8284BD36200EB8C97 /* SwiftUICharts */; };
 		20C22700282C2255009BAD5C /* GhalaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C226FF282C2255009BAD5C /* GhalaApp.swift */; };
 		20C22702282C2255009BAD5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22701282C2255009BAD5C /* ContentView.swift */; };
 		20C22704282C2259009BAD5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20C22703282C2259009BAD5C /* Assets.xcassets */; };
@@ -88,6 +90,8 @@
 		2073C428282D9714008E749F /* OTPCodeSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCodeSubView.swift; sourceTree = "<group>"; };
 		2073C42A282DA6D8008E749F /* PinVerificationSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationSubView.swift; sourceTree = "<group>"; };
 		2073C42C282DA78A008E749F /* PinVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinVerificationView.swift; sourceTree = "<group>"; };
+		2075672A2847828000F5931D /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		207567322848068A00F5931D /* H.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H.swift; sourceTree = "<group>"; };
 		207A076C282C57AC003C7EBD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		207A0770282C59BA003C7EBD /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		207A25862843A83F00786FBB /* Starts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Starts.swift; sourceTree = "<group>"; };
@@ -119,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20C042C02843ADE1009A757E /* SwiftUICharts in Frameworks */,
+				20C13CC9284BD36200EB8C97 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +247,7 @@
 		20C226F3282C2255009BAD5C = {
 			isa = PBXGroup;
 			children = (
+				207567322848068A00F5931D /* H.swift */,
 				20C226FE282C2255009BAD5C /* Ghala */,
 				20C226FD282C2255009BAD5C /* Products */,
 			);
@@ -270,6 +275,7 @@
 				20C22705282C2259009BAD5C /* Preview Content */,
 				201B05AD282D5D77002B6629 /* extensions.swift */,
 				202939A92833AD4100E79E28 /* countryCode.json */,
+				2075672A2847828000F5931D /* ChartView.swift */,
 			);
 			path = Ghala;
 			sourceTree = "<group>";
@@ -328,7 +334,7 @@
 			);
 			name = Ghala;
 			packageProductDependencies = (
-				20C042BF2843ADE1009A757E /* SwiftUICharts */,
+				20C13CC8284BD36200EB8C97 /* SwiftUICharts */,
 			);
 			productName = Ghala;
 			productReference = 20C226FC282C2255009BAD5C /* Ghala.app */;
@@ -359,7 +365,7 @@
 			);
 			mainGroup = 20C226F3282C2255009BAD5C;
 			packageReferences = (
-				20C042BE2843ADE1009A757E /* XCRemoteSwiftPackageReference "ChartView" */,
+				20C13CC7284BD36200EB8C97 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = 20C226FD282C2255009BAD5C /* Products */;
 			projectDirPath = "";
@@ -396,6 +402,7 @@
 				206445EF2836A49D0061689B /* WareHouseService.swift in Sources */,
 				207A25872843A83F00786FBB /* Starts.swift in Sources */,
 				20C26319282F1088008C6F58 /* AccountSetupView.swift in Sources */,
+				2075672B2847828000F5931D /* ChartView.swift in Sources */,
 				201B05A7282CE1A4002B6629 /* UserService.swift in Sources */,
 				20FDBB9C283D302C003FFC76 /* OrderService.swift in Sources */,
 				20C22702282C2255009BAD5C /* ContentView.swift in Sources */,
@@ -435,6 +442,7 @@
 				201B05B1282D7F1D002B6629 /* TopInfoSubView.swift in Sources */,
 				205201D82840CAB400115339 /* Delivery.swift in Sources */,
 				206445E528366A6C0061689B /* DispatchView.swift in Sources */,
+				207567332848068A00F5931D /* H.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,20 +645,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		20C042BE2843ADE1009A757E /* XCRemoteSwiftPackageReference "ChartView" */ = {
+		20C13CC7284BD36200EB8C97 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
+			repositoryURL = "https://github.com/willdale/SwiftUICharts.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		20C042BF2843ADE1009A757E /* SwiftUICharts */ = {
+		20C13CC8284BD36200EB8C97 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 20C042BE2843ADE1009A757E /* XCRemoteSwiftPackageReference "ChartView" */;
+			package = 20C13CC7284BD36200EB8C97 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
 			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */

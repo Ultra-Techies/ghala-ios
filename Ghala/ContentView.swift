@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-   // @ObservedObject var userService = UserService()
     @ObservedObject var user: User
-    
     var body: some View {
         TabView {
-            HomeView(user: user)
+           // HomeView(user: user)
+            H(user: user)
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Home")

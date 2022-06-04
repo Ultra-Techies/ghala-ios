@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "chartview",
+      "identity" : "swiftuicharts",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/AppPear/ChartView",
+      "location" : "https://github.com/willdale/SwiftUICharts.git",
       "state" : {
-        "revision" : "9115a992c91fa19cbb4f2241084240d38654a1fc",
-        "version" : "1.5.5"
+        "branch" : "main",
+        "revision" : "9177c49ffc574a212e1604d2a268ddfda423a449"
       }
     }
   ],

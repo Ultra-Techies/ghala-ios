@@ -11,8 +11,7 @@ import SwiftUI
 struct GhalaApp: App {
     var body: some Scene {
         WindowGroup {
-          //SplashScreen()
-          ContentView(user: User())
+        SplashScreen()
         }
     }
 }

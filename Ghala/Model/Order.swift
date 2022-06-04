@@ -57,7 +57,7 @@ class OrderElementForDelivery: Codable, ObservableObject, Identifiable {
     }
     @Published var orderIds: [Int] = [0]
     @Published var route = "route1" //MARK: TO-DO fetch from view
-    @Published var warehouseId: Int = userWarehouseId.wareHouse_Id!
+    @Published var warehouseId: Int = Int(FromUserDefault.warehouseID!)!
     @Published var deliveryWindow = "MORNING" //MARK: TO-DO fetch from view
     init() {
     }
