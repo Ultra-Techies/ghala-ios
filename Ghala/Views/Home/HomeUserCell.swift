@@ -15,9 +15,9 @@ struct HomeUserCell: View {
         VStack(alignment: .leading, spacing: 20) {
             HStack {
                 Spacer()
-                Image(systemName: "magnifyingglass")
-                    .resizable()
-                    .frame(width: 25, height: 25)
+//                Image(systemName: "magnifyingglass")
+//                    .resizable()
+//                    .frame(width: 25, height: 25)
             }.padding(.horizontal, 20)
             HStack {
                 Image(systemName: "person.circle")
