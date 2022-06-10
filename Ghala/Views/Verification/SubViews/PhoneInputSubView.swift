@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PhoneInputSubView: View {
-        
+    @State var loading: Bool = false
     @ObservedObject var user : User
     @ObservedObject var userViewModel = UserViewModel(userService: UserService())
     
@@ -50,10 +50,12 @@ struct PhoneInputSubView: View {
                 .foregroundColor(.black)
             //MARK: -Next Button
             Button(action: {
+                self.loading = true
                 Task {
                    // await switchView()
                     await checkNumberStatus(locationCode: locationCode, pNumber: number)
                 }
+               self.loading = false
              }) {
                  Text("NEXT")
                      //.foregroundColor(.yellow)
@@ -64,6 +66,13 @@ struct PhoneInputSubView: View {
              .background(Color.buttonColor)
              .padding(.top, 50)
              .disabled(number.isEmpty)
+            // MARK: ProgressView
+            ZStack {
+                if self.loading {
+                    ProgressView()
+                        .zIndex(1)
+                }
+            }
         } .frame(minWidth: 0, maxWidth: .infinity)
             .padding()
         .sheet(isPresented: $toOTPView) {
