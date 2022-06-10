@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct PhoneVerificationView: View {
+    @ObservedObject var networkManager = NetworkViewModel()
     var body: some View {
         VStack {
             TopInfoSubView(title: "Mobile Number", description: "We need to send an OTP to authenticate your number")
@@ -17,7 +18,10 @@ struct PhoneVerificationView: View {
                     RoundedCornersShape(corners: .topLeft, radius: 90)
                         .fill(Color(UIColor.white))
                 )
-                .offset(y: -80)                
+                .offset(y: -80)
+            if networkManager.isNotConnected {
+                NetworkViewCell(netStatus: networkManager.conncetionDescription, image: networkManager.imageName)
+            }
         }.background(.white)
     }
 }
