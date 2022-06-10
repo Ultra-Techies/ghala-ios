@@ -11,17 +11,12 @@ struct PhoneInputSubView: View {
     @State var loading: Bool = false
     @ObservedObject var user : User
     @ObservedObject var userViewModel = UserViewModel(userService: UserService())
-    
     @ObservedObject private var countryInfo = ReadCountryCode()
     @State private var selectedIndex2 =   113 //position of country-Kenya in [countryInfo]
-    
     @State private var number = "" //phone number
-    
     @State private var toOTPView = false
     @State private var toPinView = false
-    
     var body: some View {
-       
         VStack {
             HStack {
                 Text("Select Country")
@@ -38,9 +33,7 @@ struct PhoneInputSubView: View {
                 .foregroundColor(.black)
             } .padding(.top, 100)
                 .padding(.horizontal, 20)
-            
             let locationCode = countryInfo.codeCountry[selectedIndex2].dialCode //get country Code
-
             //MARK: -Phone Number
             TextField("722 222 222", text: $number.max(9))
                 .frame(width: 350.0)

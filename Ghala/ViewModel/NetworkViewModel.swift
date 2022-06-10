@@ -12,16 +12,14 @@ class NetworkViewModel: ObservableObject {
     let monitor = NWPathMonitor()
     let queue = DispatchQueue(label: "NetworkViewModel")
     @Published var isNotConnected = true
-    
-    
+    //image
     var imageName: String {
         return isNotConnected ? "wifi" : "wifi.slash"
     }
-    
+    //description
     var conncetionDescription: String {
         return "No internet connection"
     }
-    
     init() {
         monitor.pathUpdateHandler = { path in
             DispatchQueue.main.async {

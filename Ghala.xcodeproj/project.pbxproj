@@ -44,6 +44,7 @@
 		20B7F472282E40E600D29C5F /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B7F471282E40E600D29C5F /* SplashScreen.swift */; };
 		20B9C802283E502B0091999F /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9C801283E502B0091999F /* FilterView.swift */; };
 		20BF1F2F2853C96C00AC2763 /* NetworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BF1F2E2853C96C00AC2763 /* NetworkViewModel.swift */; };
+		20BF1F312853C9EE00AC2763 /* NetworkViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BF1F302853C9EE00AC2763 /* NetworkViewCell.swift */; };
 		20C13CC9284BD36200EB8C97 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 20C13CC8284BD36200EB8C97 /* SwiftUICharts */; };
 		20C22700282C2255009BAD5C /* GhalaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C226FF282C2255009BAD5C /* GhalaApp.swift */; };
 		20C22702282C2255009BAD5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22701282C2255009BAD5C /* ContentView.swift */; };
@@ -101,6 +102,7 @@
 		20B7F471282E40E600D29C5F /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		20B9C801283E502B0091999F /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		20BF1F2E2853C96C00AC2763 /* NetworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewModel.swift; sourceTree = "<group>"; };
+		20BF1F302853C9EE00AC2763 /* NetworkViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewCell.swift; sourceTree = "<group>"; };
 		20C226FC282C2255009BAD5C /* Ghala.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ghala.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20C226FF282C2255009BAD5C /* GhalaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhalaApp.swift; sourceTree = "<group>"; };
 		20C22701282C2255009BAD5C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				201B05AF282D7E94002B6629 /* Verification */,
 				20B7F471282E40E600D29C5F /* SplashScreen.swift */,
 				20B9C801283E502B0091999F /* FilterView.swift */,
+				20BF1F302853C9EE00AC2763 /* NetworkViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				205201DE2840CD2700115339 /* UserFiles.swift in Sources */,
 				20F79B302834F9B400434065 /* CodeTextField.swift in Sources */,
 				205201E12840D30700115339 /* DispatchCell.swift in Sources */,
+				20BF1F312853C9EE00AC2763 /* NetworkViewCell.swift in Sources */,
 				205201DA2840CC0800115339 /* DeliveryService.swift in Sources */,
 				201B05AE282D5D77002B6629 /* extensions.swift in Sources */,
 				208FC1F8282FB80000C78421 /* SubmittedSucessScreen.swift in Sources */,
