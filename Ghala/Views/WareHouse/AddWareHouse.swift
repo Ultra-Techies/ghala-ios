@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct AddWareHouse: View {
+    @Environment(\.dismiss) var dismiss //close view
     @ObservedObject private var wareHouseService = WareHouseService()
     @ObservedObject var warehouse: WareHouse
-    
     var body: some View {
             VStack {
                 Form {
@@ -26,6 +26,7 @@ struct AddWareHouse: View {
                     Task {
                         await register()
                     }
+                    dismiss()
                 } label: {
                     Text("ADD")
                         .foregroundColor(.white)
