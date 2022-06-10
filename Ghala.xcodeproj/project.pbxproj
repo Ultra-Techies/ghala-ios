@@ -133,6 +133,7 @@
 		201B05A8282D0992002B6629 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				20BF1F2D2853B0BC00AC2763 /* Charts */,
 				205201E2284167F000115339 /* Settings */,
 				205201DF2840CFD400115339 /* Dispatch */,
 				20FDBB9D283D5C4E003FFC76 /* Order */,
@@ -244,6 +245,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		20BF1F2D2853B0BC00AC2763 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				2075672A2847828000F5931D /* ChartView.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
 		20C226F3282C2255009BAD5C = {
 			isa = PBXGroup;
 			children = (
@@ -274,7 +283,6 @@
 				20C22705282C2259009BAD5C /* Preview Content */,
 				201B05AD282D5D77002B6629 /* extensions.swift */,
 				202939A92833AD4100E79E28 /* countryCode.json */,
-				2075672A2847828000F5931D /* ChartView.swift */,
 			);
 			path = Ghala;
 			sourceTree = "<group>";

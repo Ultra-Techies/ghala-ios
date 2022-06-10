@@ -17,7 +17,7 @@ struct PhoneInputSubView: View {
     
     @State private var number = "" //phone number
     
-    @State private var toOTPView = false 
+    @State private var toOTPView = false
     @State private var toPinView = false
     
     var body: some View {
