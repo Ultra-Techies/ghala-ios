@@ -6,27 +6,29 @@
 //
 
 import Foundation
-
+enum BaseUrl {
+    static let baseUrl = "http://localhost:8080"
+}
 enum APIConstant {
     // MARK: USER
-    static let checkUserExists = "http://localhost:8080/api/users/exists"
-    static let getOTP = "http://localhost:8080/api/otp"
-    static let UserLogin = "http://localhost:8080/login"
-    static let createUser = "http://localhost:8080/api/users"
-    static let getUser = "http://localhost:8080/api/users/get/"
-    static let findUserByNumber = "http://localhost:8080/api/users/fetch"
+    static let checkUserExists = BaseUrl.baseUrl.appending("/api/users/exists")
+    static let getOTP = BaseUrl.baseUrl.appending("/api/otp")
+    static let UserLogin = BaseUrl.baseUrl.appending("/login")
+    static let createUser = BaseUrl.baseUrl.appending("/api/users")
+    static let getUser = BaseUrl.baseUrl.appending("/api/users/get/")
+    static let findUserByNumber =  BaseUrl.baseUrl.appending("/api/users/fetch")
     // MARK: WareHouse
-    static let getAllWareHouse = "http://localhost:8080/api/warehouse/all"
-    static let registerWareHouse = "http://localhost:8080/api/warehouse"
+    static let getAllWareHouse = BaseUrl.baseUrl.appending("/api/warehouse/all")
+    static let registerWareHouse = BaseUrl.baseUrl.appending("/api/warehouse")
     // MARK: Inventory
-    static let getAllInventory = "http://localhost:8080/api/inventory/all"
-    static let addInventory = "http://localhost:8080/api/inventory"
+    static let getAllInventory = BaseUrl.baseUrl.appending("/api/inventory/all")
+    static let addInventory = BaseUrl.baseUrl.appending("/api/inventory")
     // MARK: Orders
-    static let getOrderById = "http://localhost:8080/api/order/wh/"
+    static let getOrderById = BaseUrl.baseUrl.appending("/api/order/wh/")
     // MARK: Delivery Notes
-    static let getDeliveryByWareHouse = "http://localhost:8080/api/deliverynotes/wh/"
+    static let getDeliveryByWareHouse = BaseUrl.baseUrl.appending("/api/deliverynotes/wh/")
     // MARK: STARTS
-    static let getStarts = "http://localhost:8080/api/stats/"
+    static let getStarts = BaseUrl.baseUrl.appending("/api/stats/")
 }
 //enum userWarehouseId {
 //    static let wareHouse_Id = Int(UserDefaults.standard.string(forKey: "warehouse_Id")!) //get warehouseId
