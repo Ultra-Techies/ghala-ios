@@ -27,6 +27,7 @@ struct PhoneInputSubView: View {
                 Text("Select Country")
                     .bold()
                     .font(.title3)
+                    .foregroundColor(.black)
                Spacer()
                 //MARK: -Country Code
                 Picker("Please choose a country Code", selection: $selectedIndex2) {

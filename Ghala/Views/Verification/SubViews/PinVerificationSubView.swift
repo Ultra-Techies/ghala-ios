@@ -59,13 +59,11 @@ struct PinVerificationSubView: View {
                 }
                 .background(Color.buttonColor)
             }
-            //.padding(.top, 50)
         }
         .frame(minWidth: 0, maxWidth: .infinity)
         .padding(.top, 100)
         
         .fullScreenCover(isPresented: $toHomeView) {
-            //HomeView(user: user)
             ContentView(user: user)
         }
     }
