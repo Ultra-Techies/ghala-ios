@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddInventory: View {
+    @Environment(\.dismiss) var dismiss //close view
     @ObservedObject var inventoryService = InventoryService()
     @ObservedObject var userService = UserService()
     @ObservedObject var inventoryD: InventoryEncode
@@ -39,6 +40,7 @@ struct AddInventory: View {
                 Task {
                     await addInventoryItem()
                 }
+                dismiss()
             } label: {
                 Text("ADD")
                     .foregroundColor(.white)
