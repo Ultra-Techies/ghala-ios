@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var networkManager = NetworkViewModel()
     @ObservedObject var user: User
     var body: some View {
         TabView {
@@ -42,6 +43,9 @@ struct ContentView: View {
                     Text("Settings")
             }
         }.accentColor(.yellow)
+        if networkManager.isNotConnected {
+            NetworkViewCell(netStatus: networkManager.conncetionDescription, image: networkManager.imageName)
+        }
     }
 }
 
