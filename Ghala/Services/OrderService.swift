@@ -37,7 +37,7 @@ class OrderService: ObservableObject {
     // MARK: - Create A Delivery note
     func createDeliveryNote(order: OrderElementForDelivery) async throws {
         //get url
-        guard let url = URL(string: "http://localhost:8080/api/deliverynotes") else {
+        guard let url = URL(string: APIConstant.createDeliveryNote) else {
             throw NetworkError.invalidURL
         }
         //encode data

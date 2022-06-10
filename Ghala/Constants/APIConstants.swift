@@ -26,6 +26,7 @@ enum APIConstant {
     static let addInventory = BaseUrl.baseUrl.appending("/api/inventory")
     // MARK: Orders
     static let getOrderById = BaseUrl.baseUrl.appending("/api/order/wh/")
+    static let createDeliveryNote = BaseUrl.baseUrl.appending("/api/deliverynotes")
     // MARK: Delivery Notes
     static let getDeliveryByWareHouse = BaseUrl.baseUrl.appending("/api/deliverynotes/wh/")
     // MARK: STARTS
