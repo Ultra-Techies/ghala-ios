@@ -28,6 +28,7 @@ struct OTPCodeSubView: View {
     @State private var isPin4FirstResponder: Bool? = false
     //to AccountSetup View
     @State private var toAccSetup = false
+    @FocusState private var dismissKeyboard: Bool
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
             //MARK: -Code
@@ -48,6 +49,15 @@ struct OTPCodeSubView: View {
                     CodeTextField(text: self.$code4,
                                     nextResponder: .constant(nil),
                                     isResponder: self.$isPin4FirstResponder, previousResponder: self.$isPin3FirstResponder)
+                    .focused($dismissKeyboard)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            Button("Done") {
+                                dismissKeyboard = false
+                            }
+                        }
+                    }
                 }
                 .vCodeStyle()
             }.padding()
@@ -90,19 +100,16 @@ struct OTPCodeSubView: View {
                 AccountSetupView(user: user)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear {
             Task {
-                //print("phone number: \(user.phoneNumber)")
                 await getOTP()
             }
         }
-        .frame(minWidth: 0, maxWidth: .infinity)
-        .padding(.top, 100)
     }
     
     func getOTP() async {
         do {
-
             try await userService.getOTP(user: user)
            print(otpCode)
         } catch {

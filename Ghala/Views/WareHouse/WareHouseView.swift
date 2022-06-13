@@ -34,7 +34,7 @@ struct WareHouseView: View {
                    Spacer()
                    HStack {
                        Spacer()
-                       //to Add WareHouse
+                       // MARK: Add WareHouse Button
                        NavigationLink(destination: AddWareHouse(warehouse: WareHouse())) {
                            Image(systemName: "plus.circle.fill")
                                .resizable()

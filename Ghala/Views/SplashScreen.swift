@@ -16,7 +16,8 @@ struct SplashScreen: View {
     
     var body: some View {
         if isActive {
-            PhoneVerificationView()
+           // PhoneVerificationView()
+            PhoneInputSubView(user: User())
         } else {
             VStack {
                 VStack {

@@ -17,7 +17,7 @@ struct PinVerificationView: View {
                     RoundedCornersShape(corners: .topLeft, radius: 90)
                         .fill(Color(UIColor.white))
                 )
-                .offset(y: -80)
+                .offset(y: -87)
         }.background(.white)
     }
 }
