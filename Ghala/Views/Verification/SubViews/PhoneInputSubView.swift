@@ -55,13 +55,11 @@ struct PhoneInputSubView: View {
                         Button(action: {
                             self.loading = true
                             Task {
-                               // await switchView()
                                 await checkNumberStatus(locationCode: locationCode, pNumber: number)
                             }
                            self.loading = false
                          }) {
                              Text("NEXT")
-                                 //.foregroundColor(.yellow)
                                  .accentColor(.white)
                                  .frame(width: 350, height: 50)
                          }
@@ -84,9 +82,11 @@ struct PhoneInputSubView: View {
                                 .fill(Color(UIColor.white))
                         )
                         .offset(y: -45)
-                    
+                    // MARK: To OTP View
                     NavigationLink(destination: OTPVerificationView(user: user), isActive: $toOTPView, label: EmptyView.init)
                 }
+                // MARK: To Pin View
+                NavigationLink(destination: PinVerificationView(user: user), isActive: $toPinView ,label: EmptyView.init)
                 .toolbar {
                     ToolbarItemGroup(placement: .keyboard) {
                         Spacer()
@@ -97,13 +97,6 @@ struct PhoneInputSubView: View {
                 }
             }
         } .frame(minWidth: 0, maxWidth: .infinity)
-        
-//        .fullScreenCover(isPresented: $toOTPView) {
-//            OTPVerificationView(user: user)
-//        }
-        .sheet(isPresented: $toPinView) {
-            PinVerificationView(user: user)
-        }
     }
     var disableButton: Bool {
         number.count < 9
@@ -120,11 +113,10 @@ struct PhoneInputSubView: View {
             let value = try await userViewModel.checkIfUserExists(user: user)
             if value == false {
                 print("To OPT Screen")
-                //toOTPView.toggle()
                 toOTPView = true
             } else {
                 print("To Pin Screen")
-                toPinView.toggle()
+                toPinView = true
             }
         } catch {
             print(error)

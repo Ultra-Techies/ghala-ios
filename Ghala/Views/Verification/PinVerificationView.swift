@@ -10,15 +10,21 @@ import SwiftUI
 struct PinVerificationView: View {
     @ObservedObject var user : User
     var body: some View {
-        VStack {
-            TopInfoSubView(title: "Enter Pin", description: "Please enter your account pin or passcode")
-            PinVerificationSubView(user: user, code1: "", code2: "", code3: "", code4: "")
-                .background(
-                    RoundedCornersShape(corners: .topLeft, radius: 90)
-                        .fill(Color(UIColor.white))
-                )
-                .offset(y: -87)
-        }.background(.white)
+        GeometryReader { geo in
+            VStack {
+                TopInfoSubView(title: "Enter Pin", description: "Please enter your account pin or passcode")
+                    .frame(height: geo.size.height * 0.75, alignment: .top)
+                PinVerificationSubView(user: user, code1: "", code2: "", code3: "", code4: "")
+                    .background(
+                        RoundedCornersShape(corners: .topLeft, radius: 60)
+                            .fill(Color(UIColor.white))
+                    )
+                    .offset(y: -87)
+            }.background(.white)
+                .onTapGesture {
+                    self.hideKeyboard()
+                }
+        }
     }
 }
 
