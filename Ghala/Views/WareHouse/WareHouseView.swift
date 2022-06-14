@@ -9,21 +9,23 @@ import SwiftUI
 
 struct WareHouseView: View {
     @ObservedObject var wareHouseService = WareHouseService()
-   
+    @State var searchWarehouse = ""
     var body: some View {
         NavigationView {
            ZStack {
                VStack {
                 List {
-                    ForEach(wareHouseService.warehouse, id: \.id) { wHouse in
+                    ForEach(wareHouseSearch, id: \.id) { wHouse in
                         WarehouseCell(name: wHouse.name, location: wHouse.location)
                             .padding()
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
-                    }.listRowBackground(Color.clear)
+                    }
+                    .listRowBackground(Color.clear)
                     .background(Color.listBackground)
                 }.listStyle(SidebarListStyle())
                 .navigationTitle("Warehouses")
+                .searchable(text: $searchWarehouse, prompt: "Search Warehouse")
                 .refreshable {
                     Task {
                         await getWareHouses() //swipe down to refresh
@@ -45,15 +47,22 @@ struct WareHouseView: View {
                    }
                }
            }
-                //search
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Image(systemName: "magnifyingglass")
-                    }
-                }
         }
-        .task {
-           await getWareHouses()
+    }
+    
+    // MARK: Search Warehouse
+    var wareHouseSearch: [WarehouseElement1] {
+        // MARK: TO-DO (Handle Concurrency here!!!)
+        Task.detached {
+            await getWareHouses()
+        }
+        if searchWarehouse.isEmpty {
+            //print("First return: \(wareHouseService.warehouse)")
+            return wareHouseService.warehouse.reversed()
+        } else {
+            //print("WareHouse: \(wareHouseService.warehouse)")
+            
+            return wareHouseService.warehouse.filter { $0.name.localizedCaseInsensitiveContains(searchWarehouse)}
         }
     }
     
