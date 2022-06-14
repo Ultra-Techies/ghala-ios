@@ -7,14 +7,11 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct HomeDrawerView: View {
     @Environment(\.presentationMode) var presentationMode
-    
     @ObservedObject var user: User
     @ObservedObject var userService =  UserService()
-    
     @State var showDrawerMenu = false
-    
     var body: some View {
             let drag = DragGesture()
                 .onEnded {
@@ -24,10 +21,11 @@ struct HomeView: View {
                         }
                     }
                 }
-            
+        //MARK: - Drawer
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {
-                        MainView(user: user, showDrawerMenu: self.$showDrawerMenu)
+                       // MainView(user: user, showDrawerMenu: self.$showDrawerMenu)
+                        HomeUserCell(user: user)
                             .frame(width: geo.size.width, height: geo.size.height)
                             .transition(.move(edge: .leading))
                             .offset(x: self.showDrawerMenu ? geo.size.width * 0 : 0)
@@ -45,6 +43,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(user: User())
+        HomeDrawerView(user: User())
     }
 }

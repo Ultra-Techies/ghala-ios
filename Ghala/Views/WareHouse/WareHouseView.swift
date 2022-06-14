@@ -9,37 +9,60 @@ import SwiftUI
 
 struct WareHouseView: View {
     @ObservedObject var wareHouseService = WareHouseService()
-    @State var toAddWareHouse = false
-    
+    @State var searchWarehouse = ""
     var body: some View {
         NavigationView {
-            VStack {
+           ZStack {
+               VStack {
                 List {
-                    ForEach(wareHouseService.warehouse, id: \.id) { ware in
-                        WarehouseCell(name: ware.name, location: ware.location)
-                            .listRowSeparator(.hidden)
+                    ForEach(wareHouseSearch, id: \.id) { wHouse in
+                        WarehouseCell(name: wHouse.name, location: wHouse.location)
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
                     }
-                }.listStyle(PlainListStyle())
+                    .listRowBackground(Color.clear)
+                    .background(Color.listBackground)
+                }.listStyle(SidebarListStyle())
                 .navigationTitle("Warehouses")
-            }   .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
-                //search
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            toAddWareHouse.toggle()
-                        } label: {
-                            Image(systemName: "plus")
-                        }
+                .searchable(text: $searchWarehouse, prompt: "Search Warehouse")
+                .refreshable {
+                    Task {
+                        await getWareHouses() //swipe down to refresh
                     }
                 }
+            }
+               VStack {
+                   Spacer()
+                   HStack {
+                       Spacer()
+                       // MARK: Add WareHouse Button
+                       NavigationLink(destination: AddWareHouse(warehouse: WareHouse())) {
+                           Image(systemName: "plus.circle.fill")
+                               .resizable()
+                               .frame(width: 50, height: 50)
+                               .foregroundColor(.yellow)
+                               .padding()
+                       }
+                   }
+               }
+           }
         }
-        .task {
-           await getWareHouses()
+    }
+    
+    // MARK: Search Warehouse
+    var wareHouseSearch: [WarehouseElement1] {
+        // MARK: TO-DO (Handle Concurrency here!!!)
+        Task.detached {
+            await getWareHouses()
         }
-        
-        .fullScreenCover(isPresented: $toAddWareHouse) {
-            AddWareHouse(warehouse: WareHouse())
+        if searchWarehouse.isEmpty {
+            //print("First return: \(wareHouseService.warehouse)")
+            return wareHouseService.warehouse.reversed()
+        } else {
+            //print("WareHouse: \(wareHouseService.warehouse)")
+            
+            return wareHouseService.warehouse.filter { $0.name.localizedCaseInsensitiveContains(searchWarehouse)}
         }
     }
     
@@ -57,15 +80,3 @@ struct WareHouseView_Previews: PreviewProvider {
         WareHouseView()
     }
 }
-//
-//NavigationLink("Press Me", destination: Text("Detail").navigationTitle("Detail View"))
-//    .navigationBarTitleDisplayMode(.inline)
-//    // this sets the Back button text when a new screen is pushed
-//    .navigationTitle("Back to Primary View")
-//    .toolbar {
-//        ToolbarItem(placement: .principal) {
-//            // this sets the screen title in the navigation bar, when the screen is visible
-//            Text("Primary View")
-//        }
-//    }
-//}

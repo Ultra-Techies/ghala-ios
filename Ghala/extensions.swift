@@ -25,6 +25,7 @@ struct RoundedCornersShape: Shape {
 //Standard Button Color from Assets
 extension Color {
     static let buttonColor = Color("buttonColor")
+    static let listBackground = Color("listBackground")
 }
 
 //MARK: -Verification Code Text Styling
@@ -35,7 +36,7 @@ struct CodeTextStyle: ViewModifier {
             .background(Color.gray).opacity(0.5)
             .multilineTextAlignment(.center)
             .cornerRadius(10)
-            .keyboardType(/*@START_MENU_TOKEN@*/.numberPad/*@END_MENU_TOKEN@*/)
+            .keyboardType(.numberPad)
             .multilineTextAlignment(.center)
     }
 }
@@ -81,3 +82,12 @@ extension CharacterSet {
     return allowed
   }()
 }
+
+// MARK: Hide Keyboard
+#if canImport(UIKit)
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+#endif

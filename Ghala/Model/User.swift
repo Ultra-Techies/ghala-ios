@@ -16,7 +16,6 @@ class User: Codable, ObservableObject, Identifiable {
             case firstName
             case lastName
             case password
-            
         }
       
         @Published var id: Int = 0
@@ -40,9 +39,7 @@ class User: Codable, ObservableObject, Identifiable {
             firstName = try container.decode(String.self, forKey: .firstName)
             lastName = try container.decode(String.self, forKey: .lastName)
             password = try container.decode(String.self, forKey: .password)
-          
         }
-        
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
@@ -53,21 +50,16 @@ class User: Codable, ObservableObject, Identifiable {
             try container.encode(lastName, forKey: .lastName)
             try container.encode(password, forKey: .password)
         }
-
-    
 }
-
+// MARK: VERIFY User Response
 struct check: Codable {
     let exists: Bool
-   
-   // let otp: String
 }
-
+// MARK: USER PIN Response
 struct Pin: Codable {
     let verified: Bool
 }
-
-
+// MARK: TOKEN Response
 struct Token: Codable {
     let accessToken, refreshToken: String
 
@@ -76,27 +68,22 @@ struct Token: Codable {
         case refreshToken = "refresh_token"
     }
 }
-
+// MARK: Create User Response
+struct CreateUserResponse: Codable {
+    let id: Int
+}
 
 class OTP: Codable, ObservableObject, Identifiable {
-   // var otp: String
-    
     enum CodingKeys: CodingKey{
             case otp
         }
-    
     @Published var otp = ""
-    
     init() {
-        
     }
-    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-    
         otp = try container.decode(String.self, forKey: .otp)
     }
-    
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
@@ -120,19 +107,15 @@ class OTP: Codable, ObservableObject, Identifiable {
  
  */
 
-
-
-
-
 // MARK: - User2
 class User2: Codable {
     let id: Int
     let email, phoneNumber: String
-    let assignedWarehouse: Int?
+    let assignedWarehouse: Int
     let role, firstName, lastName: String
     let profilePhoto: JSONNull?
 
-    init(id: Int, email: String, phoneNumber: String, assignedWarehouse: Int?, role: String, firstName: String, lastName: String, profilePhoto: JSONNull?) {
+    init(id: Int, email: String, phoneNumber: String, assignedWarehouse: Int, role: String, firstName: String, lastName: String, profilePhoto: JSONNull?) {
         self.id = id
         self.email = email
         self.phoneNumber = phoneNumber
@@ -143,30 +126,33 @@ class User2: Codable {
         self.profilePhoto = profilePhoto
     }
 }
-
 // MARK: - Encode/decode helpers
-
 class JSONNull: Codable, Hashable {
-
     public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
         return true
     }
-
     public var hashValue: Int {
         return 0
     }
-
     public init() {}
-
     public required init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if !container.decodeNil() {
             throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
         }
     }
-
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encodeNil()
     }
+}
+
+// MARK: handles get User by ID
+struct User3: Codable {
+    var id: Int
+    var email, phoneNumber: String
+    var assignedWarehouse: Int
+    var role: String
+    var firstName, lastName: String
+    var profilePhoto: JSONNull?
 }

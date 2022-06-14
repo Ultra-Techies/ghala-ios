@@ -15,16 +15,13 @@ struct AccountSetupView: View {
     @State var email = ""
     @State var accountPin = ""
     @State private var toAccSetup = false
-    
     var body: some View {
         VStack {
-            
             HStack {
                 Text("Setup your account")
                     .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
-                    
             }
             .frame(maxWidth: .infinity, maxHeight: 50 , alignment: .center)
             .background(Color.yellow)
@@ -55,7 +52,7 @@ struct AccountSetupView: View {
                     .frame(width: 350, height: 50)
             }
             .background(Color.buttonColor)
-            //MARK: Add condion when button pressed wait for...  ---on (Environment dismiss)
+            // MARK: Add condion when button pressed wait for...  ---on (Environment dismiss)
 //            ProgressView()
 //                .scaleEffect(2)
 //                .font(.system(size:8))
@@ -77,7 +74,7 @@ struct AccountSetupView_Previews: PreviewProvider {
     }
 }
 
-//MARK: -Text Field Styling
+// MARK: - Text Field Styling
 struct TextFieldStyle: ViewModifier {
     func body(content: Content) -> some View {
         content

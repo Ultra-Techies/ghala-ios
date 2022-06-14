@@ -8,42 +8,37 @@
 import SwiftUI
 
 struct AddWareHouse: View {
+    @Environment(\.dismiss) var dismiss //close view
     @ObservedObject private var wareHouseService = WareHouseService()
     @ObservedObject var warehouse: WareHouse
-//    @State private var wareHouseName = ""
-//    @State private var location = ""
-    //Backto WH view
-    @State private var toWareHouseView = false
-    
-    
     var body: some View {
-        
-        NavigationView {
             VStack {
-                TextField("Warehouse Name", text: $warehouse.name)
-                TextField("Location", text: $warehouse.location)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        Task {
-                           await register()
-                        }
-                    } label: {
-                        Image(systemName: "checkmark")
+                Form {
+                    Section {
+                        TextField("Warehouse Name", text: $warehouse.name)
+                    }
+                    Section {
+                        TextField("Location", text: $warehouse.location)
                     }
                 }
-                
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    Button {
-//                        <#code#>
-//                    } label: {
-//                        Image(systemName: "")
-//                    }
-//                }
+                //Add Button
+                Button {
+                    Task {
+                        await register()
+                    }
+                    dismiss()
+                } label: {
+                    Text("ADD")
+                        .foregroundColor(.white)
+                        .frame(width: 350, height: 50)
+                }
+                .background(Color.yellow)
+                .padding()
+                .navigationTitle("Add WareHouse")
             }
-        }
     }
+    
+    //register warehouse
     private func register() async {
         do {
             try await wareHouseService.registerWareHouse(warehouse:warehouse)

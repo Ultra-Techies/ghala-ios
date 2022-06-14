@@ -8,48 +8,43 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-   // @ObservedObject var userService = UserService()
+    @ObservedObject var networkManager = NetworkViewModel()
     @ObservedObject var user: User
-    
     var body: some View {
         TabView {
-                HomeView(user: user)
-                    .tabItem {
-                        Image(systemName: "house.fill")
-                        Text("Home")
-                }
-                
-                WareHouseView()
-                    .tabItem {
-                        Image(systemName: "note.text")
-                        Text("WareHouse")
-                }
-            
-            
-            OrderView()
+            HomeView(user: user)
+                .tabItem {
+                    Image(systemName: "house.fill")
+                    Text("Home")
+            }
+            WareHouseView()
+                .tabItem {
+                    Image(systemName: "note.text")
+                    Text("WareHouse")
+            }
+            OrderView(orderDelivery: OrderElementForDelivery())
                 .tabItem {
                     Image(systemName: "shippingbox")
                     Text("Order")
             }
-            
-            InventoryView()
+            InventoryView(user: user)
                 .tabItem {
                     Image(systemName: "list.bullet.rectangle.fill")
                     Text("Inventory")
             }
-            
             DispatchView()
                 .tabItem {
                     Image(systemName: "clock.fill")
                     Text("Dispatch")
             }
-            
             SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
             }
+        }.accentColor(.yellow)
+        if networkManager.isNotConnected {
+            NetworkViewCell(netStatus: networkManager.conncetionDescription, image: networkManager.imageName)
         }
     }
 }

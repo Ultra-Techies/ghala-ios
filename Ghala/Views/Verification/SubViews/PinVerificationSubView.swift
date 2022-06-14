@@ -24,7 +24,7 @@ struct PinVerificationSubView: View {
     @State private var isPin4FirstResponder: Bool? = false
     
     var body: some View {
-        VStack(alignment: .center, spacing: 80) {
+        VStack(alignment: .center, spacing: 30) {
             //MARK: -PIN
             HStack {
                 Group {
@@ -59,13 +59,11 @@ struct PinVerificationSubView: View {
                 }
                 .background(Color.buttonColor)
             }
-            //.padding(.top, 50)
         }
         .frame(minWidth: 0, maxWidth: .infinity)
-        .padding(.top, 100)
+        .padding(.top, 50)
         
         .fullScreenCover(isPresented: $toHomeView) {
-            //HomeView(user: user)
             ContentView(user: user)
         }
     }

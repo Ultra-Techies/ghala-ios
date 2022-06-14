@@ -17,7 +17,6 @@ class WareHouse: Codable, ObservableObject, Identifiable {
         case name
         case location
     }
-    
     @Published var warehouseID : Int = 0
     @Published var name: String = ""
     @Published var location: String = ""
@@ -25,7 +24,6 @@ class WareHouse: Codable, ObservableObject, Identifiable {
     init() {
         
     }
-    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -33,7 +31,6 @@ class WareHouse: Codable, ObservableObject, Identifiable {
         name = try container.decode(String.self, forKey: .name)
         location = try container.decode(String.self, forKey: .location)
     }
-    
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
@@ -41,7 +38,6 @@ class WareHouse: Codable, ObservableObject, Identifiable {
         try container.encode(name, forKey: .name)
         try container.encode(location, forKey: .location)
     }
-    
 }
 
 struct WarehouseElement1: Codable {
@@ -52,6 +48,6 @@ struct WarehouseElement1: Codable {
 typealias Warehouse = [WarehouseElement1]
 
 //retrurn response on create
-struct createResponse: Codable {
+struct CreateResponse: Codable {
     let warehouseId: Int
 }
