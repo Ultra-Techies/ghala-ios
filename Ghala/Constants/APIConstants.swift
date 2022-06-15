@@ -8,7 +8,9 @@
 import Foundation
 enum BaseUrl {
    // static let baseUrl = "http://localhost:8080"
-    static let baseUrl = "http://192.168.100.86:8080"
+    //static let baseUrl = "http://192.168.100.86:8080"
+    //static let baseUrl = "http://192.168.0.52:8080" //Roysa
+    static let baseUrl = "http://192.168.137.197:8080"
 }
 enum APIConstant {
     // MARK: USER

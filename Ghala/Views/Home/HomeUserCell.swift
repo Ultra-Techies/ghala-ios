@@ -28,6 +28,7 @@ struct HomeUserCell: View {
                         .fontWeight(.light)
                     Text("\(userService.us.firstName) \(userService.us.lastName)")
                         .bold()
+                    let _ = print("UserDetails: \(userService.us.firstName)")
                 }
             } .padding(.horizontal, 20)
         } .task {

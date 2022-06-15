@@ -142,10 +142,10 @@ class UserService: ObservableObject {
         do {
             let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
             let decoded = try JSONDecoder().decode(User2.self, from: data)
+            //save User Id & WarehouseID to userDefaults
+             UserDefaults.standard.set(decoded.assignedWarehouse, forKey: "warehouse_Id")
+             UserDefaults.standard.set(decoded.id, forKey: "user_Id")
             self.us = decoded
-           //save User Id & WarehouseID to userDefaults
-            UserDefaults.standard.set(decoded.assignedWarehouse, forKey: "warehouse_Id")
-            UserDefaults.standard.set(decoded.id, forKey: "user_Id")
         } catch {
             print(error)
         }
@@ -153,7 +153,7 @@ class UserService: ObservableObject {
     
     // MARK: Find by ID
     func getUser() async throws {
-        guard let url = URL(string: APIConstant.getUser.appending(FromUserDefault.userID!)) else {
+        guard let url = URL(string: APIConstant.getUser.appending("\(FromUserDefault.userID)")) else {
             throw NetworkError.invalidURL
         }
         print(url)

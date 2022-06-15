@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var networkManager = NetworkViewModel()
     @ObservedObject var user: User
+    @State private var showAlert = false
+    @State private var toPhoneView = false
     var body: some View {
         TabView {
             HomeView(user: user)
@@ -42,9 +44,42 @@ struct ContentView: View {
                     Image(systemName: "gear")
                     Text("Settings")
             }
-        }.accentColor(.yellow)
+        }.onAppear {
+            checkWareHouseId()
+        }
+        .fullScreenCover(isPresented: $toPhoneView) {
+            PhoneVerificationView()
+        }
+        .accentColor(.yellow)
+        .alert("No Warehouse Assigned!", isPresented: $showAlert) {
+            Button("OK") {
+                toPhoneView.toggle()
+            }
+        }
+//            .alert(isPresented: $showAlert) {
+//                Alert(
+//                    title: Text("No Warahouse Assigned!!"),
+//                    message: Text("Please contact you Admin to assign you a Warehouse."),
+//                    primaryButton: .default(
+//                                    Text("Try Again"),
+//                                    action: checkWareHouseId
+//                                ),
+//                                secondaryButton: .destructive(
+//                                    Text("Ok"),
+//                                    action: toPhoneView
+//                                )
+//                    )
+//            }
         if networkManager.isNotConnected {
             NetworkViewCell(netStatus: networkManager.conncetionDescription, image: networkManager.imageName)
+        }
+    }
+    func checkWareHouseId() {
+        var wareHouseID: Int? = nil
+        wareHouseID = FromUserDefault.warehouseID
+        print("Warehouse id: \(FromUserDefault.warehouseID)")
+        if wareHouseID == nil {
+            showAlert = true
         }
     }
 }

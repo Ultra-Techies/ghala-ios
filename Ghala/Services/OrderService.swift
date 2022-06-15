@@ -21,7 +21,7 @@ class OrderService: ObservableObject {
     // MARK: - GetOrdersByID
     func getOrderById() async throws {
         //get URL
-        guard let url = URL(string: APIConstant.getOrderById.appending(wareHouse_Id!)) else {
+        guard let url = URL(string: APIConstant.getOrderById.appending("\(FromUserDefault.warehouseID)")) else {
             throw NetworkError.invalidURL
         }
         //requestURLSession
