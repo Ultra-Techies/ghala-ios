@@ -51,25 +51,11 @@ struct ContentView: View {
             PhoneInputSubView(user: User())
         }
         .accentColor(.yellow)
-        .alert("No Warehouse Assigned!", isPresented: $showAlert) {
-            Button("OK") {
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("No Warehouse Assigned!"), message: Text("Please contact you Admin to assign you a Warehouse."), dismissButton: .destructive(Text("OK"), action: {
                 toPhoneView.toggle()
-            }
+            }))
         }
-//            .alert(isPresented: $showAlert) {
-//                Alert(
-//                    title: Text("No Warahouse Assigned!!"),
-//                    message: Text("Please contact you Admin to assign you a Warehouse."),
-//                    primaryButton: .default(
-//                                    Text("Try Again"),
-//                                    action: checkWareHouseId
-//                                ),
-//                                secondaryButton: .destructive(
-//                                    Text("Ok"),
-//                                    action: toPhoneView
-//                                )
-//                    )
-//            }
         if networkManager.isNotConnected {
             NetworkViewCell(netStatus: networkManager.conncetionDescription, image: networkManager.imageName)
         }
