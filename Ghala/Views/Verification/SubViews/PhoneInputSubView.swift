@@ -80,10 +80,10 @@ struct PhoneInputSubView: View {
                         .padding()
                     // MARK: Curving view
                         .background(
-                            RoundedCornersShape(corners: .topLeft, radius: 60)
+                            RoundedCornersShape(corners: .topLeft, radius: 50)
                                 .fill(Color(UIColor.white))
                         )
-                        .offset(y: -45)
+                        .offset(y: -43)
                     // MARK: To OTP View
                     NavigationLink(destination: OTPVerificationView(user: user), isActive: $toOTPView, label: EmptyView.init)
                 }

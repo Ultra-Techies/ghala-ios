@@ -143,6 +143,7 @@ class UserService: ObservableObject {
             let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
             let decoded = try JSONDecoder().decode(User2.self, from: data)
             //save User Id & WarehouseID to userDefaults
+            print("User Warehouse = \(decoded.assignedWarehouse)")
              UserDefaults.standard.set(decoded.assignedWarehouse, forKey: "warehouse_Id")
              UserDefaults.standard.set(decoded.id, forKey: "user_Id")
             self.us = decoded

@@ -10,15 +10,10 @@ import SwiftUI
 struct HomeUserCell: View {
     @ObservedObject var user: User
     @ObservedObject var userService =  UserService()
+    @State private var toPhoneView = false
     var body: some View {
         //User Details (Photo, Full Names)
         VStack(alignment: .leading, spacing: 20) {
-            HStack {
-                Spacer()
-//                Image(systemName: "magnifyingglass")
-//                    .resizable()
-//                    .frame(width: 25, height: 25)
-            }.padding(.horizontal, 20)
             HStack {
                 Image(systemName: "person.circle")
                     .resizable()
@@ -30,9 +25,18 @@ struct HomeUserCell: View {
                         .bold()
                     let _ = print("UserDetails: \(userService.us.firstName)")
                 }
+                Spacer()
+                Button("Logout") {
+                   // UserDefaults.registrationDomain
+                    UserDefaults.standard.removeObject(forKey: "warehouse_Id")
+                    toPhoneView = true
+                }
             } .padding(.horizontal, 20)
         } .task {
             await findUserDetails()
+        }
+        .fullScreenCover(isPresented: $toPhoneView) {
+            PhoneVerificationView()
         }
     }
     func findUserDetails() async {

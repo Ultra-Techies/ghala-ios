@@ -78,7 +78,7 @@ struct ContentView: View {
         var wareHouseID: Int? = nil
         wareHouseID = FromUserDefault.warehouseID
         print("Warehouse id: \(FromUserDefault.warehouseID)")
-        if wareHouseID == nil {
+        if wareHouseID == 0 {
             showAlert = true
         }
     }
