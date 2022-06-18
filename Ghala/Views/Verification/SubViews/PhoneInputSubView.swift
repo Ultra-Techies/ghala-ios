@@ -98,6 +98,8 @@ struct PhoneInputSubView: View {
                     }
                 }
             }
+           // .navigationBarTitle("")
+            .navigationBarHidden(true)
         }
             .frame(minWidth: 0, maxWidth: .infinity)
             .alert(errorMsg, isPresented: $showAlert) {}

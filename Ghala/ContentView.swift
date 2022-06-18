@@ -48,7 +48,7 @@ struct ContentView: View {
             checkWareHouseId()
         }
         .fullScreenCover(isPresented: $toPhoneView) {
-            PhoneVerificationView()
+            PhoneInputSubView(user: User())
         }
         .accentColor(.yellow)
         .alert("No Warehouse Assigned!", isPresented: $showAlert) {
