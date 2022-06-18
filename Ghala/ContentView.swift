@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var networkManager = NetworkViewModel()
     @ObservedObject var user: User
+    @ObservedObject var userService =  UserService()
     @State private var showAlert = false
     @State private var toPhoneView = false
     var body: some View {
@@ -45,7 +46,9 @@ struct ContentView: View {
                     Text("Settings")
             }
         }.onAppear {
-            checkWareHouseId()
+            Task {
+                await findUserDetails()
+            }
         }
         .fullScreenCover(isPresented: $toPhoneView) {
             PhoneInputSubView(user: User())
@@ -61,11 +64,18 @@ struct ContentView: View {
         }
     }
     func checkWareHouseId() {
-        var wareHouseID: Int? = nil
-        wareHouseID = FromUserDefault.warehouseID
-        print("Warehouse id: \(FromUserDefault.warehouseID)")
-        if wareHouseID == 0 {
+        let wareHouseId = userService.us.assignedWarehouse
+        print("Warehouse at Home: \(wareHouseId)")
+        if wareHouseId == 0 {
             showAlert = true
+        }
+    }
+    func findUserDetails() async {
+        do {
+            try await userService.findByPhone(user: user)
+            checkWareHouseId()
+        } catch {
+            print(error)
         }
     }
 }

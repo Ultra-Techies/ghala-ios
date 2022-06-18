@@ -27,8 +27,13 @@ struct HomeUserCell: View {
                 }
                 Spacer()
                 Button("Logout") {
-                   // UserDefaults.registrationDomain
-                    UserDefaults.standard.removeObject(forKey: "warehouse_Id")
+                    //let domain = Bundle.main.bundleIdentifier!
+                    let domain = String(describing: FromUserDefault.warehouseID)
+                    UserDefaults.standard.removePersistentDomain(forName: domain)
+                    UserDefaults.standard.synchronize()
+                    print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
+//                    UserDefaults.standard.removeObject(forKey: "warehouse_Id")
+//                    UserDefaults.standard.synchronize()
                     toPhoneView = true
                 }
             } .padding(.horizontal, 20)

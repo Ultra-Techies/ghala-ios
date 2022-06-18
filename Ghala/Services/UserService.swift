@@ -134,9 +134,9 @@ class UserService: ObservableObject {
                 print("Failed to encode")
                 throw NetworkError.invalidEncoding
             }
-        let token = UserDefaults.standard.string(forKey: "access_token")
+        //let token = UserDefaults.standard.string(forKey: "access_token")
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(FromUserDefault.token!)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST" // Set HTTP Request Body
         do {
@@ -173,11 +173,11 @@ class UserService: ObservableObject {
             throw NetworkError.invalidURL
         }
         
-        let token = UserDefaults.standard.string(forKey: "access_token")
+        //let token = UserDefaults.standard.string(forKey: "access_token")
         //print("Token is \(token!)")
         
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(FromUserDefault.token!)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET" // Set HTTP Request Body
         
         do {
