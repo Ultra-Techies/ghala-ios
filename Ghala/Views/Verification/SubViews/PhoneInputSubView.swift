@@ -19,79 +19,77 @@ struct PhoneInputSubView: View {
     @State private var toPinView = false
     var body: some View {
         NavigationView {
-            ZStack {
-                // MARK: ProgressView
-                    if self.loading {
-                        ProgressView()
-                            .zIndex(2)
-                    }
-                GeometryReader { geo in
+            GeometryReader { geo in
+                VStack {
+                    // MARK: -Top view
+                    TopInfoSubView(title: "Mobile Number", description: "We need to send an OTP to authenticate your number")
+                        .frame(height: geo.size.height * 0.55, alignment: .top)
+                    
+                    // MARK: -Bottom View
                     VStack {
-                        // MARK: -Top view
-                        TopInfoSubView(title: "Mobile Number", description: "We need to send an OTP to authenticate your number")
-                            .frame(height: geo.size.height * 0.55, alignment: .top)
-                        
-                        // MARK: -Bottom View
-                        VStack {
-                            HStack {
-                                Text("Select Country")
-                                    .bold()
-                                    .font(.title3)
-                                    .foregroundColor(.black)
-                               Spacer()
-                                //MARK: -Country Code
-                                Picker("Please choose a country Code", selection: $selectedIndex2) {
-                                    ForEach(0..<countryInfo.codeCountry.count, id: \.self) {
-                                        Text("\(countryInfo.codeCountry[$0].name) \(countryInfo.codeCountry[$0].flag) \(countryInfo.codeCountry[$0].dialCode) ")
-                                    }
-                                }
+                        HStack {
+                            Text("Select Country")
+                                .bold()
+                                .font(.title3)
                                 .foregroundColor(.black)
-                            } .padding(.top, 50)
-                                .padding(.horizontal, 20)
-                            let locationCode = countryInfo.codeCountry[selectedIndex2].dialCode //get country Code
-                            //MARK: Phone Number
-                            TextField("722 222 222", text: $number.max(9))
-                                .frame(width: 350.0)
-                                .overlay(VStack{Divider().frame(height: 2).background(Color.buttonColor).offset(x: 0, y: 15)})
-                                .padding(.top, 10)
-                                .keyboardType(.numberPad)
-                                .focused($dismissKeyboard)
-                                .foregroundColor(.black)
-                            //MARK: Next Button
-                            Button(action: {
-                                self.loading = true
-                                Task {
-                                    await checkNumberStatus(locationCode: locationCode, pNumber: number)
+                           Spacer()
+                            //MARK: -Country Code
+                            Picker("Please choose a country Code", selection: $selectedIndex2) {
+                                ForEach(0..<countryInfo.codeCountry.count, id: \.self) {
+                                    Text("\(countryInfo.codeCountry[$0].name) \(countryInfo.codeCountry[$0].flag) \(countryInfo.codeCountry[$0].dialCode) ")
                                 }
-                               self.loading = false
-                             }) {
-                                 Text("NEXT")
-                                     .accentColor(.white)
-                                     .frame(width: 350, height: 50)
-                             }
-                             //.background(Color.accentColor)
-                             .background(Color.buttonColor)
-                             .padding(.top, 50)
-                             .disabled(number.isEmpty)
-                        } .frame(minWidth: 0, maxWidth: .infinity)
-                            .padding()
-                        // MARK: Curving view
-                            .background(
-                                RoundedCornersShape(corners: .topLeft, radius: 60)
-                                    .fill(Color(UIColor.white))
-                            )
-                            .offset(y: -45)
-                        // MARK: To OTP View
-                        NavigationLink(destination: OTPVerificationView(user: user), isActive: $toOTPView, label: EmptyView.init)
-                    }
-                    // MARK: To Pin View
-                    NavigationLink(destination: PinVerificationView(user: user), isActive: $toPinView ,label: EmptyView.init)
-                    .toolbar {
-                        ToolbarItemGroup(placement: .keyboard) {
-                            Spacer()
-                            Button("Done") {
-                                dismissKeyboard = false
                             }
+                            .foregroundColor(.black)
+                        } .padding(.top, 50)
+                            .padding(.horizontal, 20)
+                        let locationCode = countryInfo.codeCountry[selectedIndex2].dialCode //get country Code
+                        //MARK: Phone Number
+                        TextField("722 222 222", text: $number.max(9))
+                            .frame(width: 350.0)
+                            .overlay(VStack{Divider().frame(height: 2).background(Color.buttonColor).offset(x: 0, y: 15)})
+                            .padding(.top, 10)
+                            .keyboardType(.numberPad)
+                            .focused($dismissKeyboard)
+                            .foregroundColor(.black)
+                        //MARK: Next Button
+                        Button(action: {
+                            Task {
+                                await checkNumberStatus(locationCode: locationCode, pNumber: number)
+                            }
+                         }) {
+                             Text("NEXT")
+                                 .accentColor(.white)
+                                 .frame(width: 350, height: 50)
+                         }
+                         .background(
+                             Rectangle()
+                                 .fill(Color.buttonColor)
+                                 .opacity(loading ? 0 : 1)
+                         )
+                         .overlay {
+                             ProgressView()
+                                 .opacity(loading ? 1 : 0)
+                         }
+                         .padding(.top, 50)
+                         .disabled(number.isEmpty)
+                    } .frame(minWidth: 0, maxWidth: .infinity)
+                        .padding()
+                    // MARK: Curving view
+                        .background(
+                            RoundedCornersShape(corners: .topLeft, radius: 60)
+                                .fill(Color(UIColor.white))
+                        )
+                        .offset(y: -45)
+                    // MARK: To OTP View
+                    NavigationLink(destination: OTPVerificationView(user: user), isActive: $toOTPView, label: EmptyView.init)
+                }
+                // MARK: To Pin View
+                NavigationLink(destination: PinVerificationView(user: user), isActive: $toPinView ,label: EmptyView.init)
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button("Done") {
+                            dismissKeyboard = false
                         }
                     }
                 }
@@ -105,12 +103,12 @@ struct PhoneInputSubView: View {
     //checkUser
     func checkNumberStatus(locationCode: String, pNumber: String) async {
         do {
-            
+            loading = true
             let userNumber = locationCode + pNumber
             print(userNumber)
             user.phoneNumber = userNumber
-            
             let value = try await userViewModel.checkIfUserExists(user: user)
+            loading = false
             if value == false {
                 print("To OPT Screen")
                 toOTPView = true
