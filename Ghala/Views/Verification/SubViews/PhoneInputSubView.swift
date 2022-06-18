@@ -17,6 +17,10 @@ struct PhoneInputSubView: View {
     @State private var number = "" //phone number
     @State private var toOTPView = false
     @State private var toPinView = false
+    
+    @State var showAlert: Bool = false
+    @State var errorMsg: String = ""
+    
     var body: some View {
         NavigationView {
             GeometryReader { geo in
@@ -94,7 +98,9 @@ struct PhoneInputSubView: View {
                     }
                 }
             }
-        } .frame(minWidth: 0, maxWidth: .infinity)
+        }
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .alert(errorMsg, isPresented: $showAlert) {}
     }
     var disableButton: Bool {
         number.count < 9
@@ -117,7 +123,14 @@ struct PhoneInputSubView: View {
                 toPinView = true
             }
         } catch {
-            print(error)
+            handleError(error: error.localizedDescription)
+        }
+    }
+    func handleError(error: String) {
+        DispatchQueue.main.async {
+            self.loading = false
+            self.errorMsg = error
+            self.showAlert.toggle()
         }
     }
 }
