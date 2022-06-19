@@ -34,9 +34,12 @@ struct HomeUserCell: View {
                     print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
 //                    UserDefaults.standard.removeObject(forKey: "warehouse_Id")
 //                    UserDefaults.standard.synchronize()
+                    URLCache.shared.removeAllCachedResponses()
                     toPhoneView = true
+                    
                 }
             } .padding(.horizontal, 20)
+                .padding(.top, 20)
         } .task {
             await findUserDetails()
         }

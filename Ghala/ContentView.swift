@@ -56,6 +56,7 @@ struct ContentView: View {
         .accentColor(.yellow)
         .alert(isPresented: $showAlert) {
             Alert(title: Text("No Warehouse Assigned!"), message: Text("Please contact your Admin to assign you a Warehouse."), dismissButton: .destructive(Text("OK"), action: {
+                URLCache.shared.removeAllCachedResponses()
                 toPhoneView.toggle()
             }))
         }
