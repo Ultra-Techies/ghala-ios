@@ -40,7 +40,7 @@ struct ContentView: View {
                     Image(systemName: "clock.fill")
                     Text("Dispatch")
             }
-            SettingsView()
+            SettingsView(user: User())
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")

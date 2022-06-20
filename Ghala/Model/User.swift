@@ -38,11 +38,11 @@ class User: Codable, ObservableObject, Identifiable {
            // assignedWarehouse = try container.decode(Int.self, forKey: .assignedWarehouse)
             firstName = try container.decode(String.self, forKey: .firstName)
             lastName = try container.decode(String.self, forKey: .lastName)
-            password = try container.decode(String.self, forKey: .password)
+            //password = try container.decode(String.self, forKey: .password)
         }
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
+            try container.encode(id, forKey: .id)
             try container.encode(phoneNumber, forKey: .phoneNumber)
             try container.encode(email, forKey: .email)
            // try container.encode(assignedWarehouse, forKey: .assignedWarehouse)
@@ -145,14 +145,4 @@ class JSONNull: Codable, Hashable {
         var container = encoder.singleValueContainer()
         try container.encodeNil()
     }
-}
-
-// MARK: handles get User by ID
-struct User3: Codable {
-    var id: Int
-    var email, phoneNumber: String
-    var assignedWarehouse: Int
-    var role: String
-    var firstName, lastName: String
-    var profilePhoto: JSONNull?
 }

@@ -9,8 +9,9 @@ import SwiftUI
 
 struct SettingsView: View {
     @ObservedObject var userService = UserService()
+    @ObservedObject var user: User
     @State var firstName = ""
-    @State var lasttName = ""
+    @State var lastName = ""
     @State var email = ""
     @State var pin = ""
     @State var verifyPin = ""
@@ -18,11 +19,11 @@ struct SettingsView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 40) {
-                    TextField("First Name", text: $userService.userID.firstName)
+                    TextField("First Name", text: $firstName)
                         .textFieldStyling()
-                    TextField("Last Name", text: $userService.userID.lastName)
+                    TextField("Last Name", text: $lastName)
                         .textFieldStyling()
-                    TextField("Email", text: $userService.userID.email)
+                    TextField("Email", text: $email)
                         .textFieldStyling()
                     TextField("PIN", text: $pin)
                         .textFieldStyling()
@@ -33,6 +34,9 @@ struct SettingsView: View {
                 .padding(.top, 50)
                 .padding(.bottom, 100)
                 Button {
+                    Task {
+                      await update()
+                    }
                     print("")
                 } label: {
                     Text("UPDATE")
@@ -50,6 +54,21 @@ struct SettingsView: View {
     func getUser() async {
         do {
             try await userService.getUser()
+            firstName = userService.user.firstName
+            lastName = userService.user.lastName
+            email = userService.user.email
+        } catch {
+            print(error)
+        }
+    }
+    func update() async {
+        user.id = FromUserDefault.userID
+        user.firstName = firstName
+        user.lastName = lastName
+        user.email = email
+        user.password = pin
+        do {
+        try await userService.updateUser(user: user)
         } catch {
             print(error)
         }
@@ -58,6 +77,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(user: User())
     }
 }

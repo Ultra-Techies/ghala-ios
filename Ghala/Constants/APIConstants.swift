@@ -20,6 +20,7 @@ enum APIConstant {
     static let createUser = BaseUrl.baseUrl.appending("/api/users")
     static let getUser = BaseUrl.baseUrl.appending("/api/users/get/")
     static let findUserByNumber =  BaseUrl.baseUrl.appending("/api/users/fetch")
+    static let updateUser = BaseUrl.baseUrl.appending("/api/users")
     // MARK: WareHouse
     static let getAllWareHouse = BaseUrl.baseUrl.appending("/api/warehouse/all")
     static let registerWareHouse = BaseUrl.baseUrl.appending("/api/warehouse")
