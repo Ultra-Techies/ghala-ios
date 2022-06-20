@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct SettingsView: View {
     @ObservedObject var userService = UserService()
     @ObservedObject var user: User
+    @State private var showToast = false
     @State var firstName = ""
     @State var lastName = ""
     @State var email = ""
     @State var pin = ""
     @State var verifyPin = ""
+    
+    @State var showAlert: Bool = false
+    @State var errorMsg: String = ""
+    @State var loading: Bool = false
     var body: some View {
         NavigationView {
             ScrollView {
@@ -37,20 +43,33 @@ struct SettingsView: View {
                     Task {
                       await update()
                     }
-                    print("")
                 } label: {
                     Text("UPDATE")
+                        .padding()
                         .foregroundColor(.white)
-                        .frame(width: 350, height: 50)
                 }
-                .background(Color.buttonColor)
+                .frame(width: 350, height: 50)
+                .background(Color.buttonColor).opacity(loading ? 0 :  1)
+                .background(
+                    Rectangle()
+                        .fill(Color.buttonColor)
+                        .opacity(loading ? 0 : 1)
+                )
+                .overlay {
+                    ProgressView()
+                        .opacity(loading ? 1 : 0)
+                }
             }
             .navigationTitle("Settings")
-        }
+        }.alert(errorMsg, isPresented: $showAlert) {}
+            .toast(isPresenting: $showToast, alert: {
+                AlertToast(type: .regular, title: "Updated Successfully")
+            })
         .task {
            await getUser()
         }
     }
+    // MARK: Fetch user Details
     func getUser() async {
         do {
             try await userService.getUser()
@@ -58,9 +77,10 @@ struct SettingsView: View {
             lastName = userService.user.lastName
             email = userService.user.email
         } catch {
-            print(error)
+            handleError(error: error.localizedDescription)
         }
     }
+    // MARK: Update
     func update() async {
         user.id = FromUserDefault.userID
         user.firstName = firstName
@@ -68,9 +88,21 @@ struct SettingsView: View {
         user.email = email
         user.password = pin
         do {
+            loading = true
         try await userService.updateUser(user: user)
+            showToast = true
         } catch {
-            print(error)
+            loading = false
+            handleError(error: error.localizedDescription)
+        }
+        loading = false
+    }
+    // MARK: Alert
+    func handleError(error: String) {
+        DispatchQueue.main.async {
+            self.loading = false
+            self.errorMsg = error
+            self.showAlert.toggle()
         }
     }
 }
