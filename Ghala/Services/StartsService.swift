@@ -9,6 +9,8 @@ import Foundation
 @MainActor
 class StartsService: ObservableObject {
     @Published var ordervalue = [OrderValueElement]()
+    @Published var start = Starts(inventoryValue: 0, orderValue: [OrderValueElement]())
+    
     // MARK: GET Starts by Warehouse ID
     func getStarts() async throws {
         guard let url = URL(string: APIConstant.getStarts.appending("\(FromUserDefault.warehouseID)")) else {
@@ -22,7 +24,8 @@ class StartsService: ObservableObject {
         let (data, _) = try await URLSession.shared.data(for: request)
         //get JSON Data
         let decodedStarts = try JSONDecoder().decode(Starts.self, from: data)
-        self.ordervalue = decodedStarts.orderValue
+        self.start = decodedStarts
+       // self.ordervalue = decodedStarts.orderValue
         print(decodedStarts)
     }
 }
