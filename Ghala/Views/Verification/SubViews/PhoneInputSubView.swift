@@ -65,17 +65,14 @@ struct PhoneInputSubView: View {
                                  .accentColor(.white)
                                  .frame(width: 350, height: 50)
                          }
-                         .background(
-                             Rectangle()
-                                 .fill(Color.buttonColor)
-                                 .opacity(loading ? 0 : 1)
-                         )
+                         .background(Color.buttonColor).opacity(loading ? 0 :  1)
                          .overlay {
                              ProgressView()
                                  .opacity(loading ? 1 : 0)
                          }
                          .padding(.top, 50)
-                         .disabled(number.isEmpty)
+                         .disabled(checkStatus())
+                         .opacity(checkStatus() ? 0 : 1)
                     } .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
                     // MARK: Curving view
@@ -98,14 +95,17 @@ struct PhoneInputSubView: View {
                     }
                 }
             }
-           // .navigationBarTitle("")
             .navigationBarHidden(true)
         }
             .frame(minWidth: 0, maxWidth: .infinity)
             .alert(errorMsg, isPresented: $showAlert) {}
     }
-    var disableButton: Bool {
-        number.count < 9
+    // MARK: Check Button Status
+    func checkStatus() -> Bool {
+        if number.isEmpty && number.count < 9 {
+            return true
+        }
+        return false
     }
     //MARK: -To OTP and Pin View
     //checkUser

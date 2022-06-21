@@ -22,6 +22,7 @@ struct OTPCodeSubView: View {
     var body: some View {
         VStack {
             OTPField()
+                .padding(.bottom, 20)
             let _ = print(String(describing: "OTP is on OTP Screen:  \(otpReceived)"))
             // MARK: VERIFY Button
             Button {
@@ -33,11 +34,6 @@ struct OTPCodeSubView: View {
             }
             .frame(maxWidth: .infinity, alignment: .center)
             .background(Color.buttonColor).opacity(loading ? 0 :  1)
-            .background(
-                Rectangle()
-                    .fill(Color.buttonColor)
-                    .opacity(loading ? 0 : 1)
-            )
             .overlay {
                 ProgressView()
                     .opacity(loading ? 1 : 0)
