@@ -34,7 +34,7 @@ struct PinVerificationSubView: View {
             .opacity(checkStatus() ? 0 : 1)
             
             .fullScreenCover(isPresented: $userViewModel.toContentView) {
-                ContentView(user: userViewModel.user)
+                ContentView(user: user)
             }
         }
         .padding()
