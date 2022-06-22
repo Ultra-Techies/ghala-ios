@@ -158,9 +158,9 @@
 			isa = PBXGroup;
 			children = (
 				201B05B2282D8226002B6629 /* LoginView.swift */,
-				20C26318282F1088008C6F58 /* AccountSetupView.swift */,
 				201B05B5282D8E01002B6629 /* OTPVerificationView.swift */,
 				201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */,
+				20C26318282F1088008C6F58 /* AccountSetupView.swift */,
 				2073C42C282DA78A008E749F /* PinVerificationView.swift */,
 				208FC1F7282FB80000C78421 /* SubmittedSucessScreen.swift */,
 				201B05B4282D8C75002B6629 /* SubViews */,

@@ -13,6 +13,7 @@ class UserViewModel: ObservableObject {
     @Published var errorMsg: String = ""
     @Published var isLoading: Bool = false
     // Navigation
+    @Published var toLogin: Bool = false
     @Published var toOTP: Bool = false
     @Published var toPin: Bool = false
     @Published var toContentView: Bool = false
@@ -105,7 +106,18 @@ class UserViewModel: ObservableObject {
                 toAccountSetUp = true
             }
     }
-    
+    // MARK: Create User
+    func createUser(user: User) async {
+        do {
+            isLoading = true
+            try await userService.createUser(user: user)
+            isLoading = false
+            toLogin = true
+        } catch {
+            handleError(error: error.localizedDescription)
+        }
+    }
+    // MARK: Error
     func handleError(error: String) {
         DispatchQueue.main.async {
             self.isLoading = false
