@@ -112,12 +112,11 @@ class UserService: ObservableObject {
     }
     
     // MARK: FindByNumber
-    func findByPhone(user: User) async throws {
-        
+    func findByPhone(user: User) async throws -> User {
+        print("From Find Phone")
         guard let url = URL(string: APIConstant.findUserByNumber) else {
             throw NetworkError.invalidURL
         }
-        
         guard let phoneEncoded = try? JSONEncoder().encode(user) else {
                 print("Failed to encode")
             throw NetworkError.failedToEncode
@@ -125,19 +124,18 @@ class UserService: ObservableObject {
         //let token = UserDefaults.standard.string(forKey: "access_token")
         var request = URLRequest(url: url)
         request.setValue("Bearer \(FromUserDefault.token!)", forHTTPHeaderField: "Authorization")
+        print("token \(FromUserDefault.token!)")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST" // Set HTTP Request Body
-        do {
-            let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
-            let decoded = try JSONDecoder().decode(User2.self, from: data)
-            //save User Id & WarehouseID to userDefaults
-            print("User Warehouse = \(decoded.assignedWarehouse)")
-             UserDefaults.standard.set(decoded.assignedWarehouse, forKey: "warehouse_Id")
-             UserDefaults.standard.set(decoded.id, forKey: "user_Id")
-            self.us = decoded
-        } catch {
-            print(error)
-        }
+        let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
+        let decoded = try JSONDecoder().decode(User.self, from: data)
+        let wareHouseId = decoded.assignedWarehouse ?? 0
+        //save User Id & WarehouseID to userDefaults
+        UserDefaults.standard.set(wareHouseId, forKey: "warehouse_Id")
+        UserDefaults.standard.set(decoded.id, forKey: "user_Id")
+        print("Decoded Data: \(decoded.id)")
+        print("User Warehouse: \(wareHouseId)")
+        return decoded
     }
     
     // MARK: Find by ID
