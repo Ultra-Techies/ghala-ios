@@ -56,8 +56,8 @@ class User: Codable, ObservableObject, Identifiable {
             email = try container.decode(String.self, forKey: .email)
             firstName = try container.decode(String.self, forKey: .firstName)
             lastName = try container.decode(String.self, forKey: .lastName)
-            password = try container.decode(String.self, forKey: .password)
-            // assignedWarehouse = try container.decode(Int.self, forKey: .assignedWarehouse)
+            assignedWarehouse = try container.decode(Int?.self, forKey: .assignedWarehouse)
+            //password = try container.decode(String.self, forKey: .password)
             //profilePhoto = try container.decode(JSONNull.self, forKey: .profilePhoto)
         }
         func encode(to encoder: Encoder) throws {
