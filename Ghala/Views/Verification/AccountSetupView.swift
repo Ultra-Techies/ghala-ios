@@ -14,16 +14,6 @@ struct AccountSetupView: View {
     var body: some View {
         NavigationView {
             VStack {
-//                HStack {
-//                    Text("Setup your account")
-//                        .font(.title2)
-//                        .fontWeight(.bold)
-//                        .foregroundColor(.white)
-//                }
-//                .frame(maxWidth: .infinity , alignment: .center)
-//                .frame(height: 80)
-//                .background(Color.yellow)
-//                .ignoresSafeArea()
                 ScrollView {
                         VStack {
                             Text("Welcome to Ghala. Please setup your account to start using the app")
