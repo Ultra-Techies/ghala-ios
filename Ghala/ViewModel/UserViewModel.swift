@@ -7,16 +7,22 @@
 
 import Foundation
 
-
 @MainActor
 class UserViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var errorMsg: String = ""
     @Published var isLoading: Bool = false
+    // Navigation
     @Published var toOTP: Bool = false
     @Published var toPin: Bool = false
+    @Published var toContentView: Bool = false
+    
     @Published var user: User = .init()
+    //Pin And OTP TextFields
+    @Published var pinText: String = ""
+    @Published var pinTextFields: [String] = Array(repeating: "", count: 4)
 
+    
     var userService: UserService
     init(userService: UserService) {
         self.userService = userService
@@ -45,6 +51,33 @@ class UserViewModel: ObservableObject {
             handleError(error: error.localizedDescription)
         }
     }
+    // MARK: Verify User Password
+    func verifyPassword(user: User) async {
+        do {
+            isLoading = true
+            print("User phoneNumber: \(user.phoneNumber)")
+            pinText = pinTextFields.reduce("") { partialResult, value in
+                partialResult + value
+            }
+            print("Pin: \(pinText)")
+            user.password = pinText
+            let statusCode = try await userService.verifyUserLogin(user: user)
+            print(statusCode)
+            
+            DispatchQueue.main.async { [self] in
+                self.isLoading = false
+                if statusCode != 200 {
+                    let errorInvalidPin = "Wrong Pin!!"
+                    handleError(error: errorInvalidPin)
+                }
+                toContentView = true
+            }
+        } catch {
+            isLoading = false
+            handleError(error: error.localizedDescription)
+        }
+    }
+    
     func handleError(error: String) {
         DispatchQueue.main.async {
             self.isLoading = false

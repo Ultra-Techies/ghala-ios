@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @StateObject var userService = UserViewModel(userService: UserService())
+    @StateObject var userViewModel = UserViewModel(userService: UserService())
     @ObservedObject private var countryInfo = ReadCountryCode()
     @State private var selectedIndex2 =   113 //position of country-Kenya in [countryInfo]
     @State var number = ""
@@ -56,10 +56,10 @@ struct LoginView: View {
                                  .accentColor(.white)
                                  .frame(width: 350, height: 50)
                          }
-                         .background(Color.buttonColor).opacity(userService.isLoading ? 0 :  1)
+                         .background(Color.buttonColor).opacity(userViewModel.isLoading ? 0 :  1)
                          .overlay {
                              ProgressView()
-                                 .opacity(userService.isLoading ? 1 : 0)
+                                 .opacity(userViewModel.isLoading ? 1 : 0)
                          }
                          .padding(.top, 50)
                          .disabled(checkTextFieldStatus())
@@ -73,8 +73,8 @@ struct LoginView: View {
                         )
                         .offset(y: -43)
                     // MARK: Navigation View
-                    NavigationLink(destination: PinVerificationView(user: userService.user),isActive: $userService.toPin ,label: EmptyView.init) // to PIN View
-                    NavigationLink(destination: OTPCodeSubView(user: userService.user),isActive: $userService.toOTP ,label: EmptyView.init)// to OTP View
+                    NavigationLink(destination: PinVerificationView(user: userViewModel.user),isActive: $userViewModel.toPin ,label: EmptyView.init) // to PIN View
+                    NavigationLink(destination: OTPCodeSubView(user: userViewModel.user),isActive: $userViewModel.toOTP ,label: EmptyView.init)// to OTP View
                 }
                 .toolbar {
                     ToolbarItemGroup(placement: .keyboard) {
@@ -87,7 +87,7 @@ struct LoginView: View {
             }
             .navigationBarHidden(true)
         }
-        .alert(userService.errorMsg, isPresented: $userService.showAlert) {}
+        .alert(userViewModel.errorMsg, isPresented: $userViewModel.showAlert) {}
     }
     // MARK: Check Button Status
     func checkTextFieldStatus() -> Bool {
@@ -101,7 +101,7 @@ struct LoginView: View {
         let countryCode = countryInfo.codeCountry[selectedIndex2].dialCode
         let phone = countryCode + number
         print(phone)
-        await userService.checkIfUserExists(phoneNumber:phone)
+        await userViewModel.checkIfUserExists(phoneNumber:phone)
     }
 }
 
