@@ -25,7 +25,6 @@ class UserViewModel: ObservableObject {
     @Published var pinTextFields: [String] = Array(repeating: "", count: 4)
     @Published var otpCode: String = ""
 
-    
     var userService: UserService
     init(userService: UserService) {
         self.userService = userService
@@ -113,6 +112,22 @@ class UserViewModel: ObservableObject {
             try await userService.createUser(user: user)
             isLoading = false
             toLogin = true
+        } catch {
+            handleError(error: error.localizedDescription)
+        }
+    }
+    // MARK: Find User by PhoneNumber
+    func findByPhoneNumber(user: User) async {
+        do {
+            let userDetails = try await userService.findByPhone(user: user)
+            self.user = userDetails
+            let userWareHouse = userDetails.assignedWarehouse ?? 0
+            print("User WareHouse: \(userWareHouse)")
+            if userWareHouse == 0 {
+                DispatchQueue.main.async {
+                    self.showAlert.toggle()
+                }
+            }
         } catch {
             handleError(error: error.localizedDescription)
         }
