@@ -54,7 +54,7 @@ struct AccountSetupView: View {
                         }
                     }
             }
-            .navigationBarTitle("Setup your account", displayMode: .inline)
+            .navigationBarTitle("Setup Your Account", displayMode: .inline)
             .navigationBarColor(backgroundColor: .systemYellow, titleColor: .black)
         }
         .frame(maxHeight: .infinity)
@@ -113,12 +113,4 @@ struct NavigationBarModifier: ViewModifier {
             }
         }
     }
-}
-
-extension View {
-
-    func navigationBarColor(backgroundColor: UIColor?, titleColor: UIColor?) -> some View {
-        self.modifier(NavigationBarModifier(backgroundColor: backgroundColor, titleColor: titleColor))
-    }
-
 }
