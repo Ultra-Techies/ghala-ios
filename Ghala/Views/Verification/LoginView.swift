@@ -87,6 +87,7 @@ struct LoginView: View {
             }
             .navigationBarHidden(true)
         }
+        .alert(userService.errorMsg, isPresented: $userService.showAlert) {}
     }
     // MARK: Check Button Status
     func checkTextFieldStatus() -> Bool {
