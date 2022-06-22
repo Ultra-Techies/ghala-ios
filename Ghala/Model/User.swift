@@ -109,7 +109,10 @@ struct Token: Codable {
     }
 }
 
-
+// MARK: OTP
+struct OTP: Codable {
+    var otp: String
+}
 
 //class User: Codable, ObservableObject, Identifiable {
 //    enum CodingKeys: CodingKey{
@@ -183,22 +186,4 @@ struct Pin: Codable {
 // MARK: Create User Response
 struct CreateUserResponse: Codable {
     let id: Int
-}
-
-class OTP: Codable, ObservableObject, Identifiable {
-    enum CodingKeys: CodingKey{
-            case otp
-        }
-    @Published var otp = ""
-    init() {
-    }
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        otp = try container.decode(String.self, forKey: .otp)
-    }
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode(otp, forKey: .otp)
-    }
 }

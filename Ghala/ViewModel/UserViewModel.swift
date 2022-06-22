@@ -16,11 +16,13 @@ class UserViewModel: ObservableObject {
     @Published var toOTP: Bool = false
     @Published var toPin: Bool = false
     @Published var toContentView: Bool = false
+    @Published var toAccountSetUp: Bool = false
     
     @Published var user: User = .init()
     //Pin And OTP TextFields
     @Published var pinText: String = ""
     @Published var pinTextFields: [String] = Array(repeating: "", count: 4)
+    @Published var otpCode: String = ""
 
     
     var userService: UserService
@@ -76,6 +78,32 @@ class UserViewModel: ObservableObject {
             isLoading = false
             handleError(error: error.localizedDescription)
         }
+    }
+    // MARK: OTP
+    func getOTP(user: User) async {
+        do {
+            print("User Number in OTP: \(user.phoneNumber)")
+            let otpValue = try await userService.getOTP(user: user)
+            print("OTP Value: \(otpValue)")
+            otpCode = otpValue.otp
+            print("OTP Code is: ")
+        } catch {
+            handleError(error: error.localizedDescription)
+        }
+    }
+    // MARK: Verify OTP
+    func verifyOTP(otpValue: String) async {
+            isLoading = true
+            pinText = pinTextFields.reduce("") { partialResult, value in
+                partialResult + value
+            }
+            if otpValue != pinText {
+                let errorMessage = "Invalid OTP"
+                handleError(error: errorMessage)
+            } else {
+                isLoading = false
+                toAccountSetUp = true
+            }
     }
     
     func handleError(error: String) {

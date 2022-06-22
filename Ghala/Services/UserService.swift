@@ -9,7 +9,6 @@ import Foundation
 
 @MainActor
 class UserService: ObservableObject {
-    @Published var otpCode = OTP()
     @Published var us = User2(id: 0, email: "", phoneNumber: "", assignedWarehouse: 0, role: "", firstName: "", lastName: "", profilePhoto: nil)
     @Published var user = User()
     
@@ -72,7 +71,7 @@ class UserService: ObservableObject {
       }
     
     // MARK: GET OTP
-    func getOTP(user: User) async throws {
+    func getOTP(user: User) async throws -> OTP {
         guard let url = URL(string: APIConstant.getOTP) else {
             throw NetworkError.invalidURL
         }
@@ -85,15 +84,10 @@ class UserService: ObservableObject {
         request.httpMethod = "POST"
         request.httpBody = phoneEncoded // Set HTTP Request Body
         
-        do {
-            let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
-            let decoded = try JSONDecoder().decode(OTP.self, from: data)
-            self.otpCode = decoded
-            print(decoded.otp)
-            
-        } catch {
-            print(error.localizedDescription)
-        }
+        let (data, _) = try await URLSession.shared.upload(for: request, from: phoneEncoded)
+        let decoded = try JSONDecoder().decode(OTP.self, from: data)
+        print(decoded.otp)
+        return decoded
     }
     
     // MARK: Create User
