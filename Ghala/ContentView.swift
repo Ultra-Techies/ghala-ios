@@ -51,7 +51,7 @@ struct ContentView: View {
             }
         }
         .fullScreenCover(isPresented: $toPhoneView) {
-            PhoneInputSubView(user: User())
+            LoginView()
         }
         .accentColor(.yellow)
         .alert(isPresented: $showAlert) {

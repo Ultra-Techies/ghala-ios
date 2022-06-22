@@ -9,6 +9,8 @@ import Foundation
 
 enum NetworkError: Error {
     case invalidURL
-    case invalideRESPONSE
+    case failedToEncode
+    case failedToDecode
+    case invalidResponse
     case invalidData
 }

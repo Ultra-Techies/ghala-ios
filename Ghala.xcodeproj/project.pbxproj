@@ -11,7 +11,7 @@
 		201B05AA282D09B5002B6629 /* PhoneVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */; };
 		201B05AE282D5D77002B6629 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05AD282D5D77002B6629 /* extensions.swift */; };
 		201B05B1282D7F1D002B6629 /* TopInfoSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B0282D7F1D002B6629 /* TopInfoSubView.swift */; };
-		201B05B3282D8226002B6629 /* PhoneInputSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B2282D8226002B6629 /* PhoneInputSubView.swift */; };
+		201B05B3282D8226002B6629 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B2282D8226002B6629 /* LoginView.swift */; };
 		201B05B6282D8E04002B6629 /* OTPVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B5282D8E01002B6629 /* OTPVerificationView.swift */; };
 		201D6DA72860D308009189F9 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 201D6DA62860D308009189F9 /* AlertToast */; };
 		202939A428339A1600E79E28 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202939A328339A1600E79E28 /* APIConstants.swift */; };
@@ -70,7 +70,7 @@
 		201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationView.swift; sourceTree = "<group>"; };
 		201B05AD282D5D77002B6629 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		201B05B0282D7F1D002B6629 /* TopInfoSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopInfoSubView.swift; sourceTree = "<group>"; };
-		201B05B2282D8226002B6629 /* PhoneInputSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneInputSubView.swift; sourceTree = "<group>"; };
+		201B05B2282D8226002B6629 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		201B05B5282D8E01002B6629 /* OTPVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationView.swift; sourceTree = "<group>"; };
 		202939A328339A1600E79E28 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		202939A92833AD4100E79E28 /* countryCode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countryCode.json; sourceTree = "<group>"; };
@@ -157,6 +157,7 @@
 		201B05AF282D7E94002B6629 /* Verification */ = {
 			isa = PBXGroup;
 			children = (
+				201B05B2282D8226002B6629 /* LoginView.swift */,
 				20C26318282F1088008C6F58 /* AccountSetupView.swift */,
 				201B05B5282D8E01002B6629 /* OTPVerificationView.swift */,
 				201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */,
@@ -170,7 +171,6 @@
 		201B05B4282D8C75002B6629 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				201B05B2282D8226002B6629 /* PhoneInputSubView.swift */,
 				201B05B0282D7F1D002B6629 /* TopInfoSubView.swift */,
 				2073C428282D9714008E749F /* OTPCodeSubView.swift */,
 				2073C42A282DA6D8008E749F /* PinVerificationSubView.swift */,
@@ -413,7 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				206445ED2836A0120061689B /* WareHouse.swift in Sources */,
-				201B05B3282D8226002B6629 /* PhoneInputSubView.swift in Sources */,
+				201B05B3282D8226002B6629 /* LoginView.swift in Sources */,
 				202939B02833C06800E79E28 /* ReadCountryCode.swift in Sources */,
 				20E3AE3D28314A7300BE295E /* HomeUserCell.swift in Sources */,
 				206445E728366A770061689B /* InventoryView.swift in Sources */,

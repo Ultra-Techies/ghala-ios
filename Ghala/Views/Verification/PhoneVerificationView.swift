@@ -13,7 +13,7 @@ struct PhoneVerificationView: View {
     var body: some View {
         VStack {
             TopInfoSubView(title: "Mobile Number", description: "We need to send an OTP to authenticate your number")
-            PhoneInputSubView(user: User())
+            LoginView()
                 .background(
                     RoundedCornersShape(corners: .topLeft, radius: 90)
                         .fill(Color(UIColor.white))

@@ -7,51 +7,49 @@
 
 import Foundation
 
+
 @MainActor
 class UserViewModel: ObservableObject {
-    
-    //Constant States for the Views
-    enum State {
-        case notAvailable
-        case loading
-        case falseN
-        case trueN
-        //case success(data: Bool)
-        case failed(error: Error)
-    }
-    
-    enum ch:Error {
-        case failedtoDecode
-        case errorFound
-    }
-    
-    var state: State = .notAvailable
-    
+    @Published var showAlert: Bool = false
+    @Published var errorMsg: String = ""
+    @Published var isLoading: Bool = false
+    @Published var toOTP: Bool = false
+    @Published var toPin: Bool = false
+    @Published var user: User = .init()
+
     var userService: UserService
-    
     init(userService: UserService) {
         self.userService = userService
     }
-        
-        //MARK: -Check If UserExists
-    func checkIfUserExists(user: User) async throws -> Bool {
-        
-        guard let checked = try? await userService.checkIfUserExists(user: user) else {
-            throw ch.failedtoDecode
+    //MARK: -Check If UserExists
+    func checkIfUserExists(phoneNumber: String) async {
+        do {
+            isLoading = true
+            user.phoneNumber = phoneNumber
+            let checked = try await userService.checkIfUserExists(user: user)
+            print(checked.exists)
+            let userStatus = checked.exists
+            DispatchQueue.main.async {
+                self.isLoading = false
+                if userStatus != false {
+                    self.toPin = true
+                    print("To Pin View")
+                } else {
+                    self.toOTP = true
+                    print("To OTP Screen")
+                }
+            }
+        } catch {
+            isLoading = false
+            print(error.localizedDescription)
+            handleError(error: error.localizedDescription)
         }
-        let checkedNumber = checked.exists
-        return checkedNumber
     }
-    
-    //MARK: Verify user Pin
-//    func checkPin(user: User) async throws -> Bool {
-//        guard let pin = try? await userService.verifyUser(user: user) else {
-//            throw ch.failedtoDecode
-//        }
-//        let userPin = pin.verified
-//        return userPin
-//    }
-    
+    func handleError(error: String) {
+        DispatchQueue.main.async {
+            self.isLoading = false
+            self.errorMsg = error
+            self.showAlert.toggle()
+        }
+    }
 }
-
-

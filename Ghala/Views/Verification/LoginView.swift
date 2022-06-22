@@ -7,20 +7,12 @@
 
 import SwiftUI
 
-struct PhoneInputSubView: View {
-    @FocusState private var dismissKeyboard: Bool
-    @State var loading: Bool = false
-    @ObservedObject var user : User
-    @ObservedObject var userViewModel = UserViewModel(userService: UserService())
+struct LoginView: View {
+    @StateObject var userService = UserViewModel(userService: UserService())
     @ObservedObject private var countryInfo = ReadCountryCode()
     @State private var selectedIndex2 =   113 //position of country-Kenya in [countryInfo]
-    @State private var number = "" //phone number
-    @State private var toOTPView = false
-    @State private var toPinView = false
-    
-    @State var showAlert: Bool = false
-    @State var errorMsg: String = ""
-    
+    @State var number = ""
+    @FocusState private var dismissKeyboard: Bool
     var body: some View {
         NavigationView {
             GeometryReader { geo in
@@ -46,7 +38,6 @@ struct PhoneInputSubView: View {
                             .foregroundColor(.black)
                         } .padding(.top, 50)
                             .padding(.horizontal, 20)
-                        let locationCode = countryInfo.codeCountry[selectedIndex2].dialCode //get country Code
                         //MARK: Phone Number
                         TextField("722 222 222", text: $number.max(9))
                             .frame(width: 350.0)
@@ -58,21 +49,21 @@ struct PhoneInputSubView: View {
                         //MARK: Next Button
                         Button(action: {
                             Task {
-                                await checkNumberStatus(locationCode: locationCode, pNumber: number)
+                                await checkNumberStatus()
                             }
                          }) {
                              Text("NEXT")
                                  .accentColor(.white)
                                  .frame(width: 350, height: 50)
                          }
-                         .background(Color.buttonColor).opacity(loading ? 0 :  1)
+                         .background(Color.buttonColor).opacity(userService.isLoading ? 0 :  1)
                          .overlay {
                              ProgressView()
-                                 .opacity(loading ? 1 : 0)
+                                 .opacity(userService.isLoading ? 1 : 0)
                          }
                          .padding(.top, 50)
-                         .disabled(checkStatus())
-                         .opacity(checkStatus() ? 0 : 1)
+                         .disabled(checkTextFieldStatus())
+                         .opacity(checkTextFieldStatus() ? 0 : 1)
                     } .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
                     // MARK: Curving view
@@ -81,11 +72,10 @@ struct PhoneInputSubView: View {
                                 .fill(Color(UIColor.white))
                         )
                         .offset(y: -43)
-                    // MARK: To OTP View
-                    NavigationLink(destination: OTPVerificationView(user: user), isActive: $toOTPView, label: EmptyView.init)
+                    // MARK: Navigation View
+                    NavigationLink(destination: PinVerificationView(user: userService.user),isActive: $userService.toPin ,label: EmptyView.init) // to PIN View
+                    NavigationLink(destination: OTPCodeSubView(user: userService.user),isActive: $userService.toOTP ,label: EmptyView.init)// to OTP View
                 }
-                // MARK: To Pin View
-                NavigationLink(destination: PinVerificationView(user: user), isActive: $toPinView ,label: EmptyView.init)
                 .toolbar {
                     ToolbarItemGroup(placement: .keyboard) {
                         Spacer()
@@ -97,48 +87,25 @@ struct PhoneInputSubView: View {
             }
             .navigationBarHidden(true)
         }
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .alert(errorMsg, isPresented: $showAlert) {}
     }
     // MARK: Check Button Status
-    func checkStatus() -> Bool {
+    func checkTextFieldStatus() -> Bool {
         if number.isEmpty && number.count < 9 {
             return true
         }
         return false
     }
-    //MARK: -To OTP and Pin View
-    //checkUser
-    func checkNumberStatus(locationCode: String, pNumber: String) async {
-        do {
-            loading = true
-            let userNumber = locationCode + pNumber
-            print(userNumber)
-            user.phoneNumber = userNumber
-            let value = try await userViewModel.checkIfUserExists(user: user)
-            loading = false
-            if value == false {
-                print("To OPT Screen")
-                toOTPView = true
-            } else {
-                print("To Pin Screen")
-                toPinView = true
-            }
-        } catch {
-            handleError(error: error.localizedDescription)
-        }
-    }
-    func handleError(error: String) {
-        DispatchQueue.main.async {
-            self.loading = false
-            self.errorMsg = error
-            self.showAlert.toggle()
-        }
+    // MARK: Check if User Number Exists
+    func checkNumberStatus() async {
+        let countryCode = countryInfo.codeCountry[selectedIndex2].dialCode
+        let phone = countryCode + number
+        print(phone)
+        await userService.checkIfUserExists(phoneNumber:phone)
     }
 }
 
-struct phoneInputView_Previews: PreviewProvider {
+struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        PhoneInputSubView(user: User())
+        LoginView()
     }
 }

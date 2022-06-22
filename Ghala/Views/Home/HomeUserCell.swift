@@ -44,7 +44,7 @@ struct HomeUserCell: View {
             await findUserDetails()
         }
         .fullScreenCover(isPresented: $toPhoneView) {
-            PhoneInputSubView(user: User())
+            LoginView()
         }
     }
     func findUserDetails() async {

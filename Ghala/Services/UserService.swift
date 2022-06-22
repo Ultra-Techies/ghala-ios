@@ -13,20 +13,14 @@ class UserService: ObservableObject {
     @Published var us = User2(id: 0, email: "", phoneNumber: "", assignedWarehouse: 0, role: "", firstName: "", lastName: "", profilePhoto: nil)
     @Published var user = User()
     
-    enum NetworkError: Error {
-        case invalidURL
-        case invalidResponse
-        case invalidEncoding
-        case invalidData
-    }
     // MARK: Check if User Exists
-    func checkIfUserExists(user: User) async throws -> check {
+    func checkIfUserExists(user: User) async throws -> checkPhoneStatus {
         guard let url = URL(string: APIConstant.checkUserExists) else {
             throw NetworkError.invalidURL
         }
         //encode phone number
         guard let phoneEncoded = try? JSONEncoder().encode(user) else {
-                throw NetworkError.invalidEncoding
+            throw NetworkError.failedToEncode
         }
         //get urlRequest
         var request = URLRequest(url: url)
@@ -38,7 +32,7 @@ class UserService: ObservableObject {
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
             throw NetworkError.invalidResponse
         }
-        let decoded = try JSONDecoder().decode(check.self, from: data)
+        let decoded = try JSONDecoder().decode(checkPhoneStatus.self, from: data)
         return decoded
     }
     
@@ -84,7 +78,7 @@ class UserService: ObservableObject {
         }
         guard let phoneEncoded = try? JSONEncoder().encode(user) else {
                 print("Failed to encode")
-                throw NetworkError.invalidEncoding
+            throw NetworkError.failedToEncode
             }
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -109,7 +103,7 @@ class UserService: ObservableObject {
         }
         guard let userEncoded = try? JSONEncoder().encode(user) else {
                 print("Failed to encode")
-                throw NetworkError.invalidEncoding
+            throw NetworkError.failedToEncode
             }
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -132,7 +126,7 @@ class UserService: ObservableObject {
         
         guard let phoneEncoded = try? JSONEncoder().encode(user) else {
                 print("Failed to encode")
-                throw NetworkError.invalidEncoding
+            throw NetworkError.failedToEncode
             }
         //let token = UserDefaults.standard.string(forKey: "access_token")
         var request = URLRequest(url: url)
@@ -173,7 +167,7 @@ class UserService: ObservableObject {
     
         guard let userEncoded = try? JSONEncoder().encode(user) else {
                 print("Failed to encode")
-                throw NetworkError.invalidEncoding
+                throw NetworkError.failedToEncode
             }
         print("User Encoded: \(userEncoded)")
         var request = URLRequest(url: url)
