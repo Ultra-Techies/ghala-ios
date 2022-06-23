@@ -11,7 +11,6 @@ import AlertToast
 struct SettingsView: View {
     @StateObject var userViewModel = UserViewModel(userService: UserService())
     @ObservedObject var user: User
-    @State private var showToast = false
     @State var pin = ""
     @State var verifyPin = ""
     var body: some View {
@@ -56,8 +55,8 @@ struct SettingsView: View {
             .navigationTitle("Settings")
         }
         .alert(userViewModel.errorMsg, isPresented: $userViewModel.showAlert) {}
-        .toast(isPresenting: $showToast, alert: {
-                AlertToast(type: .regular, title: "Updated Successfully")
+        .toast(isPresenting: $userViewModel.showToast, alert: {
+            return AlertToast(type: .systemImage("checkmark", Color.yellow), title: "Updated Successfully")
             })
         .task {
             await userViewModel.findByPhoneNumber(user: user)
@@ -68,7 +67,6 @@ struct SettingsView: View {
     func update() async {
         userViewModel.user.password = pin
         await userViewModel.updateUser(user: userViewModel.user)
-        showToast = true
     }
 }
 
