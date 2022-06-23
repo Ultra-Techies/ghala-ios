@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct HomeUserCell: View {
+    @StateObject var userViewModel = UserViewModel(userService: UserService())
     @ObservedObject var user: User
-    @ObservedObject var userService =  UserService()
-    @State private var toPhoneView = false
+    @State private var toLogin = false
+    @State private var showAlert = false
     var body: some View {
-        //User Details (Photo, Full Names)
         VStack(alignment: .leading, spacing: 20) {
             HStack {
                 Image(systemName: "person.circle")
@@ -21,37 +21,50 @@ struct HomeUserCell: View {
                 VStack(alignment: .leading) {
                     Text("Hello,")
                         .fontWeight(.light)
-                    Text("\(userService.us.firstName) \(userService.us.lastName)")
+                    Text("\(userViewModel.user.firstName) \(userViewModel.user.lastName)")
                         .bold()
-                    let _ = print("UserDetails: \(userService.us.firstName)")
+                    let _ = print("UserDetails: \(userViewModel.user.firstName)")
                 }
                 Spacer()
-                Button("Logout") {
-                    //let domain = Bundle.main.bundleIdentifier!
+                Button {
                     let domain = String(describing: FromUserDefault.warehouseID)
                     UserDefaults.standard.removePersistentDomain(forName: domain)
                     UserDefaults.standard.synchronize()
                     print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
-//                    UserDefaults.standard.removeObject(forKey: "warehouse_Id")
-//                    UserDefaults.standard.synchronize()
                     URLCache.shared.removeAllCachedResponses()
-                    toPhoneView = true
-                    
+                    showAlert = true
+                } label: {
+                    Text("Logout")
+                        .bold()
                 }
             } .padding(.horizontal, 20)
                 .padding(.top, 20)
-        } .task {
-            await findUserDetails()
+        }.onAppear {
+            Task {
+                await userViewModel.findByPhoneNumber(user: user)
+            }
         }
-        .fullScreenCover(isPresented: $toPhoneView) {
+        .fullScreenCover(isPresented: $toLogin) {
             LoginView()
         }
-    }
-    func findUserDetails() async {
-        do {
-            try await userService.findByPhone(user: user)
-        } catch {
-            print(error)
+        // MARK: Logout Alert
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Logout!!"),
+                message: Text("Are you sure you want to logout?"),
+                primaryButton: .default(
+                    Text("Cancle")
+                ),
+                secondaryButton: .destructive(Text("Logout"), action: {
+                URLCache.shared.removeAllCachedResponses()
+                toLogin.toggle()
+            }))
         }
+    }
+}
+
+struct HomeUserCell_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeUserCell(user: User())
     }
 }
