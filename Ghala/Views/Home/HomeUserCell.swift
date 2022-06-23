@@ -53,7 +53,7 @@ struct HomeUserCell: View {
                 title: Text("Logout!!"),
                 message: Text("Are you sure you want to logout?"),
                 primaryButton: .default(
-                    Text("Cancle")
+                    Text("Cancel")
                 ),
                 secondaryButton: .destructive(Text("Logout"), action: {
                 URLCache.shared.removeAllCachedResponses()
