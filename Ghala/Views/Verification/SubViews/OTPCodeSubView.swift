@@ -6,121 +6,167 @@
 //
 
 import SwiftUI
-import UIKit
-import Combine
 
 struct OTPCodeSubView: View {
-    enum CodeError: Error {
-        case noOTPError
-    }
     @ObservedObject var userService = UserService()
     @ObservedObject var user : User
-    @ObservedObject var otpCode : OTP
-    //verification code
-    @State var code1: String
-    @State var code2: String
-    @State var code3: String
-    @State var code4: String
-    //move to next textfield
-    @State private var isPin1FirstResponder: Bool? = true
-    @State private var isPin2FirstResponder: Bool? = false
-    @State private var isPin3FirstResponder: Bool? = false
-    @State private var isPin4FirstResponder: Bool? = false
-    //to AccountSetup View
+    @State private var otpText: String = ""
+    @State private var otpFields: [String] = Array(repeating: "", count: 4)
+    @FocusState var activeFiled: OTPField?
+    @State var loading: Bool = false
+    @State var otpReceived = ""
     @State private var toAccSetup = false
-    @FocusState private var dismissKeyboard: Bool
+    
+    @State var showAlert: Bool = false
+    @State var errorMsg: String = ""
     var body: some View {
-        VStack(alignment: .center, spacing: 10) {
-            //MARK: -Code
-            HStack {
-                Group {
-                    CodeTextField(text: self.$code1,
-                                    nextResponder: self.$isPin2FirstResponder,
-                                    isResponder: self.$isPin1FirstResponder, previousResponder: .constant(nil))
-                    
-                    CodeTextField(text: self.$code2,
-                                    nextResponder: self.$isPin3FirstResponder,
-                                    isResponder: self.$isPin2FirstResponder, previousResponder: self.$isPin1FirstResponder)
-                    
-                    CodeTextField(text: self.$code3,
-                                    nextResponder: self.$isPin4FirstResponder,
-                                    isResponder: self.$isPin3FirstResponder, previousResponder: self.$isPin2FirstResponder)
-                    
-                    CodeTextField(text: self.$code4,
-                                    nextResponder: .constant(nil),
-                                    isResponder: self.$isPin4FirstResponder, previousResponder: self.$isPin3FirstResponder)
-                    .focused($dismissKeyboard)
-                    .toolbar {
-                        ToolbarItemGroup(placement: .keyboard) {
-                            Spacer()
-                            Button("Done") {
-                                dismissKeyboard = false
-                            }
-                        }
-                    }
+        VStack {
+            OTPField()
+                .padding(.bottom, 20)
+            let _ = print(String(describing: "OTP is on OTP Screen:  \(otpReceived)"))
+            // MARK: VERIFY Button
+            Button {
+                verifyOTP()
+            } label: {
+                Text("Verify")
+                    .padding()
+                    .foregroundColor(.white)
+            }
+            .frame(maxWidth: .infinity, alignment: .center)
+            .background(Color.buttonColor).opacity(loading ? 0 :  1)
+            .overlay {
+                ProgressView()
+                    .opacity(loading ? 1 : 0)
+            }
+            .disabled(checkStatus())
+            .opacity(checkStatus() ? 0 : 1)
+            
+            Text("Did not receive OTP?")
+                .fontWeight(.light)
+                .foregroundColor(.gray)
+                .padding(.top, 20)
+            
+            // MARK: RESEND OTP
+            Button {
+                Task {
+                    await getOTP()
                 }
-                .vCodeStyle()
-            }.padding()
-            VStack(spacing: 20) {
-                Text("Didn't receive an OTP?")
-                    .foregroundColor(.gray)
-                    .fontWeight(.light)
-                    .multilineTextAlignment(.center)
-                let _ = print(String(describing: "OTP is on OTP Screen:  \(userService.otpCode.otp)"))
-                
-                Button {
-                    Task {
-                        await getOTP()
-                    }
-                } label: {
-                    Text("Resend")
-                        .font(.title3)
-                        .underline()
-                        .bold()
-                        .foregroundColor(Color.buttonColor)
-                }.buttonStyle(BorderlessButtonStyle())
-                Button {
-                    let userOTPCode = "\(self.code1)\(self.code2)\(self.code3)\(self.code4)"
-                    print(userOTPCode)
-                let code = userService.otpCode.otp
-                if  userOTPCode != code {
-                    print("not same")
-                } else {
-                    toAccSetup.toggle()
-                    print("Same!!! to create account")
-                }
-                } label: {
-                    Text("Verify")
-                        .foregroundColor(.white)
-                        .frame(width: 350, height: 50)
-                }
-                .background(Color.buttonColor)
-            } .padding(.top, 30)
+            } label: {
+                Text("Resend OTP CODE")
+                    .fontWeight(.medium)
+                    .underline()
+                    .padding(.top, 10)
+                    .foregroundColor(.yellow)
+            }
             .fullScreenCover(isPresented: $toAccSetup) {
                 AccountSetupView(user: user)
             }
+        }.padding()
+            .onChange(of: otpFields) { newValue in
+                OTPCondition(value: newValue)
+            }
+            .onAppear {
+                Task {
+                   await getOTP()
+                }
+            }
+            .alert(errorMsg, isPresented: $showAlert) {}
+    }
+    // MARK: Check Button Status
+    func checkStatus() -> Bool {
+        for index in 0..<4 {
+            if otpFields[index].isEmpty {
+                return true
+            }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .onAppear {
-            Task {
-                await getOTP()
+        return false
+    }
+    // MARK: OTP Condition
+    func OTPCondition(value: [String]) {
+        //limit TextField
+        for index in 0..<4 {
+            if value[index].count > 1 {
+                otpFields[index] = String(value[index].last!)
+            }
+        }
+        //move to Previous TextField
+        for index in 1...3 {
+            if value[index].isEmpty && !value[index - 1].isEmpty {
+                activeFiled = activeStateForIndex(index: index - 1)
+            }
+        }
+        //move to the next TextField
+        for index in 0..<3 {
+            if value[index].count == 1 && activeStateForIndex(index: index) == activeFiled {
+                activeFiled = activeStateForIndex(index: index + 1)
             }
         }
     }
-    
+    // MARK: OTP Text Field
+    @ViewBuilder
+    func OTPField() -> some View {
+        HStack(spacing: 14) {
+            ForEach(0..<4, id: \.self) { index in
+                VStack {
+                    TextField("", text: $otpFields[index])
+                        .vCodeStyle()
+                        .textContentType(.oneTimeCode)
+                        .focused($activeFiled, equals: activeStateForIndex(index: index))
+                }
+                .frame(width: 50, height: 50)
+            }
+        }
+    }
+    func activeStateForIndex(index: Int) -> OTPField {
+        switch index {
+        case 0: return .field1
+        case 1: return .field2
+        case 2: return .field3
+        default: return .field4
+        }
+    }
+    // MARK: GET OTP
     func getOTP() async {
         do {
             try await userService.getOTP(user: user)
-           print(otpCode)
+            otpReceived = userService.otpCode.otp
         } catch {
-            print(error)
-            debugPrint(error)
+            handleError(error: error.localizedDescription)
+        }
+    }
+    func verifyOTP() {
+        loading = true
+        otpText = otpFields.reduce("") { partialResult, value in
+            partialResult + value
+        }
+        print("From Verify: \(otpReceived)")
+        if otpText != otpReceived {
+            let error = "OTP Did not match"
+            handleError(error: error)
+        } else {
+            loading = false
+            toAccSetup.toggle()
+            print("Same!!! to create account")
+        }
+    }
+    func handleError(error: String) {
+        DispatchQueue.main.async {
+            self.loading = false
+            self.errorMsg = error
+            self.showAlert.toggle()
         }
     }
 }
 
 struct OTPCodeView_Previews: PreviewProvider {
     static var previews: some View {
-        OTPCodeSubView(user: User(), otpCode: OTP(), code1: "1", code2: "2", code3: "3", code4: "4")
+        OTPCodeSubView(user: User())
     }
+}
+
+enum OTPField {
+    case field1
+    case field2
+    case field3
+    case field4
 }

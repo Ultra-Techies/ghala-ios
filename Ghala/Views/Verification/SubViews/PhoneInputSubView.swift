@@ -17,6 +17,10 @@ struct PhoneInputSubView: View {
     @State private var number = "" //phone number
     @State private var toOTPView = false
     @State private var toPinView = false
+    
+    @State var showAlert: Bool = false
+    @State var errorMsg: String = ""
+    
     var body: some View {
         NavigationView {
             GeometryReader { geo in
@@ -53,35 +57,30 @@ struct PhoneInputSubView: View {
                             .foregroundColor(.black)
                         //MARK: Next Button
                         Button(action: {
-                            self.loading = true
                             Task {
                                 await checkNumberStatus(locationCode: locationCode, pNumber: number)
                             }
-                           self.loading = false
                          }) {
                              Text("NEXT")
                                  .accentColor(.white)
                                  .frame(width: 350, height: 50)
                          }
-                         //.background(Color.accentColor)
-                         .background(Color.buttonColor)
+                         .background(Color.buttonColor).opacity(loading ? 0 :  1)
+                         .overlay {
+                             ProgressView()
+                                 .opacity(loading ? 1 : 0)
+                         }
                          .padding(.top, 50)
-                         .disabled(number.isEmpty)
-                        // MARK: ProgressView
-                        ZStack {
-                            if self.loading {
-                                ProgressView()
-                                    .zIndex(1)
-                            }
-                        }
+                         .disabled(checkStatus())
+                         .opacity(checkStatus() ? 0 : 1)
                     } .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
                     // MARK: Curving view
                         .background(
-                            RoundedCornersShape(corners: .topLeft, radius: 60)
+                            RoundedCornersShape(corners: .topLeft, radius: 50)
                                 .fill(Color(UIColor.white))
                         )
-                        .offset(y: -45)
+                        .offset(y: -43)
                     // MARK: To OTP View
                     NavigationLink(destination: OTPVerificationView(user: user), isActive: $toOTPView, label: EmptyView.init)
                 }
@@ -96,21 +95,28 @@ struct PhoneInputSubView: View {
                     }
                 }
             }
-        } .frame(minWidth: 0, maxWidth: .infinity)
+            .navigationBarHidden(true)
+        }
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .alert(errorMsg, isPresented: $showAlert) {}
     }
-    var disableButton: Bool {
-        number.count < 9
+    // MARK: Check Button Status
+    func checkStatus() -> Bool {
+        if number.isEmpty && number.count < 9 {
+            return true
+        }
+        return false
     }
     //MARK: -To OTP and Pin View
     //checkUser
     func checkNumberStatus(locationCode: String, pNumber: String) async {
         do {
-            
+            loading = true
             let userNumber = locationCode + pNumber
             print(userNumber)
             user.phoneNumber = userNumber
-            
             let value = try await userViewModel.checkIfUserExists(user: user)
+            loading = false
             if value == false {
                 print("To OPT Screen")
                 toOTPView = true
@@ -119,7 +125,14 @@ struct PhoneInputSubView: View {
                 toPinView = true
             }
         } catch {
-            print(error)
+            handleError(error: error.localizedDescription)
+        }
+    }
+    func handleError(error: String) {
+        DispatchQueue.main.async {
+            self.loading = false
+            self.errorMsg = error
+            self.showAlert.toggle()
         }
     }
 }

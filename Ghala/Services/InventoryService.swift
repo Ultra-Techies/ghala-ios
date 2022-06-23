@@ -13,7 +13,7 @@ class InventoryService: ObservableObject {
         case invalideRESPONSE
         case invalidData
     }
-    let token = UserDefaults.standard.string(forKey: "access_token") //get current access token from user Device
+    //let token = UserDefaults.standard.string(forKey: "access_token") //get current access token from user Device
     @Published var inventory = [Inventory]()
     // MARK: GET ALL INVENTORY
     func getAllInventory() async throws {
@@ -22,7 +22,7 @@ class InventoryService: ObservableObject {
         }
         //urlRequest
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization") //place access_token to header
+        request.setValue("Bearer \(FromUserDefault.token!)", forHTTPHeaderField: "Authorization") //place access_token to header
         request.httpMethod = "GET"
         do {
             //UrlSession
@@ -45,7 +45,7 @@ class InventoryService: ObservableObject {
         let encodedInventory = try JSONEncoder().encode(inventory)
         //get Request and set headers
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(FromUserDefault.token!)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         do {

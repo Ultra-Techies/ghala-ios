@@ -59,7 +59,7 @@ struct SubmittedSucessScreen: View {
             .padding(.top, 50)
         }
         .fullScreenCover(isPresented: $toLoginView) {
-            PhoneVerificationView()
+            PhoneInputSubView(user: User())
         }
     }
 }

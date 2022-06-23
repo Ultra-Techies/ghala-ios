@@ -10,15 +10,10 @@ import SwiftUI
 struct HomeUserCell: View {
     @ObservedObject var user: User
     @ObservedObject var userService =  UserService()
+    @State private var toPhoneView = false
     var body: some View {
         //User Details (Photo, Full Names)
         VStack(alignment: .leading, spacing: 20) {
-            HStack {
-                Spacer()
-//                Image(systemName: "magnifyingglass")
-//                    .resizable()
-//                    .frame(width: 25, height: 25)
-            }.padding(.horizontal, 20)
             HStack {
                 Image(systemName: "person.circle")
                     .resizable()
@@ -28,10 +23,28 @@ struct HomeUserCell: View {
                         .fontWeight(.light)
                     Text("\(userService.us.firstName) \(userService.us.lastName)")
                         .bold()
+                    let _ = print("UserDetails: \(userService.us.firstName)")
+                }
+                Spacer()
+                Button("Logout") {
+                    //let domain = Bundle.main.bundleIdentifier!
+                    let domain = String(describing: FromUserDefault.warehouseID)
+                    UserDefaults.standard.removePersistentDomain(forName: domain)
+                    UserDefaults.standard.synchronize()
+                    print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
+//                    UserDefaults.standard.removeObject(forKey: "warehouse_Id")
+//                    UserDefaults.standard.synchronize()
+                    URLCache.shared.removeAllCachedResponses()
+                    toPhoneView = true
+                    
                 }
             } .padding(.horizontal, 20)
+                .padding(.top, 20)
         } .task {
             await findUserDetails()
+        }
+        .fullScreenCover(isPresented: $toPhoneView) {
+            PhoneInputSubView(user: User())
         }
     }
     func findUserDetails() async {

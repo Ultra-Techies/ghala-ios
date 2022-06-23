@@ -13,6 +13,7 @@
 		201B05B1282D7F1D002B6629 /* TopInfoSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B0282D7F1D002B6629 /* TopInfoSubView.swift */; };
 		201B05B3282D8226002B6629 /* PhoneInputSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B2282D8226002B6629 /* PhoneInputSubView.swift */; };
 		201B05B6282D8E04002B6629 /* OTPVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B5282D8E01002B6629 /* OTPVerificationView.swift */; };
+		201D6DA72860D308009189F9 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 201D6DA62860D308009189F9 /* AlertToast */; };
 		202939A428339A1600E79E28 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202939A328339A1600E79E28 /* APIConstants.swift */; };
 		202939AA2833AD4100E79E28 /* countryCode.json in Resources */ = {isa = PBXBuildFile; fileRef = 202939A92833AD4100E79E28 /* countryCode.json */; };
 		202939AC2833AD6700E79E28 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202939AB2833AD6700E79E28 /* Country.swift */; };
@@ -128,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20C13CC9284BD36200EB8C97 /* SwiftUICharts in Frameworks */,
+				201D6DA72860D308009189F9 /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +351,7 @@
 			name = Ghala;
 			packageProductDependencies = (
 				20C13CC8284BD36200EB8C97 /* SwiftUICharts */,
+				201D6DA62860D308009189F9 /* AlertToast */,
 			);
 			productName = Ghala;
 			productReference = 20C226FC282C2255009BAD5C /* Ghala.app */;
@@ -380,6 +383,7 @@
 			mainGroup = 20C226F3282C2255009BAD5C;
 			packageReferences = (
 				20C13CC7284BD36200EB8C97 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
+				201D6DA52860D308009189F9 /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 20C226FD282C2255009BAD5C /* Products */;
 			projectDirPath = "";
@@ -661,6 +665,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		201D6DA52860D308009189F9 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		20C13CC7284BD36200EB8C97 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/willdale/SwiftUICharts.git";
@@ -672,6 +684,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		201D6DA62860D308009189F9 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 201D6DA52860D308009189F9 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
 		20C13CC8284BD36200EB8C97 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 20C13CC7284BD36200EB8C97 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;

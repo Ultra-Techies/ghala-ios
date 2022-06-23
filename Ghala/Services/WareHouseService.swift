@@ -12,7 +12,7 @@ class WareHouseService: ObservableObject {
     
     @Published var warehouse = [WarehouseElement1]()
     
-    let token = UserDefaults.standard.string(forKey: "access_token")
+    //let token = UserDefaults.standard.string(forKey: "access_token")
     
     enum NetworkError: Error {
         case invalidURL, failedEncode ,InvalideResponse, InvalideData
@@ -25,7 +25,7 @@ class WareHouseService: ObservableObject {
         }
         //request URLSession
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(self.token!)", forHTTPHeaderField: "Authorization") //set token from UserDefault
+        request.setValue("Bearer \(FromUserDefault.token!)", forHTTPHeaderField: "Authorization") //set token from UserDefault
         request.httpMethod = "GET"
 
         do {
@@ -47,7 +47,7 @@ class WareHouseService: ObservableObject {
         }
         //get token and URLRequest from url
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(self.token!)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(FromUserDefault.token!)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         //Upload Encoded Warehouse

@@ -9,6 +9,8 @@ import Foundation
 enum BaseUrl {
    // static let baseUrl = "http://localhost:8080"
     static let baseUrl = "http://192.168.100.86:8080"
+    //static let baseUrl = "http://192.168.0.52:8080" //Roysa
+    //static let baseUrl = "http://192.168.137.197:8080"
 }
 enum APIConstant {
     // MARK: USER
@@ -18,6 +20,7 @@ enum APIConstant {
     static let createUser = BaseUrl.baseUrl.appending("/api/users")
     static let getUser = BaseUrl.baseUrl.appending("/api/users/get/")
     static let findUserByNumber =  BaseUrl.baseUrl.appending("/api/users/fetch")
+    static let updateUser = BaseUrl.baseUrl.appending("/api/users")
     // MARK: WareHouse
     static let getAllWareHouse = BaseUrl.baseUrl.appending("/api/warehouse/all")
     static let registerWareHouse = BaseUrl.baseUrl.appending("/api/warehouse")

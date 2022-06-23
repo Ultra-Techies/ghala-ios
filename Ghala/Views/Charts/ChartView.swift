@@ -54,7 +54,7 @@ struct ChartView: View {
     func StartsData() -> BarChartData {
         var startsData = [BarChartDataPoint]()
         //loop through months
-        for month in startsService.ordervalue {
+        for month in startsService.start.orderValue {
             startsData.append(BarChartDataPoint(value: Double(month.sum), xAxisLabel: month.monthName, colour: ColourStyle(colour: .red)))
         }
         let sets = BarDataSet(dataPoints: startsData)
@@ -86,10 +86,14 @@ struct ChartView: View {
         }
     // MARK: - Pie Chart
     func makeData() -> PieChartData {
+        let invValue = Double(startsService.start.inventoryValue)
+        let total = addOrder()
+        print("Total: \(total)")
+        
            let data = PieDataSet(
                dataPoints: [
                    PieChartDataPoint(value: 20, description: "Order",   colour: .red  , label: .icon(systemName: "", colour: .white, size: 20)),
-                   PieChartDataPoint(value: 80, description: "Inventory",   colour: .blue   , label: .icon(systemName: "", colour: .white, size: 80)),
+                   PieChartDataPoint(value: invValue, description: "Inventory",   colour: .blue   , label: .icon(systemName: "", colour: .white, size: 80)),
                ],
                legendTitle: "Data")
            
@@ -97,6 +101,16 @@ struct ChartView: View {
                                metadata: ChartMetadata(title: "Inventory vs Orders", subtitle: ""),
                                chartStyle: PieChartStyle(infoBoxPlacement: .header))
        }
+    
+    // MARK: TO-DO (Add sum and return the value as Int) -> Int
+    func addOrder() -> Int {
+        var total: Int = 0
+        for orderSum in startsService.ordervalue {
+            print("Total sum: \(orderSum.sum)")
+            total = orderSum.sum
+        }
+        return total
+    }
 }
 
 struct chart_Previews: PreviewProvider {

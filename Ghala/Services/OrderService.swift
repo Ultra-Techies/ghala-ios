@@ -16,17 +16,17 @@ class OrderService: ObservableObject {
         case invalideRESPONSE
         case invalidData
     }
-    let token = UserDefaults.standard.string(forKey: "access_token") //get current access token from
-    let wareHouse_Id = UserDefaults.standard.string(forKey: "warehouse_Id") //get warehouseId
+    //let token = UserDefaults.standard.string(forKey: "access_token") //get current access token from
+   // let wareHouse_Id = UserDefaults.standard.string(forKey: "warehouse_Id") //get warehouseId
     // MARK: - GetOrdersByID
     func getOrderById() async throws {
         //get URL
-        guard let url = URL(string: APIConstant.getOrderById.appending(wareHouse_Id!)) else {
+        guard let url = URL(string: APIConstant.getOrderById.appending("\(FromUserDefault.warehouseID)")) else {
             throw NetworkError.invalidURL
         }
         //requestURLSession
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(FromUserDefault.token!)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
         //get Session
         let (data, _) = try await URLSession.shared.data(for: request)
@@ -44,7 +44,7 @@ class OrderService: ObservableObject {
         let deliveryEncoded = try JSONEncoder().encode(order)
         //url Request
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization") //passing jwt token
+        request.setValue("Bearer \(FromUserDefault.token!)", forHTTPHeaderField: "Authorization") //passing jwt token
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         //url Session

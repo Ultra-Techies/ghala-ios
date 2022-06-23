@@ -13,8 +13,8 @@ struct PinVerificationView: View {
         GeometryReader { geo in
             VStack {
                 TopInfoSubView(title: "Enter Pin", description: "Please enter your account pin or passcode")
-                    .frame(height: geo.size.height * 0.75, alignment: .top)
-                PinVerificationSubView(user: user, code1: "", code2: "", code3: "", code4: "")
+                    .frame(height: geo.size.height * 0.65, alignment: .top)
+                PinVerificationSubView(user: user)
                     .background(
                         RoundedCornersShape(corners: .topLeft, radius: 60)
                             .fill(Color(UIColor.white))

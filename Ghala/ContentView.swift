@@ -10,6 +10,9 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var networkManager = NetworkViewModel()
     @ObservedObject var user: User
+    @ObservedObject var userService =  UserService()
+    @State private var showAlert = false
+    @State private var toPhoneView = false
     var body: some View {
         TabView {
             HomeView(user: user)
@@ -37,14 +40,43 @@ struct ContentView: View {
                     Image(systemName: "clock.fill")
                     Text("Dispatch")
             }
-            SettingsView()
+            SettingsView(user: User())
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
             }
-        }.accentColor(.yellow)
+        }.onAppear {
+            Task {
+                await findUserDetails()
+            }
+        }
+        .fullScreenCover(isPresented: $toPhoneView) {
+            PhoneInputSubView(user: User())
+        }
+        .accentColor(.yellow)
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("No Warehouse Assigned!"), message: Text("Please contact your Admin to assign you a Warehouse."), dismissButton: .destructive(Text("OK"), action: {
+                URLCache.shared.removeAllCachedResponses()
+                toPhoneView.toggle()
+            }))
+        }
         if networkManager.isNotConnected {
             NetworkViewCell(netStatus: networkManager.conncetionDescription, image: networkManager.imageName)
+        }
+    }
+    func checkWareHouseId() {
+        let wareHouseId = userService.us.assignedWarehouse
+        print("Warehouse at Home: \(wareHouseId)")
+        if wareHouseId == 0 {
+            showAlert = true
+        }
+    }
+    func findUserDetails() async {
+        do {
+            try await userService.findByPhone(user: user)
+            checkWareHouseId()
+        } catch {
+            print(error)
         }
     }
 }
