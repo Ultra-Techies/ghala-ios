@@ -151,7 +151,8 @@ class UserService: ObservableObject {
         print("Get User: \(decodedUserData)")
     }
     
-    func updateUser(user: User) async throws {
+    // MARK: Update User
+    func updateUser(user: User) async throws -> URLResponse {
         guard let url = URL(string: APIConstant.updateUser) else {
             throw NetworkError.invalidURL
         }
@@ -167,12 +168,9 @@ class UserService: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "PUT"
         request.httpBody = userEncoded // Set HTTP Request Body
-        do {
-            let (_, response) = try await URLSession.shared.upload(for: request, from: userEncoded)
-            print(response)
-        } catch {
-            debugPrint(error)
-        }
+        let (_, response) = try await URLSession.shared.upload(for: request, from: userEncoded)
+        print(response)
+        return response
     }
     // MARK: Get all users
     func getAllUsers() async throws {
