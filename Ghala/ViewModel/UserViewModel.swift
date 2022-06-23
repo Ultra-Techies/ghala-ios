@@ -18,6 +18,7 @@ class UserViewModel: ObservableObject {
     @Published var toPin: Bool = false
     @Published var toContentView: Bool = false
     @Published var toAccountSetUp: Bool = false
+    @Published var showToast = false
     
     @Published var user: User = .init()
     //Pin And OTP TextFields
@@ -111,7 +112,7 @@ class UserViewModel: ObservableObject {
             isLoading = true
             try await userService.createUser(user: user)
             isLoading = false
-            toLogin = true
+            showToast = true
         } catch {
             handleError(error: error.localizedDescription)
         }
@@ -128,6 +129,19 @@ class UserViewModel: ObservableObject {
                     self.showAlert.toggle()
                 }
             }
+        } catch {
+            handleError(error: error.localizedDescription)
+        }
+    }
+    // MARK: Update User
+    func updateUser(user: User) async {
+        do {
+            isLoading = true
+            let statusResponse = try await userService.updateUser(user: user)
+            print("Status Response \(statusResponse)")
+            isLoading = false
+            self.showAlert.toggle()
+            
         } catch {
             handleError(error: error.localizedDescription)
         }
