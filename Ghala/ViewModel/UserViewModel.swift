@@ -139,9 +139,10 @@ class UserViewModel: ObservableObject {
             isLoading = true
             let statusResponse = try await userService.updateUser(user: user)
             print("Status Response \(statusResponse)")
-            isLoading = false
-            self.showAlert.toggle()
-            
+            DispatchQueue.main.async {
+                self.isLoading = false
+                self.showToast = true
+            }
         } catch {
             handleError(error: error.localizedDescription)
         }
