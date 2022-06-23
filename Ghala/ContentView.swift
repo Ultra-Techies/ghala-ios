@@ -39,7 +39,7 @@ struct ContentView: View {
                     Image(systemName: "clock.fill")
                     Text("Dispatch")
             }
-            SettingsView(user: User())
+            SettingsView(user: user)
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
@@ -58,6 +58,9 @@ struct ContentView: View {
                 URLCache.shared.removeAllCachedResponses()
                 toLogin.toggle()
             }))
+        }
+        if networkManager.isNotConnected {
+            NetworkViewCell(netStatus: networkManager.conncetionDescription, image: networkManager.imageName)
         }
     }
     func getUserDetails() async {
