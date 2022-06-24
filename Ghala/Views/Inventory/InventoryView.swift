@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InventoryView: View {
-    @StateObject var inventoryViewModel = InventoryViewModel(inventoryService: InventoryService())
+    @ObservedObject var inventoryViewModel = InventoryViewModel(inventoryService: InventoryService())
     var body: some View {
         NavigationView {
             ZStack {
@@ -49,8 +49,10 @@ struct InventoryView: View {
                 }
                 
             }
-        }.task {
-            await inventoryViewModel.getInventory()
+        }.onAppear {
+            Task {
+                await inventoryViewModel.getInventory()
+            }
         }
         .alert(inventoryViewModel.errorMsg, isPresented: $inventoryViewModel.showAlert) {}
     }
