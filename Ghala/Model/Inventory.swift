@@ -7,24 +7,7 @@
 
 import Foundation
 
-struct Inventory: Codable {
-    let sku: Int
-    let name: String
-    let category: String
-    let quantity: Int
-    let ppu: Int //pricePerUnit
-    let status: Status //make bool
-    let skuCode: String
-    let warehouseId: Int
-}
-//status enum
-enum Status: String, Codable {
-    case available = "AVAILABLE"
-    case outOfStock = "Out Of Stock"
-}
-
-//EncodeInventory
-class InventoryEncode: Codable, ObservableObject, Identifiable {
+class Inventory: Codable, ObservableObject, Identifiable {
     enum CodingKeys: CodingKey {
         case sku
         case name
@@ -33,6 +16,7 @@ class InventoryEncode: Codable, ObservableObject, Identifiable {
         case skuCode
         case ppu //pricePerUnit
         case warehouseId
+        case status
     }
     @Published var sku: Int = 0
     @Published var name: String = ""
@@ -41,6 +25,7 @@ class InventoryEncode: Codable, ObservableObject, Identifiable {
     @Published var skuCode: String = ""
     @Published var ppu: Int = 0
     @Published var warehouseId: Int = 0
+    @Published var status: Status = .available
     init() {
     }
     //Decode
@@ -54,6 +39,7 @@ class InventoryEncode: Codable, ObservableObject, Identifiable {
         skuCode = try container.decode(String.self, forKey: .skuCode)
         ppu = try container.decode(Int.self, forKey: .ppu)
         warehouseId = try container.decode(Int.self, forKey: .warehouseId)
+        status = try container.decode(Status.self, forKey: .status)
         
     }
     
@@ -61,16 +47,30 @@ class InventoryEncode: Codable, ObservableObject, Identifiable {
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
     
-            try container.encode(sku, forKey: .sku)
             try container.encode(name, forKey: .name)
             try container.encode(category, forKey: .category)
             try container.encode(quantity, forKey: .quantity)
-            try container.encode(skuCode, forKey: .skuCode)
             try container.encode(ppu, forKey: .ppu)
             try container.encode(warehouseId, forKey: .warehouseId)
         }
 }
-//responce
-struct InventoryResponse: Codable {
-    let sku: Int
+
+enum Status: String, Codable {
+    case available = "AVAILABLE"
+    case outOfStock = "Out Of Stock"
 }
+
+
+/*
+ {
+     "sku": 11,
+     "name": "1kg Sugar ",
+     "category": "Sugar",
+     "quantity": 140,
+     "ppu": 95,
+     "status": "AVAILABLE",
+     "skuCode": "GH08OS11",
+     "warehouseId": 6,
+     "image": null
+    },
+ */
