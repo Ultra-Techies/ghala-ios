@@ -9,17 +9,15 @@ import SwiftUI
 
 struct AddInventory: View {
     @Environment(\.dismiss) var dismiss //close view
-    @ObservedObject var inventoryService = InventoryService()
-    @ObservedObject var userService = UserService()
-    @ObservedObject var inventoryD: InventoryEncode
-    @ObservedObject var user: User
-    var category = ["Sugar", "Flour", "Milk", "Cooking Oil"]
+    @StateObject var inventorViewModel = InventoryViewModel(inventoryService: InventoryService())
+    @ObservedObject var inventory: Inventory
+    var category = ["Sugar", "Flour", "Milk", "Cooking Oil", "Wheat Flour"]
     @State var selectCategory = 0
     var body: some View {
         VStack {
             Form {
                 Section(header: Text("Product Name")) {
-                                TextField("", text: $inventoryD.name)
+                    TextField("", text: $inventory.name)
                 }
                 Section {
                     Picker(selection: $selectCategory, label: Text("Category")) {
@@ -29,16 +27,19 @@ struct AddInventory: View {
                     }
                 }
                 Section(header: Text("Price")) {
-                    TextField("", value: $inventoryD.ppu, formatter: NumberFormatter())
+                    TextField("", value: $inventory.ppu, formatter: NumberFormatter())
                 }
                 Section (header: Text("Quantity")) {
-                    TextField("", value: $inventoryD.quantity, formatter: NumberFormatter())
+                    TextField("", value: $inventory.quantity, formatter: NumberFormatter())
                 }
             }
             //Add inventory Button
             Button {
+                //Passing item category
+                let categorySelected = category[selectCategory]
+                inventory.category = categorySelected
                 Task {
-                    await addInventoryItem()
+                    await inventorViewModel.addInventory(inventory:inventory)
                 }
                 dismiss()
             } label: {
@@ -46,34 +47,19 @@ struct AddInventory: View {
                     .foregroundColor(.white)
                     .frame(width: 350, height: 50)
             }
-            .background(Color.yellow)
+            .background(Color.yellow).opacity(inventorViewModel.isLoading ? 0 :  1)
+            .overlay {
+                ProgressView()
+                    .opacity(inventorViewModel.isLoading ? 1 : 0)
+            }
             .padding()
             .navigationTitle("Add New Inventory")
-        }.onAppear {
-            Task {
-                try await userService.findByPhone(user: user)
-            }
-        }
-    }
-    
-    //MARK: - Add Inventory
-    private func addInventoryItem() async {
-        do {
-            //passing warehouseID from User
-            let warehouseID = userService.us.assignedWarehouse
-            print(warehouseID)
-            let categorySelected = category[selectCategory]
-            inventoryD.category = categorySelected
-            inventoryD.warehouseId = warehouseID
-            try await inventoryService.addInventory(inventory: inventoryD)
-        } catch {
-            print(error)
-        }
+        }.alert(inventorViewModel.errorMsg, isPresented: $inventorViewModel.showAlert) {}
     }
 }
 
 struct AddInventory_Previews: PreviewProvider {
     static var previews: some View {
-        AddInventory(inventoryD: InventoryEncode(), user: User())
+        AddInventory(inventory: Inventory())
     }
 }
