@@ -124,9 +124,19 @@ class UserViewModel: ObservableObject {
             self.user = userDetails
             let userWareHouse = userDetails.assignedWarehouse ?? 0
             print("User WareHouse: \(userWareHouse)")
+            // check if user is assigned to a WareHouse
             if userWareHouse == 0 {
                 DispatchQueue.main.async {
                     self.showAlert.toggle()
+                    //remove WareHouse id from UserDefaults & Clear Cache
+                    UserDefaults.standard.removeObject(forKey: "warehouse_Id")
+                    UserDefaults.standard.removeObject(forKey: "access_token")
+                    UserDefaults.standard.removeObject(forKey: "user_Id")
+                    let domain = String(describing: FromUserDefault.warehouseID)
+                    UserDefaults.standard.removePersistentDomain(forName: domain)
+                    UserDefaults.standard.synchronize()
+                    print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
+                    URLCache.shared.removeAllCachedResponses()
                 }
             }
         } catch {
