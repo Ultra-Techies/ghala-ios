@@ -8,69 +8,48 @@
 import SwiftUI
 
 struct WareHouseView: View {
-    @ObservedObject var wareHouseService = WareHouseService()
-    @State var searchWarehouse = ""
+    @StateObject var warehouseViewModel = WarehouseViewModel(wareHouseService: WareHouseService())
     var body: some View {
         NavigationView {
-           ZStack {
-               VStack {
-                List {
-                    ForEach(wareHouseSearch, id: \.id) { wHouse in
-                        WarehouseCell(name: wHouse.name, location: wHouse.location)
-                            .padding()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+            ZStack {
+                VStack {
+                    List {
+                        ForEach(warehouseViewModel.wareHouseSearch, id: \.id) { warehouse in
+                            WarehouseCell(name: warehouse.name, location: warehouse.location)
+                                .padding()
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+                        }
+                        .listRowBackground(Color.clear)
+                        .background(Color.listBackground)
                     }
-                    .listRowBackground(Color.clear)
-                    .background(Color.listBackground)
-                }.listStyle(SidebarListStyle())
-                .navigationTitle("Warehouses")
-                .searchable(text: $searchWarehouse, prompt: "Search Warehouse")
-                .refreshable {
-                    Task {
-                        await getWareHouses() //swipe down to refresh
+                    .listStyle(SidebarListStyle())
+                    .navigationTitle("Warehouses")
+                    .searchable(text: $warehouseViewModel.searchWareHouse, prompt: "Search Warehouse")
+                    .refreshable {
+                        Task {
+                            await warehouseViewModel.getAll() //swipe down to refresh
+                        }
+                    }
+                }
+                // MARK: Add WareHouse Button
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        // MARK: Add WareHouse Button
+                        NavigationLink(destination: AddWareHouse(warehouse: WareHouse())) {
+                            Image(systemName: "plus.circle.fill")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(.yellow)
+                                .padding()
+                        }
                     }
                 }
             }
-               VStack {
-                   Spacer()
-                   HStack {
-                       Spacer()
-                       // MARK: Add WareHouse Button
-                       NavigationLink(destination: AddWareHouse(warehouse: WareHouse())) {
-                           Image(systemName: "plus.circle.fill")
-                               .resizable()
-                               .frame(width: 50, height: 50)
-                               .foregroundColor(.yellow)
-                               .padding()
-                       }
-                   }
-               }
-           }
-        }
-    }
-    
-    // MARK: Search Warehouse
-    var wareHouseSearch: [WarehouseElement1] {
-        // MARK: TO-DO (Handle Concurrency here!!!)
-        Task.detached {
-            await getWareHouses()
-        }
-        if searchWarehouse.isEmpty {
-            //print("First return: \(wareHouseService.warehouse)")
-            return wareHouseService.warehouse.reversed()
-        } else {
-            //print("WareHouse: \(wareHouseService.warehouse)")
-            
-            return wareHouseService.warehouse.filter { $0.name.localizedCaseInsensitiveContains(searchWarehouse)}
-        }
-    }
-    
-    func getWareHouses() async {
-        do {
-            try await wareHouseService.getAllWareHouse()
-        } catch {
-            print(error)
+        }.task {
+            await warehouseViewModel.getAll()
         }
     }
 }
