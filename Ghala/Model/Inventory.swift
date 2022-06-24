@@ -25,7 +25,7 @@ class Inventory: Codable, ObservableObject, Identifiable {
     @Published var skuCode: String = ""
     @Published var ppu: Int = 0
     @Published var warehouseId: Int = 0
-    @Published var status: Status = .available
+    @Published var status: Status = .outOfStock
     init() {
     }
     //Decode
