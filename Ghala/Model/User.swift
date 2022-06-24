@@ -33,6 +33,7 @@ class User: Codable, ObservableObject, Identifiable {
             case firstName
             case lastName
             case password
+            case role
             case profilePhoto
         }
       
@@ -43,6 +44,7 @@ class User: Codable, ObservableObject, Identifiable {
         @Published var firstName = ""
         @Published var lastName = ""
         @Published var password = ""
+        @Published var role = ""
         @Published var profilePhoto: JSONNull? = nil
         
     init() {
@@ -57,6 +59,7 @@ class User: Codable, ObservableObject, Identifiable {
             firstName = try container.decode(String.self, forKey: .firstName)
             lastName = try container.decode(String.self, forKey: .lastName)
             assignedWarehouse = try container.decode(Int?.self, forKey: .assignedWarehouse)
+            role = try container.decode(String.self, forKey: .role)
             //password = try container.decode(String.self, forKey: .password)
             //profilePhoto = try container.decode(JSONNull.self, forKey: .profilePhoto)
         }
