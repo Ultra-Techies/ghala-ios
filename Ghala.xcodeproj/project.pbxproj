@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		201397292865D18600AF4B9F /* WarehouseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201397282865D18600AF4B9F /* WarehouseViewModel.swift */; };
+		201397382865FB2700AF4B9F /* InventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201397372865FB2700AF4B9F /* InventoryViewModel.swift */; };
 		201B05A7282CE1A4002B6629 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05A6282CE1A4002B6629 /* UserService.swift */; };
 		201B05AA282D09B5002B6629 /* PhoneVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */; };
 		201B05AE282D5D77002B6629 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05AD282D5D77002B6629 /* extensions.swift */; };
@@ -68,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		201397282865D18600AF4B9F /* WarehouseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseViewModel.swift; sourceTree = "<group>"; };
+		201397372865FB2700AF4B9F /* InventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewModel.swift; sourceTree = "<group>"; };
 		201B05A6282CE1A4002B6629 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationView.swift; sourceTree = "<group>"; };
 		201B05AD282D5D77002B6629 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				20F79B2F2834F9B400434065 /* CodeTextField.swift */,
 				20BF1F2E2853C96C00AC2763 /* NetworkViewModel.swift */,
 				201397282865D18600AF4B9F /* WarehouseViewModel.swift */,
+				201397372865FB2700AF4B9F /* InventoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				206445E728366A770061689B /* InventoryView.swift in Sources */,
 				206445EF2836A49D0061689B /* WareHouseService.swift in Sources */,
 				207A25872843A83F00786FBB /* Starts.swift in Sources */,
+				201397382865FB2700AF4B9F /* InventoryViewModel.swift in Sources */,
 				20C26319282F1088008C6F58 /* AccountSetupView.swift in Sources */,
 				2075672B2847828000F5931D /* ChartView.swift in Sources */,
 				201B05A7282CE1A4002B6629 /* UserService.swift in Sources */,
