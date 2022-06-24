@@ -13,6 +13,7 @@ class WarehouseViewModel: ObservableObject {
     @Published var errorMsg: String = ""
     @Published var isLoading: Bool = false
     @Published var searchWareHouse = ""
+    @Published var showToast = false
     // Navigation
     @Published var toAddWareHouse: Bool = false
     
@@ -49,7 +50,10 @@ class WarehouseViewModel: ObservableObject {
             isLoading = true
             print("Warehouse Name: \(warehouse.name)")
             try await wareHouseService.addWareHouse(warehouse: warehouse)
-            isLoading = false
+            DispatchQueue.main.async {
+                self.isLoading = false
+                self.showToast = true
+            }
         } catch {
             handleError(error: error.localizedDescription)
         }
