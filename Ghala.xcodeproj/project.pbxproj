@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		201397292865D18600AF4B9F /* WarehouseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201397282865D18600AF4B9F /* WarehouseViewModel.swift */; };
 		201B05A7282CE1A4002B6629 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05A6282CE1A4002B6629 /* UserService.swift */; };
 		201B05AA282D09B5002B6629 /* PhoneVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */; };
 		201B05AE282D5D77002B6629 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05AD282D5D77002B6629 /* extensions.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		201397282865D18600AF4B9F /* WarehouseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseViewModel.swift; sourceTree = "<group>"; };
 		201B05A6282CE1A4002B6629 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationView.swift; sourceTree = "<group>"; };
 		201B05AD282D5D77002B6629 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				202939AF2833C06800E79E28 /* ReadCountryCode.swift */,
 				20F79B2F2834F9B400434065 /* CodeTextField.swift */,
 				20BF1F2E2853C96C00AC2763 /* NetworkViewModel.swift */,
+				201397282865D18600AF4B9F /* WarehouseViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				201B05B6282D8E04002B6629 /* OTPVerificationView.swift in Sources */,
 				20CE094B283B9E4900E36673 /* Inventory.swift in Sources */,
 				2073C42B282DA6D9008E749F /* PinVerificationSubView.swift in Sources */,
+				201397292865D18600AF4B9F /* WarehouseViewModel.swift in Sources */,
 				20FDBB9A283D300C003FFC76 /* Order.swift in Sources */,
 				207A25892843A90000786FBB /* StartsService.swift in Sources */,
 				206445E928366A890061689B /* OrderView.swift in Sources */,
