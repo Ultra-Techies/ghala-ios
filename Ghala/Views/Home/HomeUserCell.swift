@@ -27,6 +27,9 @@ struct HomeUserCell: View {
                 }
                 Spacer()
                 Button {
+                    UserDefaults.standard.removeObject(forKey: "warehouse_Id")
+                    UserDefaults.standard.removeObject(forKey: "access_token")
+                    UserDefaults.standard.removeObject(forKey: "user_Id")
                     let domain = String(describing: FromUserDefault.warehouseID)
                     UserDefaults.standard.removePersistentDomain(forName: domain)
                     UserDefaults.standard.synchronize()
