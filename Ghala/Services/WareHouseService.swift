@@ -7,18 +7,10 @@
 
 import Foundation
 
-@MainActor
-class WareHouseService: ObservableObject {
+struct WareHouseService {
     
-    @Published var warehouse = [WarehouseElement1]()
-    
-    //let token = UserDefaults.standard.string(forKey: "access_token")
-    
-    enum NetworkError: Error {
-        case invalidURL, failedEncode ,InvalideResponse, InvalideData
-    }
-    // MARK: GET ALL WAREHOUSE
-    func getAllWareHouse() async throws {
+    // MARK: Get All WareHouses
+    func getAllWareHouse() async throws -> [WareHouse] {
         //get url
         guard let url = URL(string: APIConstant.getAllWareHouse) else {
             throw NetworkError.invalidURL
@@ -28,22 +20,21 @@ class WareHouseService: ObservableObject {
         request.setValue("Bearer \(FromUserDefault.token!)", forHTTPHeaderField: "Authorization") //set token from UserDefault
         request.httpMethod = "GET"
 
-        do {
-            let (data, _) = try await URLSession.shared.data(for: request)
-            //decode data
-            let decodedData = try JSONDecoder().decode([WarehouseElement1].self, from: data)
-            self.warehouse = decodedData
-        }
+        let (data, _) = try await URLSession.shared.data(for: request)
+        //decode data
+        let decodedData = try JSONDecoder().decode([WareHouse].self, from: data)
+        return decodedData
     }
-    //MARK: - Register Warehouse
-    func registerWareHouse(warehouse: WareHouse) async throws {
+    
+    // MARK: Add WareHouse
+    func addWareHouse(warehouse: WareHouse) async throws {
         //get url
         guard let url = URL(string: APIConstant.registerWareHouse) else {
             throw NetworkError.invalidURL
         }
         //encodeData
         guard let addWarehouse = try? JSONEncoder().encode(warehouse) else {
-            throw NetworkError.failedEncode
+            throw NetworkError.failedToEncode
         }
         //get token and URLRequest from url
         var request = URLRequest(url: url)
@@ -51,10 +42,7 @@ class WareHouseService: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         //Upload Encoded Warehouse
-        let (data, _) = try await URLSession.shared.upload(for: request, from: addWarehouse)
-        
-        //get Json Response from data
-        let dataDecoded = try JSONDecoder().decode(CreateResponse.self, from: data)
-        print(dataDecoded)
+        let (_, response) = try await URLSession.shared.upload(for: request, from: addWarehouse)
+        print("Warehouse Uploaded response: \(response)")
     }
 }
