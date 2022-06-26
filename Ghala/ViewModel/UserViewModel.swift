@@ -111,8 +111,10 @@ class UserViewModel: ObservableObject {
         do {
             isLoading = true
             try await userService.createUser(user: user)
-            isLoading = false
-            showToast = true
+            DispatchQueue.main.async {
+                self.isLoading = false
+                self.toLogin = true
+            }
         } catch {
             handleError(error: error.localizedDescription)
         }
