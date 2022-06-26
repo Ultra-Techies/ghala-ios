@@ -34,6 +34,7 @@ struct DispatchView: View {
         }.task {
             await deliveryViewModel.getDeliveriesWH()
         }
+        .alert(deliveryViewModel.errorMsg, isPresented: $deliveryViewModel.showAlert) {}
     }
 }
 
