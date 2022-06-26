@@ -53,6 +53,11 @@ struct SubmittedSucessScreen: View {
                        .frame(width: 350, height: 50)
                }
                .background(Color.buttonColor)
+               .opacity(userViewModel.isLoading ? 0 : 1)
+               .overlay {
+                   ProgressView()
+                       .opacity(userViewModel.isLoading ? 1 : 0)
+               }
                .padding(.top, 50)
                .fullScreenCover(isPresented: $userViewModel.toLogin) {
                    LoginView()
