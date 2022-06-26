@@ -8,79 +8,76 @@
 import SwiftUI
 
 struct OrderView: View {
-    @ObservedObject var orderService = OrderService()
-    @ObservedObject var orderDelivery: OrderElementForDelivery
-    @State var selectedItems: [Int] = []
+    @StateObject var orderViewModel = OrderViewModel(orderService: OrderService())
+    @StateObject var deliveryViewModel = DeliveryViewModel(deliveryService: DeliveryService())
+    @State private var isEditMode: EditMode = .active
     var body: some View {
         NavigationView {
-            VStack {
-                FilterView()
-                List {
-                    //MARK: with ID
-                    ForEach(orderService.orderDTO, id: \.id) { order in
-                        OrderCell(customer: order.customerName, orderCode: order.orderCode, deliveryDate: order.due, price: order.value, items: order.items, status: order.status, isSelected: self.selectedItems.contains(order.id)) {
-                            if self.selectedItems.contains(order.id) {
-                                self.selectedItems.removeAll(where: {$0 == order.id })
-                            } else {
-                                self.selectedItems.append(order.id)
-                                print(selectedItems)
-                            }
-                        }
-                            .padding()
-                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
-                    }.listRowBackground(Color.clear)
-                        .background(Color.listBackground)
-                }.refreshable(action: {
-                    Task {
-                        await getOrderId()
+                VStack {
+                    List(selection: $orderViewModel.selection) {
+                        ForEach(orderViewModel.orderSearch, id: \.self) { order in
+                            OrderCell(customer: order.customerName, orderCode: order.orderCode, deliveryDate: order.due, price: order.value, items: order.items, status: order.status)
+                                .padding()
+                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+                        }.listRowBackground(Color.clear)
+                            .background(Color.listBackground)
                     }
-                })
-                .listStyle(SidebarListStyle())
-                //Check if item on list has been checked
-                if selectedItems != [] {
-                    //Delivery Button
-                    Button {
+                    .listStyle(SidebarListStyle())
+                    .searchable(text: $orderViewModel.searchOrder, prompt: "Search Order")
+                    .refreshable {
                         Task {
-                            //MARK: To-DO Create Delivery Note
-                           await createDelivery()
+                            await orderViewModel.getOrders()
                         }
-                    } label: {
-                        Text("DELIVERY NOTE")
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity, alignment: .center)
                     }
-                    .frame(height: 50)
-                    .background(Color.yellow)
-                    .padding(.bottom, 20)
+                    //Check if item on list has been checked
+                    if !orderViewModel.selection.isEmpty {
+                        //Delivery Button
+                        Button {
+                            Task {
+                                //MARK: To-DO Create Delivery Note
+                               //await createDelivery()
+                                await editButtonSelected()
+                                //deliveryNote()
+                            }
+                        } label: {
+                            Text("DELIVERY NOTE")
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                        }
+                        .frame(height: 50)
+                        .background(Color.yellow)
+                        .padding(.bottom, 20)
+                    }
                 }
-            }
-            .navigationTitle("Orders")
+                .navigationTitle(title())
+                .toolbar {
+                    EditButton()
+                }
         }.task {
-           await getOrderId()
+            await orderViewModel.getOrders()
         }
     }
-    //get Orders from Warehouse
-   private func getOrderId() async {
-        do {
-            try await orderService.getOrderById()
-        } catch {
-            print(error)
+    func editButtonSelected() async {
+        for item in orderViewModel.selection {
+            await deliveryViewModel.createDeliveryNote(order: item)
         }
     }
-    //create Delivery Note
-    private func createDelivery() async {
-        do {
-            let selectedIds = selectedItems
-            orderDelivery.orderIds = selectedIds
-            try await orderService.createDeliveryNote(order: orderDelivery)
-        } catch {
-            print(error)
+    func deliveryNote() {
+        let orderCustomer = orderViewModel.selection.hashValue
+        print("Hash Value = \(orderCustomer)")
+    }
+    // Navigation Title when order is Selected.
+    func title() -> String {
+        if !orderViewModel.selection.isEmpty {
+            return "\(orderViewModel.selection.count) Selected"
+        } else {
+            return "Orders"
         }
     }
 }
 
-struct OrderView_Previews: PreviewProvider {
+struct Order_Previews: PreviewProvider {
     static var previews: some View {
-        OrderView(orderDelivery: OrderElementForDelivery())
+        OrderView()
     }
 }
