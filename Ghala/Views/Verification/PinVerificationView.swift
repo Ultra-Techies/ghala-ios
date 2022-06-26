@@ -17,10 +17,10 @@ struct PinVerificationView: View {
                 PinVerificationSubView(user: user)
                     .background(
                         RoundedCornersShape(corners: .topLeft, radius: 60)
-                            .fill(Color(UIColor.white))
+                            .fill(Color.listBackground)
                     )
                     .offset(y: -87)
-            }.background(.white)
+            }.background(Color.listBackground)
                 .onTapGesture {
                     self.hideKeyboard()
                 }

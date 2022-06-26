@@ -16,13 +16,13 @@ struct PhoneVerificationView: View {
             LoginView()
                 .background(
                     RoundedCornersShape(corners: .topLeft, radius: 90)
-                        .fill(Color(UIColor.white))
+                        .fill(Color.listBackground)
                 )
                 .offset(y: -80)
             if networkManager.isNotConnected {
                 NetworkViewCell(netStatus: networkManager.conncetionDescription, image: networkManager.imageName)
             }
-        }.background(.white)
+        }.background(Color.listBackground)
     }
 }
 

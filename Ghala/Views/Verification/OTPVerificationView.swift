@@ -17,11 +17,11 @@ struct OTPVerificationView: View {
                         .frame(height: geo.size.height * 0.6, alignment: .top)
                     OTPCodeSubView(user: user)
                         .background(
-                            RoundedCornersShape(corners: .topLeft, radius: 55)
-                                .fill(Color(UIColor.white))
+                            RoundedCornersShape(corners: .topLeft, radius: 49)
+                                .fill(Color.listBackground)
                         )
                        .offset(y: -50)
-                }.background(.white)
+                }.background(Color.listBackground)
                     .onTapGesture {
                         self.hideKeyboard()
                     }
