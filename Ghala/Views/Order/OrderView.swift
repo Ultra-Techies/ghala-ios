@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct OrderView: View {
     @StateObject var orderViewModel = OrderViewModel(orderService: OrderService())
@@ -46,8 +47,14 @@ struct OrderView: View {
                         }
                         .frame(height: 50)
                         .background(Color.yellow)
+                        .opacity(deliveryViewModel.isLoading ? 0: 1)
+                        .overlay{
+                            ProgressView()
+                                .opacity(deliveryViewModel.isLoading ? 1 : 0)
+                        }
                         .padding(.bottom, 20)
                     }
+                    NavigationLink(destination: DispatchView(),isActive: $deliveryViewModel.toDispatch ,label: EmptyView.init)
                 }
                 .navigationTitle(title())
                 .toolbar {
@@ -56,6 +63,10 @@ struct OrderView: View {
         }.task {
             await orderViewModel.getOrders()
         }
+        .alert(orderViewModel.errorMsg, isPresented: $orderViewModel.showAlert) {}
+        .toast(isPresenting: $deliveryViewModel.showToast, alert: {
+            return AlertToast(type: .systemImage("checkmark", Color.yellow), title: "Items have been Dispatch Successfully")
+            })
     }
     func editButtonSelected() async {
         for item in orderViewModel.selection {
