@@ -13,6 +13,8 @@ class DeliveryViewModel: ObservableObject {
     @Published var errorMsg: String = ""
     @Published var isLoading: Bool = false
     @Published var searchDelivery = ""
+    @Published var showToast = false
+    @Published var toDispatch: Bool = false
     
     @Published var delivery = [Delivery]()
     @Published var deliveryUpload = Delivery()
@@ -60,7 +62,11 @@ class DeliveryViewModel: ObservableObject {
             deliveryUpload.warehouseId = FromUserDefault.warehouseID
             print(deliveryUpload.orderIds)
             try await deliveryService.createDeliveryNote(delivery: deliveryUpload)
-            isLoading = false
+            DispatchQueue.main.async {
+                self.isLoading = false
+                self.showToast = true
+                self.toDispatch = true
+            }
         } catch {
             handleError(error: error.localizedDescription)
         }
