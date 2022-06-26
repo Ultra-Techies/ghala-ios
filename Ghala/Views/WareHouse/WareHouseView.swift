@@ -51,6 +51,7 @@ struct WareHouseView: View {
         }.task {
             await warehouseViewModel.getAll()
         }
+        .alert(warehouseViewModel.errorMsg, isPresented: $warehouseViewModel.showAlert) {}
     }
 }
 
