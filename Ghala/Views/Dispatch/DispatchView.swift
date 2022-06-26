@@ -8,42 +8,31 @@
 import SwiftUI
 
 struct DispatchView: View {
-    @ObservedObject var deliveryService = DeliveryService()
+    @StateObject var deliveryViewModel = DeliveryViewModel(deliveryService: DeliveryService())
     var body: some View {
         NavigationView {
             VStack {
-                FilterView()
-                //Dispatch ListView
                 List {
-                    ForEach(deliveryService.deliveryDTO, id: \.id) { delivery in
-                        DispatchCell(noteCode: delivery.noteCode, orders: delivery.orders, route: delivery.route ?? "", status: delivery.status, deliveryWindows: delivery.deliveryWindow ?? "")
+                    ForEach(deliveryViewModel.deliverySearch) { delivery in
+                        DispatchCell(noteCode: delivery.noteCode, orders: delivery.orders, route: delivery.route, status: delivery.status, deliveryWindows: delivery.deliveryWindow)
                             .padding()
                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
                     }.listRowBackground(Color.clear)
                         .background(Color.listBackground)
-                }.listStyle(SidebarListStyle())
+                }
+                .listStyle(SidebarListStyle())
+                .navigationTitle("Dispatch")
+                .searchable(text: $deliveryViewModel.searchDelivery, prompt: "Search Item")
                 .refreshable {
                     Task {
-                        await getDispatchByWH()
+                        await deliveryViewModel.getDeliveriesWH()
                     }
                 }
+                
+                
             }
-            .navigationTitle("Dispatch")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Image(systemName: "magnifyingglass")
-                }
-            }
-        } .task {
-            await getDispatchByWH()
-        }
-    }
-    //get Dispatch By WH
-    private func getDispatchByWH() async {
-        do {
-            try await deliveryService.getDeliveryByWH()
-        } catch {
-            print(error)
+        }.task {
+            await deliveryViewModel.getDeliveriesWH()
         }
     }
 }
