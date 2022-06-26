@@ -7,10 +7,7 @@
 
 import Foundation
 
-@MainActor
-class UserService: ObservableObject {
-    @Published var us = User2(id: 0, email: "", phoneNumber: "", assignedWarehouse: 0, role: "", firstName: "", lastName: "", profilePhoto: nil)
-    @Published var user = User()
+struct UserService {
     
     // MARK: Check if User Exists
     func checkIfUserExists(user: User) async throws -> checkPhoneStatus {
@@ -34,8 +31,7 @@ class UserService: ObservableObject {
         let decoded = try JSONDecoder().decode(checkPhoneStatus.self, from: data)
         return decoded
     }
-    
-    // MARK: Verify User Password
+    // MARK: Check Pin
     func verifyUserLogin(user: User) async throws -> Int {
     //get URL
         guard let url = URL(string: APIConstant.UserLogin) else {
@@ -137,20 +133,6 @@ class UserService: ObservableObject {
         print("User Warehouse: \(wareHouseId)")
         return decoded
     }
-    
-    // MARK: Find by ID
-    func getUser() async throws {
-        guard let url = URL(string: APIConstant.getUser.appending("\(FromUserDefault.userID)")) else {
-            throw NetworkError.invalidURL
-        }
-        print(url)
-        let (data, _) = try await URLSession.shared.data(from: url)
-        //decoded JSON
-        let decodedUserData = try JSONDecoder().decode(User.self, from: data)
-        self.user = decodedUserData
-        print("Get User: \(decodedUserData)")
-    }
-    
     // MARK: Update User
     func updateUser(user: User) async throws -> URLResponse {
         guard let url = URL(string: APIConstant.updateUser) else {
@@ -171,29 +153,5 @@ class UserService: ObservableObject {
         let (_, response) = try await URLSession.shared.upload(for: request, from: userEncoded)
         print(response)
         return response
-    }
-    // MARK: Get all users
-    func getAllUsers() async throws {
-        
-        //print(phone)
-        guard let url = URL(string: "http://localhost:8080/api/users/all") else {
-            throw NetworkError.invalidURL
-        }
-        
-        //let token = UserDefaults.standard.string(forKey: "access_token")
-        //print("Token is \(token!)")
-        
-        var request = URLRequest(url: url)
-        request.setValue("Bearer \(FromUserDefault.token!)", forHTTPHeaderField: "Authorization")
-        request.httpMethod = "GET" // Set HTTP Request Body
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(for: request)
-            let decoded = try JSONDecoder().decode([User].self, from: data)
-            print(decoded)
-            
-        } catch {
-            print(error)
-        }
     }
 }
