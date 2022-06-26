@@ -24,7 +24,7 @@ struct ContentView: View {
                     Image(systemName: "note.text")
                     Text("WareHouse")
             }
-            OrderView(orderDelivery: OrderElementForDelivery())
+            OrderView()
                 .tabItem {
                     Image(systemName: "shippingbox")
                     Text("Order")
