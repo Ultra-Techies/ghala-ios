@@ -27,7 +27,7 @@ struct LoginView: View {
                             Text("Select Country")
                                 .bold()
                                 .font(.title3)
-                                .foregroundColor(.black)
+                               // .foregroundColor(.black)
                            Spacer()
                             //MARK: -Country Code
                             Picker("Please choose a country Code", selection: $selectedIndex2) {
@@ -45,7 +45,6 @@ struct LoginView: View {
                             .padding(.top, 10)
                             .keyboardType(.numberPad)
                             .focused($dismissKeyboard)
-                            .foregroundColor(.black)
                         //MARK: Next Button
                         Button(action: {
                             Task {
@@ -68,8 +67,8 @@ struct LoginView: View {
                         .padding()
                     // MARK: Curving view
                         .background(
-                            RoundedCornersShape(corners: .topLeft, radius: 50)
-                                .fill(Color(UIColor.white))
+                            RoundedCornersShape(corners: .topLeft, radius: 39)
+                                .fill(Color.listBackground)
                         )
                         .offset(y: -43)
                     // MARK: Navigation View
