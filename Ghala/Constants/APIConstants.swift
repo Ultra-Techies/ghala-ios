@@ -7,12 +7,8 @@
 
 import Foundation
 enum BaseUrl {
-//    static let baseUrl = "http://localhost:8080"
-//    static let loginUrl = "http://localhost:8080"
-    
-    static let baseUrl = "http://192.168.100.86:8080/api/"
-    static let loginUrl = "http://192.168.100.86:8080/"
-    
+    static let baseUrl = "http://localhost:8080/api/"
+    static let loginUrl = "http://localhost:8080/"
 }
 
 enum APIConstant {

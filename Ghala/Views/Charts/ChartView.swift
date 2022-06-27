@@ -86,7 +86,7 @@ struct ChartView: View {
            let data = PieDataSet(
                dataPoints: [
                 PieChartDataPoint(value: orderValue, description: "Order", colour: .red),
-                PieChartDataPoint(value: invValue, description: "Inventory", colour: .blue),
+                PieChartDataPoint(value: invValue, description: "Inventory", colour: .blue)
                ],
                legendTitle: "Data")
 

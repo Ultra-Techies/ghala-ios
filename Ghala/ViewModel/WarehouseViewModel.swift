@@ -16,15 +16,15 @@ class WarehouseViewModel: ObservableObject {
     @Published var showToast = false
     // Navigation
     @Published var toAddWareHouse: Bool = false
-    
+    // Model
     @Published var wareHouse = [WareHouse]()
-    
+    // Service
     var wareHouseService: WareHouseService
     init(wareHouseService: WareHouseService) {
         self.wareHouseService = wareHouseService
     }
     
-    //  MARK: -Get All WareHouse
+    //  MARK: - Get All WareHouse
     func getAll() async {
         do {
             let wareHouseData = try await wareHouseService.getAllWareHouse()
@@ -58,7 +58,7 @@ class WarehouseViewModel: ObservableObject {
             handleError(error: error.localizedDescription)
         }
     }
-    // MARK: -Error
+    // MARK: - Error
     func handleError(error: String) {
         DispatchQueue.main.async {
             self.isLoading = false

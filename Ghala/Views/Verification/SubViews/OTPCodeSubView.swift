@@ -13,14 +13,14 @@ struct OTPCodeSubView: View {
     @FocusState var activeFiled: OTPField?
     var body: some View {
         VStack {
-            let _ = print("OTP on Screen : \(userViewModel.otpCode)")
+            //let _ = print("OTP on Screen : \(userViewModel.otpCode)")
             let otpValue = userViewModel.otpCode
             OTPField()
                 .padding(.bottom, 30)
             // MARK: VERIFY Button
             Button {
                 Task {
-                    await userViewModel.verifyOTP(otpValue:otpValue)
+                    await userViewModel.verifyOTP(otpValue: otpValue)
                 }
             } label: {
                 Text("Verify")
@@ -44,7 +44,7 @@ struct OTPCodeSubView: View {
             // MARK: RESEND OTP
             Button {
                 Task {
-                    await userViewModel.getOTP(user:user)
+                    await userViewModel.getOTP(user: user)
                 }
             } label: {
                 Text("Resend OTP CODE")

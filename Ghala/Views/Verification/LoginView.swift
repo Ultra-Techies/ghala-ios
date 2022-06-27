@@ -72,8 +72,8 @@ struct LoginView: View {
                         )
                         .offset(y: -43)
                     // MARK: Navigation View
-                    NavigationLink(destination: PinVerificationView(user: userViewModel.user),isActive: $userViewModel.toPin ,label: EmptyView.init) // to PIN View
-                    NavigationLink(destination: OTPVerificationView(user: userViewModel.user) ,isActive: $userViewModel.toOTP ,label: EmptyView.init)// to OTP View
+                    NavigationLink(destination: PinVerificationView(user: userViewModel.user), isActive: $userViewModel.toPin ,label: EmptyView.init) // to PIN View
+                    NavigationLink(destination: OTPVerificationView(user: userViewModel.user), isActive: $userViewModel.toOTP ,label: EmptyView.init)// to OTP View
                 }
                 .toolbar {
                     ToolbarItemGroup(placement: .keyboard) {

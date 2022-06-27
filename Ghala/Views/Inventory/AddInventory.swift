@@ -39,7 +39,7 @@ struct AddInventory: View {
                 let categorySelected = category[selectCategory]
                 inventory.category = categorySelected
                 Task {
-                    await inventorViewModel.addInventory(inventory:inventory)
+                    await inventorViewModel.addInventory(inventory: inventory)
                 }
                 dismiss()
             } label: {

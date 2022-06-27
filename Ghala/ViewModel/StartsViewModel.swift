@@ -29,7 +29,7 @@ class StartsViewModel: ObservableObject {
             handleError(error: error.localizedDescription)
         }
     }
-    
+    // MARK: Total Sum
     func totalSum() -> Int {
         var sumValue = 0
         for sumOrder in starts.orderValue {
@@ -37,7 +37,7 @@ class StartsViewModel: ObservableObject {
         }
         return sumValue
     }
-    // MARK: -Error
+    // MARK: - Error
     func handleError(error: String) {
         DispatchQueue.main.async {
             self.isLoading = false

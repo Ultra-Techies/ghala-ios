@@ -48,13 +48,13 @@ struct OrderView: View {
                         .frame(height: 50)
                         .background(Color.yellow)
                         .opacity(deliveryViewModel.isLoading ? 0: 1)
-                        .overlay{
+                        .overlay {
                             ProgressView()
                                 .opacity(deliveryViewModel.isLoading ? 1 : 0)
                         }
                         .padding(.bottom, 20)
                     }
-                    NavigationLink(destination: DispatchView(),isActive: $deliveryViewModel.toDispatch ,label: EmptyView.init)
+                    NavigationLink(destination: DispatchView(), isActive: $deliveryViewModel.toDispatch, label: EmptyView.init)
                 }
                 .navigationTitle(title())
                 .toolbar {

@@ -15,16 +15,16 @@ class DeliveryViewModel: ObservableObject {
     @Published var searchDelivery = ""
     @Published var showToast = false
     @Published var toDispatch: Bool = false
-    
+    // From Models
     @Published var delivery = [Delivery]()
     @Published var deliveryUpload = Delivery()
-    
+    // From Service
     var deliveryService: DeliveryService
     init(deliveryService: DeliveryService) {
         self.deliveryService = deliveryService
     }
     
-    //MARK: Get Delivery by WH
+    // MARK: Get Delivery by WH
     func getDeliveriesWH() async {
         do {
             let deliveryData = try await deliveryService.getDeliveriesByWH()
@@ -35,7 +35,7 @@ class DeliveryViewModel: ObservableObject {
             handleError(error: error.localizedDescription)
         }
     }
-    //MARK: Search Delivery
+    // MARK: Search Delivery
     var deliverySearch: [Delivery] {
         if searchDelivery.isEmpty {
             return delivery
@@ -71,7 +71,7 @@ class DeliveryViewModel: ObservableObject {
             handleError(error: error.localizedDescription)
         }
     }
-    // MARK: -Error
+    // MARK: - Error
     func handleError(error: String) {
         DispatchQueue.main.async {
             self.isLoading = false

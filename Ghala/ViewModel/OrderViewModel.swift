@@ -15,9 +15,9 @@ class OrderViewModel: ObservableObject {
     @Published var searchOrder = ""
     @Published var selection = Set<Order>()
     @Published var isSelected: Bool = false
-    
+    //Model
     @Published var order = [Order]()
-    
+    // Service
     var orderService: OrderService
     init(orderService: OrderService) {
         self.orderService = orderService
@@ -43,7 +43,7 @@ class OrderViewModel: ObservableObject {
             return order.filter { $0.customerName.localizedCaseInsensitiveContains(searchOrder)}
         }
     }
-    // MARK: -Error
+    // MARK: - Error
     func handleError(error: String) {
         DispatchQueue.main.async {
             self.isLoading = false

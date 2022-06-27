@@ -12,7 +12,6 @@ class Order: Codable, ObservableObject, Identifiable, Equatable, Hashable {
     static func == (lhs: Order, rhs: Order) -> Bool {
         return lhs.id == rhs.id
     }
-    
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }

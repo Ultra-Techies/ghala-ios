@@ -13,11 +13,10 @@ class InventoryViewModel: ObservableObject {
     @Published var errorMsg: String = ""
     @Published var isLoading: Bool = false
     @Published var searchInventory = ""
-    
+    // Model
     @Published var inventory = [Inventory]()
-    
+    // Serive
     var inventoryService: InventoryService
-    
     init(inventoryService: InventoryService) {
         self.inventoryService = inventoryService
     }
@@ -42,7 +41,7 @@ class InventoryViewModel: ObservableObject {
             return inventory.filter { $0.category.localizedCaseInsensitiveContains(searchInventory)}
         }
     }
-    //MARK: Add Inventory
+    // MARK: Add Inventory
     func addInventory(inventory: Inventory) async {
         do {
             isLoading = true
@@ -58,7 +57,7 @@ class InventoryViewModel: ObservableObject {
         }
     }
     
-    // MARK: -Error
+    // MARK: - Error
     func handleError(error: String) {
         DispatchQueue.main.async {
             self.isLoading = false

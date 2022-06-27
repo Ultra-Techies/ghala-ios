@@ -59,8 +59,6 @@ enum Status: String, Codable {
     case available = "AVAILABLE"
     case outOfStock = "Out Of Stock"
 }
-
-
 /*
  {
      "sku": 11,
