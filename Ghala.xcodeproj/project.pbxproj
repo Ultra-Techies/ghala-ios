@@ -51,6 +51,7 @@
 		20BF1F2F2853C96C00AC2763 /* NetworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BF1F2E2853C96C00AC2763 /* NetworkViewModel.swift */; };
 		20BF1F312853C9EE00AC2763 /* NetworkViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BF1F302853C9EE00AC2763 /* NetworkViewCell.swift */; };
 		20C13CC9284BD36200EB8C97 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 20C13CC8284BD36200EB8C97 /* SwiftUICharts */; };
+		20C1D9D9286A31D100AA8B24 /* StartsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C1D9D8286A31D100AA8B24 /* StartsViewModel.swift */; };
 		20C22700282C2255009BAD5C /* GhalaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C226FF282C2255009BAD5C /* GhalaApp.swift */; };
 		20C22702282C2255009BAD5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22701282C2255009BAD5C /* ContentView.swift */; };
 		20C22704282C2259009BAD5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20C22703282C2259009BAD5C /* Assets.xcassets */; };
@@ -110,6 +111,7 @@
 		20B9C801283E502B0091999F /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		20BF1F2E2853C96C00AC2763 /* NetworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewModel.swift; sourceTree = "<group>"; };
 		20BF1F302853C9EE00AC2763 /* NetworkViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewCell.swift; sourceTree = "<group>"; };
+		20C1D9D8286A31D100AA8B24 /* StartsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartsViewModel.swift; sourceTree = "<group>"; };
 		20C226FC282C2255009BAD5C /* Ghala.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ghala.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20C226FF282C2255009BAD5C /* GhalaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhalaApp.swift; sourceTree = "<group>"; };
 		20C22701282C2255009BAD5C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				201397372865FB2700AF4B9F /* InventoryViewModel.swift */,
 				2060A2612868D4B600897E0B /* OrderViewModel.swift */,
 				2060A2632868DB3000897E0B /* DeliveryViewModel.swift */,
+				20C1D9D8286A31D100AA8B24 /* StartsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				20C22702282C2255009BAD5C /* ContentView.swift in Sources */,
 				206BAB732839545E0050F22A /* AddWareHouse.swift in Sources */,
 				2073C429282D9714008E749F /* OTPCodeSubView.swift in Sources */,
+				20C1D9D9286A31D100AA8B24 /* StartsViewModel.swift in Sources */,
 				20C22700282C2255009BAD5C /* GhalaApp.swift in Sources */,
 				20CE094D283B9F0900E36673 /* InventoryService.swift in Sources */,
 				20CE0950283BA4E000E36673 /* InventoryCell.swift in Sources */,
