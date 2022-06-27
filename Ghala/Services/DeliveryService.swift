@@ -6,11 +6,10 @@
 //
 
 import Foundation
-@MainActor
-class DeliveryService: ObservableObject {
-    @Published var deliveryDTO = [Delivery]()
+
+struct DeliveryService {
     // MARK: func get Delivery Note by wareHouse
-    func getDeliveryByWH() async throws {
+    func getDeliveriesByWH() async throws -> [Delivery] {
         //get url
         guard let url = URL(string: APIConstant.getDeliveryByWareHouse.appending("\(FromUserDefault.warehouseID)")) else {
             throw NetworkError.invalidURL
@@ -24,6 +23,25 @@ class DeliveryService: ObservableObject {
         //decode Delivery Data
         let deliveryDecoded = try JSONDecoder().decode([Delivery].self, from: data)
         //Pass delivery data to Model
-        self.deliveryDTO = deliveryDecoded
+        print("Delivery Items: \(deliveryDecoded)")
+        return deliveryDecoded
+    }
+    // MARK: Create Delivery Note
+    func createDeliveryNote(delivery: Delivery) async throws {
+        //get url
+        guard let url = URL(string: APIConstant.createDeliveryNote) else {
+            throw NetworkError.invalidURL
+        }
+        //encode data
+        let deliveryEncoded = try JSONEncoder().encode(delivery)
+        //url Request
+        var request = URLRequest(url: url)
+        request.setValue("Bearer \(FromUserDefault.token!)", forHTTPHeaderField: "Authorization") //passing jwt token
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        //url Session
+        let (_, response) = try await URLSession.shared.upload(for: request, from: deliveryEncoded)
+        //get encoded Data
+        print(response)
     }
 }

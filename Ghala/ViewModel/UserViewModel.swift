@@ -9,49 +9,162 @@ import Foundation
 
 @MainActor
 class UserViewModel: ObservableObject {
+    @Published var showAlert: Bool = false
+    @Published var errorMsg: String = ""
+    @Published var isLoading: Bool = false
+    // Navigation
+    @Published var toLogin: Bool = false
+    @Published var toOTP: Bool = false
+    @Published var toPin: Bool = false
+    @Published var toContentView: Bool = false
+    @Published var toAccountSetUp: Bool = false
+    @Published var showToast = false
     
-    //Constant States for the Views
-    enum State {
-        case notAvailable
-        case loading
-        case falseN
-        case trueN
-        //case success(data: Bool)
-        case failed(error: Error)
-    }
-    
-    enum ch:Error {
-        case failedtoDecode
-        case errorFound
-    }
-    
-    var state: State = .notAvailable
-    
+    @Published var user: User = .init()
+    //Pin And OTP TextFields
+    @Published var pinText: String = ""
+    @Published var pinTextFields: [String] = Array(repeating: "", count: 4)
+    @Published var otpCode: String = ""
+
     var userService: UserService
-    
     init(userService: UserService) {
         self.userService = userService
     }
-        
-        //MARK: -Check If UserExists
-    func checkIfUserExists(user: User) async throws -> Bool {
-        
-        guard let checked = try? await userService.checkIfUserExists(user: user) else {
-            throw ch.failedtoDecode
+    //MARK: -Check If UserExists
+    func checkIfUserExists(phoneNumber: String) async {
+        do {
+            isLoading = true
+            user.phoneNumber = phoneNumber
+            let checked = try await userService.checkIfUserExists(user: user)
+            print(checked.exists)
+            let userStatus = checked.exists
+            DispatchQueue.main.async {
+                self.isLoading = false
+                if userStatus != false {
+                    self.toPin = true
+                    print("To Pin View")
+                } else {
+                    self.toOTP = true
+                    print("To OTP Screen")
+                }
+            }
+        } catch {
+            isLoading = false
+            print(error.localizedDescription)
+            handleError(error: error.localizedDescription)
         }
-        let checkedNumber = checked.exists
-        return checkedNumber
     }
-    
-    //MARK: Verify user Pin
-//    func checkPin(user: User) async throws -> Bool {
-//        guard let pin = try? await userService.verifyUser(user: user) else {
-//            throw ch.failedtoDecode
-//        }
-//        let userPin = pin.verified
-//        return userPin
-//    }
-    
+    // MARK: Verify User Password
+    func verifyPassword(user: User) async {
+        do {
+            isLoading = true
+            print("User phoneNumber: \(user.phoneNumber)")
+            pinText = pinTextFields.reduce("") { partialResult, value in
+                partialResult + value
+            }
+            print("Pin: \(pinText)")
+            user.password = pinText
+            let statusCode = try await userService.verifyUserLogin(user: user)
+            print(statusCode)
+            
+            DispatchQueue.main.async { [self] in
+                self.isLoading = false
+                if statusCode != 200 {
+                    let errorInvalidPin = "Wrong Pin!!"
+                    handleError(error: errorInvalidPin)
+                }
+                toContentView = true
+            }
+        } catch {
+            isLoading = false
+            handleError(error: error.localizedDescription)
+        }
+    }
+    // MARK: OTP
+    func getOTP(user: User) async {
+        do {
+            print("User Number in OTP: \(user.phoneNumber)")
+            let otpValue = try await userService.getOTP(user: user)
+            print("OTP Value: \(otpValue)")
+            otpCode = otpValue.otp
+            print("OTP Code is: ")
+        } catch {
+            handleError(error: error.localizedDescription)
+        }
+    }
+    // MARK: Verify OTP
+    func verifyOTP(otpValue: String) async {
+            isLoading = true
+            pinText = pinTextFields.reduce("") { partialResult, value in
+                partialResult + value
+            }
+            if otpValue != pinText {
+                let errorMessage = "Invalid OTP"
+                handleError(error: errorMessage)
+            } else {
+                isLoading = false
+                toAccountSetUp = true
+            }
+    }
+    // MARK: Create User
+    func createUser(user: User) async {
+        do {
+            isLoading = true
+            try await userService.createUser(user: user)
+            DispatchQueue.main.async {
+                self.isLoading = false
+                self.toLogin = true
+            }
+        } catch {
+            handleError(error: error.localizedDescription)
+        }
+    }
+    // MARK: Find User by PhoneNumber
+    func findByPhoneNumber(user: User) async {
+        do {
+            let userDetails = try await userService.findByPhone(user: user)
+            self.user = userDetails
+            let userWareHouse = userDetails.assignedWarehouse ?? 0
+            print("User WareHouse: \(userWareHouse)")
+            // check if user is assigned to a WareHouse
+            if userWareHouse == 0 {
+                DispatchQueue.main.async {
+                    self.showAlert.toggle()
+                    //remove WareHouse id from UserDefaults & Clear Cache
+                    UserDefaults.standard.removeObject(forKey: "warehouse_Id")
+                    UserDefaults.standard.removeObject(forKey: "access_token")
+                    UserDefaults.standard.removeObject(forKey: "user_Id")
+                    let domain = String(describing: FromUserDefault.warehouseID)
+                    UserDefaults.standard.removePersistentDomain(forName: domain)
+                    UserDefaults.standard.synchronize()
+                    print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
+                    URLCache.shared.removeAllCachedResponses()
+                }
+            }
+        } catch {
+            handleError(error: error.localizedDescription)
+        }
+    }
+    // MARK: Update User
+    func updateUser(user: User) async {
+        do {
+            isLoading = true
+            let statusResponse = try await userService.updateUser(user: user)
+            print("Status Response \(statusResponse)")
+            DispatchQueue.main.async {
+                self.isLoading = false
+                self.showToast = true
+            }
+        } catch {
+            handleError(error: error.localizedDescription)
+        }
+    }
+    // MARK: Error
+    func handleError(error: String) {
+        DispatchQueue.main.async {
+            self.isLoading = false
+            self.errorMsg = error
+            self.showAlert.toggle()
+        }
+    }
 }
-
-

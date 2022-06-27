@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		201397292865D18600AF4B9F /* WarehouseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201397282865D18600AF4B9F /* WarehouseViewModel.swift */; };
+		201397382865FB2700AF4B9F /* InventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201397372865FB2700AF4B9F /* InventoryViewModel.swift */; };
 		201B05A7282CE1A4002B6629 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05A6282CE1A4002B6629 /* UserService.swift */; };
 		201B05AA282D09B5002B6629 /* PhoneVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */; };
 		201B05AE282D5D77002B6629 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05AD282D5D77002B6629 /* extensions.swift */; };
 		201B05B1282D7F1D002B6629 /* TopInfoSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B0282D7F1D002B6629 /* TopInfoSubView.swift */; };
-		201B05B3282D8226002B6629 /* PhoneInputSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B2282D8226002B6629 /* PhoneInputSubView.swift */; };
+		201B05B3282D8226002B6629 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B2282D8226002B6629 /* LoginView.swift */; };
 		201B05B6282D8E04002B6629 /* OTPVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B05B5282D8E01002B6629 /* OTPVerificationView.swift */; };
 		201D6DA72860D308009189F9 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 201D6DA62860D308009189F9 /* AlertToast */; };
 		202939A428339A1600E79E28 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202939A328339A1600E79E28 /* APIConstants.swift */; };
@@ -23,6 +25,8 @@
 		205201DC2840CC6400115339 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205201DB2840CC6400115339 /* NetworkError.swift */; };
 		205201DE2840CD2700115339 /* UserFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205201DD2840CD2700115339 /* UserFiles.swift */; };
 		205201E12840D30700115339 /* DispatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205201E02840D30700115339 /* DispatchCell.swift */; };
+		2060A2622868D4B600897E0B /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2060A2612868D4B600897E0B /* OrderViewModel.swift */; };
+		2060A2642868DB3000897E0B /* DeliveryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2060A2632868DB3000897E0B /* DeliveryViewModel.swift */; };
 		206445E328366A5D0061689B /* WareHouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E228366A5D0061689B /* WareHouseView.swift */; };
 		206445E528366A6C0061689B /* DispatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E428366A6C0061689B /* DispatchView.swift */; };
 		206445E728366A770061689B /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206445E628366A770061689B /* InventoryView.swift */; };
@@ -47,6 +51,7 @@
 		20BF1F2F2853C96C00AC2763 /* NetworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BF1F2E2853C96C00AC2763 /* NetworkViewModel.swift */; };
 		20BF1F312853C9EE00AC2763 /* NetworkViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BF1F302853C9EE00AC2763 /* NetworkViewCell.swift */; };
 		20C13CC9284BD36200EB8C97 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 20C13CC8284BD36200EB8C97 /* SwiftUICharts */; };
+		20C1D9D9286A31D100AA8B24 /* StartsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C1D9D8286A31D100AA8B24 /* StartsViewModel.swift */; };
 		20C22700282C2255009BAD5C /* GhalaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C226FF282C2255009BAD5C /* GhalaApp.swift */; };
 		20C22702282C2255009BAD5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22701282C2255009BAD5C /* ContentView.swift */; };
 		20C22704282C2259009BAD5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20C22703282C2259009BAD5C /* Assets.xcassets */; };
@@ -56,9 +61,7 @@
 		20CE094D283B9F0900E36673 /* InventoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE094C283B9F0900E36673 /* InventoryService.swift */; };
 		20CE0950283BA4E000E36673 /* InventoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE094F283BA4DF00E36673 /* InventoryCell.swift */; };
 		20CE0952283BCB3600E36673 /* AddInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE0951283BCB3600E36673 /* AddInventory.swift */; };
-		20E3AE3B2831034400BE295E /* HomeDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E3AE3A2831034400BE295E /* HomeDrawerView.swift */; };
 		20E3AE3D28314A7300BE295E /* HomeUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E3AE3C28314A7300BE295E /* HomeUserCell.swift */; };
-		20E3AE3F28314B4F00BE295E /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E3AE3E28314B4F00BE295E /* DrawerView.swift */; };
 		20F79B302834F9B400434065 /* CodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F79B2F2834F9B400434065 /* CodeTextField.swift */; };
 		20FDBB9A283D300C003FFC76 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBB99283D300C003FFC76 /* Order.swift */; };
 		20FDBB9C283D302C003FFC76 /* OrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBB9B283D302C003FFC76 /* OrderService.swift */; };
@@ -66,11 +69,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		201397282865D18600AF4B9F /* WarehouseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseViewModel.swift; sourceTree = "<group>"; };
+		201397372865FB2700AF4B9F /* InventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewModel.swift; sourceTree = "<group>"; };
 		201B05A6282CE1A4002B6629 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationView.swift; sourceTree = "<group>"; };
 		201B05AD282D5D77002B6629 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		201B05B0282D7F1D002B6629 /* TopInfoSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopInfoSubView.swift; sourceTree = "<group>"; };
-		201B05B2282D8226002B6629 /* PhoneInputSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneInputSubView.swift; sourceTree = "<group>"; };
+		201B05B2282D8226002B6629 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		201B05B5282D8E01002B6629 /* OTPVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationView.swift; sourceTree = "<group>"; };
 		202939A328339A1600E79E28 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		202939A92833AD4100E79E28 /* countryCode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countryCode.json; sourceTree = "<group>"; };
@@ -81,6 +86,8 @@
 		205201DB2840CC6400115339 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		205201DD2840CD2700115339 /* UserFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFiles.swift; sourceTree = "<group>"; };
 		205201E02840D30700115339 /* DispatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchCell.swift; sourceTree = "<group>"; };
+		2060A2612868D4B600897E0B /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
+		2060A2632868DB3000897E0B /* DeliveryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewModel.swift; sourceTree = "<group>"; };
 		206445E228366A5D0061689B /* WareHouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WareHouseView.swift; sourceTree = "<group>"; };
 		206445E428366A6C0061689B /* DispatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchView.swift; sourceTree = "<group>"; };
 		206445E628366A770061689B /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
@@ -104,6 +111,7 @@
 		20B9C801283E502B0091999F /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		20BF1F2E2853C96C00AC2763 /* NetworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewModel.swift; sourceTree = "<group>"; };
 		20BF1F302853C9EE00AC2763 /* NetworkViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewCell.swift; sourceTree = "<group>"; };
+		20C1D9D8286A31D100AA8B24 /* StartsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartsViewModel.swift; sourceTree = "<group>"; };
 		20C226FC282C2255009BAD5C /* Ghala.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ghala.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20C226FF282C2255009BAD5C /* GhalaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhalaApp.swift; sourceTree = "<group>"; };
 		20C22701282C2255009BAD5C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -114,9 +122,7 @@
 		20CE094C283B9F0900E36673 /* InventoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryService.swift; sourceTree = "<group>"; };
 		20CE094F283BA4DF00E36673 /* InventoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCell.swift; sourceTree = "<group>"; };
 		20CE0951283BCB3600E36673 /* AddInventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInventory.swift; sourceTree = "<group>"; };
-		20E3AE3A2831034400BE295E /* HomeDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDrawerView.swift; sourceTree = "<group>"; };
 		20E3AE3C28314A7300BE295E /* HomeUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUserCell.swift; sourceTree = "<group>"; };
-		20E3AE3E28314B4F00BE295E /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
 		20F79B2F2834F9B400434065 /* CodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextField.swift; sourceTree = "<group>"; };
 		20FDBB99283D300C003FFC76 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		20FDBB9B283D302C003FFC76 /* OrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderService.swift; sourceTree = "<group>"; };
@@ -157,9 +163,10 @@
 		201B05AF282D7E94002B6629 /* Verification */ = {
 			isa = PBXGroup;
 			children = (
-				20C26318282F1088008C6F58 /* AccountSetupView.swift */,
+				201B05B2282D8226002B6629 /* LoginView.swift */,
 				201B05B5282D8E01002B6629 /* OTPVerificationView.swift */,
 				201B05A9282D09B5002B6629 /* PhoneVerificationView.swift */,
+				20C26318282F1088008C6F58 /* AccountSetupView.swift */,
 				2073C42C282DA78A008E749F /* PinVerificationView.swift */,
 				208FC1F7282FB80000C78421 /* SubmittedSucessScreen.swift */,
 				201B05B4282D8C75002B6629 /* SubViews */,
@@ -170,7 +177,6 @@
 		201B05B4282D8C75002B6629 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				201B05B2282D8226002B6629 /* PhoneInputSubView.swift */,
 				201B05B0282D7F1D002B6629 /* TopInfoSubView.swift */,
 				2073C428282D9714008E749F /* OTPCodeSubView.swift */,
 				2073C42A282DA6D8008E749F /* PinVerificationSubView.swift */,
@@ -249,6 +255,11 @@
 				202939AF2833C06800E79E28 /* ReadCountryCode.swift */,
 				20F79B2F2834F9B400434065 /* CodeTextField.swift */,
 				20BF1F2E2853C96C00AC2763 /* NetworkViewModel.swift */,
+				201397282865D18600AF4B9F /* WarehouseViewModel.swift */,
+				201397372865FB2700AF4B9F /* InventoryViewModel.swift */,
+				2060A2612868D4B600897E0B /* OrderViewModel.swift */,
+				2060A2632868DB3000897E0B /* DeliveryViewModel.swift */,
+				20C1D9D8286A31D100AA8B24 /* StartsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -317,9 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				207567322848068A00F5931D /* HomeView.swift */,
-				20E3AE3A2831034400BE295E /* HomeDrawerView.swift */,
 				20E3AE3C28314A7300BE295E /* HomeUserCell.swift */,
-				20E3AE3E28314B4F00BE295E /* DrawerView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -413,12 +422,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				206445ED2836A0120061689B /* WareHouse.swift in Sources */,
-				201B05B3282D8226002B6629 /* PhoneInputSubView.swift in Sources */,
+				201B05B3282D8226002B6629 /* LoginView.swift in Sources */,
 				202939B02833C06800E79E28 /* ReadCountryCode.swift in Sources */,
 				20E3AE3D28314A7300BE295E /* HomeUserCell.swift in Sources */,
 				206445E728366A770061689B /* InventoryView.swift in Sources */,
 				206445EF2836A49D0061689B /* WareHouseService.swift in Sources */,
 				207A25872843A83F00786FBB /* Starts.swift in Sources */,
+				201397382865FB2700AF4B9F /* InventoryViewModel.swift in Sources */,
 				20C26319282F1088008C6F58 /* AccountSetupView.swift in Sources */,
 				2075672B2847828000F5931D /* ChartView.swift in Sources */,
 				201B05A7282CE1A4002B6629 /* UserService.swift in Sources */,
@@ -426,6 +436,7 @@
 				20C22702282C2255009BAD5C /* ContentView.swift in Sources */,
 				206BAB732839545E0050F22A /* AddWareHouse.swift in Sources */,
 				2073C429282D9714008E749F /* OTPCodeSubView.swift in Sources */,
+				20C1D9D9286A31D100AA8B24 /* StartsViewModel.swift in Sources */,
 				20C22700282C2255009BAD5C /* GhalaApp.swift in Sources */,
 				20CE094D283B9F0900E36673 /* InventoryService.swift in Sources */,
 				20CE0950283BA4E000E36673 /* InventoryCell.swift in Sources */,
@@ -442,24 +453,25 @@
 				207A0771282C59BA003C7EBD /* UserViewModel.swift in Sources */,
 				20B7F472282E40E600D29C5F /* SplashScreen.swift in Sources */,
 				2073C42D282DA78A008E749F /* PinVerificationView.swift in Sources */,
-				20E3AE3B2831034400BE295E /* HomeDrawerView.swift in Sources */,
 				201B05AA282D09B5002B6629 /* PhoneVerificationView.swift in Sources */,
 				207A076D282C57AC003C7EBD /* User.swift in Sources */,
-				20E3AE3F28314B4F00BE295E /* DrawerView.swift in Sources */,
 				20BF1F2F2853C96C00AC2763 /* NetworkViewModel.swift in Sources */,
 				20B9C802283E502B0091999F /* FilterView.swift in Sources */,
 				206445EB28366AA00061689B /* SettingsView.swift in Sources */,
 				202939A428339A1600E79E28 /* APIConstants.swift in Sources */,
+				2060A2622868D4B600897E0B /* OrderViewModel.swift in Sources */,
 				205201DC2840CC6400115339 /* NetworkError.swift in Sources */,
 				201B05B6282D8E04002B6629 /* OTPVerificationView.swift in Sources */,
 				20CE094B283B9E4900E36673 /* Inventory.swift in Sources */,
 				2073C42B282DA6D9008E749F /* PinVerificationSubView.swift in Sources */,
+				201397292865D18600AF4B9F /* WarehouseViewModel.swift in Sources */,
 				20FDBB9A283D300C003FFC76 /* Order.swift in Sources */,
 				207A25892843A90000786FBB /* StartsService.swift in Sources */,
 				206445E928366A890061689B /* OrderView.swift in Sources */,
 				20CE0952283BCB3600E36673 /* AddInventory.swift in Sources */,
 				206445F22836C17B0061689B /* WarehouseCell.swift in Sources */,
 				201B05B1282D7F1D002B6629 /* TopInfoSubView.swift in Sources */,
+				2060A2642868DB3000897E0B /* DeliveryViewModel.swift in Sources */,
 				205201D82840CAB400115339 /* Delivery.swift in Sources */,
 				206445E528366A6C0061689B /* DispatchView.swift in Sources */,
 				207567332848068A00F5931D /* HomeView.swift in Sources */,

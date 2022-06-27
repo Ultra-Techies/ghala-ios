@@ -6,45 +6,46 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct AddWareHouse: View {
     @Environment(\.dismiss) var dismiss //close view
-    @ObservedObject private var wareHouseService = WareHouseService()
+    @StateObject var warehouseViewModel = WarehouseViewModel(wareHouseService: WareHouseService())
     @ObservedObject var warehouse: WareHouse
     var body: some View {
-            VStack {
-                Form {
-                    Section {
-                        TextField("Warehouse Name", text: $warehouse.name)
-                    }
-                    Section {
-                        TextField("Location", text: $warehouse.location)
-                    }
+        VStack {
+            Form {
+                Section {
+                    TextField("Warehouse Name", text: $warehouse.name)
                 }
-                //Add Button
-                Button {
-                    Task {
-                        await register()
-                    }
-                    dismiss()
-                } label: {
-                    Text("ADD")
-                        .foregroundColor(.white)
-                        .frame(width: 350, height: 50)
+                Section {
+                    TextField("Location", text: $warehouse.location)
                 }
-                .background(Color.yellow)
-                .padding()
-                .navigationTitle("Add WareHouse")
             }
-    }
-    
-    //register warehouse
-    private func register() async {
-        do {
-            try await wareHouseService.registerWareHouse(warehouse:warehouse)
-        } catch {
-            print(error)
+            //Add Button
+            Button {
+                Task {
+                    await warehouseViewModel.addWareHouse(warehouse: warehouse)
+                }
+                dismiss()
+            } label: {
+                Text("ADD")
+                    .foregroundColor(.white)
+                    .frame(width: 350, height: 50)
+            }
+            .background(Color.yellow).opacity(warehouseViewModel.isLoading ? 0 :  1)
+            .overlay {
+                ProgressView()
+                    .opacity(warehouseViewModel.isLoading ? 1 : 0)
+            }
+            .padding()
+            .navigationTitle("Add WareHouse")
         }
+        .alert(warehouseViewModel.errorMsg, isPresented: $warehouseViewModel.showAlert) {}
+        .toast(isPresenting: $warehouseViewModel.showToast, alert: {
+            return AlertToast(type: .systemImage("checkmark", Color.yellow), title: "WareHouse Added")
+            })
+        
     }
 }
 

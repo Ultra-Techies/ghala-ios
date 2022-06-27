@@ -45,6 +45,9 @@ extension View {
     func vCodeStyle() -> some View {
         modifier(CodeTextStyle())
     }
+    func navigationBarColor(backgroundColor: UIColor?, titleColor: UIColor?) -> some View {
+        self.modifier(NavigationBarModifier(backgroundColor: backgroundColor, titleColor: titleColor))
+    }
 }
 
 //Text limit
