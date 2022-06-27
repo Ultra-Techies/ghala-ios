@@ -43,5 +43,5 @@ Auto-populated from:[contrib.rocks](https://contrib.rocks)
 
 ## SwiftUI Package Dependencies
 
-- [SwiftUICharts](https://miro.com/app/board/uXjVOKTf9mk=/?share_link_id=657041887226)
+- [SwiftUICharts](https://github.com/willdale/SwiftUICharts)
 - [AlertToast](https://github.com/elai950/AlertToast)
