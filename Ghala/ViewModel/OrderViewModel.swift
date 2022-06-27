@@ -22,7 +22,6 @@ class OrderViewModel: ObservableObject {
     init(orderService: OrderService) {
         self.orderService = orderService
     }
-    
     // MARK: Get Orders by Warehouse
     func getOrders() async {
         do {

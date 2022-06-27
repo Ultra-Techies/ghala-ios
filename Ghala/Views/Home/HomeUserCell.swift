@@ -23,7 +23,7 @@ struct HomeUserCell: View {
                         .fontWeight(.light)
                     Text("\(userViewModel.user.firstName) \(userViewModel.user.lastName)")
                         .bold()
-                    let _ = print("UserDetails: \(userViewModel.user.firstName)")
+                    //let _ = print("UserDetails: \(userViewModel.user.firstName)")
                 }
                 Spacer()
                 Button {

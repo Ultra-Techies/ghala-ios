@@ -23,7 +23,6 @@ class DeliveryViewModel: ObservableObject {
     init(deliveryService: DeliveryService) {
         self.deliveryService = deliveryService
     }
-    
     // MARK: Get Delivery by WH
     func getDeliveriesWH() async {
         do {

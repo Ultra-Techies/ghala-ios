@@ -20,7 +20,6 @@ class InventoryViewModel: ObservableObject {
     init(inventoryService: InventoryService) {
         self.inventoryService = inventoryService
     }
-    
     // MARK: Get Inventory
     func getInventory() async {
         do {
@@ -56,7 +55,6 @@ class InventoryViewModel: ObservableObject {
             handleError(error: error.localizedDescription)
         }
     }
-    
     // MARK: - Error
     func handleError(error: String) {
         DispatchQueue.main.async {

@@ -17,7 +17,7 @@ struct PinVerificationSubView: View {
             // MARK: VERIFY Button
             Button {
                 Task {
-                    await userViewModel.verifyPassword(user:user)
+                    await userViewModel.verifyPassword(user: user)
                 }
             } label: {
                 Text("Verify")

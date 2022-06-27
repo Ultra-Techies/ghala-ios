@@ -58,7 +58,7 @@ struct OTPCodeSubView: View {
             }
         }.onAppear {
             Task {
-                await userViewModel.getOTP(user:user)
+                await userViewModel.getOTP(user: user)
             }
         }
         .padding()
