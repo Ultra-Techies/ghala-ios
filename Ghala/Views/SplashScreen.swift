@@ -16,7 +16,6 @@ struct SplashScreen: View {
     
     var body: some View {
         if isActive {
-           // PhoneVerificationView()
             LoginView()
         } else {
             VStack {
@@ -38,6 +37,7 @@ struct SplashScreen: View {
                             .frame(alignment: .bottom)
                             .padding()
                             .padding(.bottom, 60)
+                            .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.yellow)
