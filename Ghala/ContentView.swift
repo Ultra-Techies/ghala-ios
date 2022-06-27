@@ -9,10 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var networkManager = NetworkViewModel()
+    @StateObject var userViewModel = UserViewModel(userService: UserService())
     @ObservedObject var user: User
-    @ObservedObject var userService =  UserService()
-    @State private var showAlert = false
-    @State private var toPhoneView = false
+    @State private var toLogin = false
     var body: some View {
         TabView {
             HomeView(user: user)
@@ -25,12 +24,12 @@ struct ContentView: View {
                     Image(systemName: "note.text")
                     Text("WareHouse")
             }
-            OrderView(orderDelivery: OrderElementForDelivery())
+            OrderView()
                 .tabItem {
                     Image(systemName: "shippingbox")
                     Text("Order")
             }
-            InventoryView(user: user)
+            InventoryView()
                 .tabItem {
                     Image(systemName: "list.bullet.rectangle.fill")
                     Text("Inventory")
@@ -40,44 +39,34 @@ struct ContentView: View {
                     Image(systemName: "clock.fill")
                     Text("Dispatch")
             }
-            SettingsView(user: User())
+            SettingsView(user: user)
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
             }
         }.onAppear {
             Task {
-                await findUserDetails()
+                await getUserDetails()
             }
         }
-        .fullScreenCover(isPresented: $toPhoneView) {
-            PhoneInputSubView(user: User())
+        .fullScreenCover(isPresented: $toLogin) {
+            LoginView()
         }
         .accentColor(.yellow)
-        .alert(isPresented: $showAlert) {
+        .alert(isPresented: $userViewModel.showAlert) {
             Alert(title: Text("No Warehouse Assigned!"), message: Text("Please contact your Admin to assign you a Warehouse."), dismissButton: .destructive(Text("OK"), action: {
                 URLCache.shared.removeAllCachedResponses()
-                toPhoneView.toggle()
+                toLogin.toggle()
             }))
         }
         if networkManager.isNotConnected {
             NetworkViewCell(netStatus: networkManager.conncetionDescription, image: networkManager.imageName)
         }
     }
-    func checkWareHouseId() {
-        let wareHouseId = userService.us.assignedWarehouse
-        print("Warehouse at Home: \(wareHouseId)")
-        if wareHouseId == 0 {
-            showAlert = true
-        }
-    }
-    func findUserDetails() async {
-        do {
-            try await userService.findByPhone(user: user)
-            checkWareHouseId()
-        } catch {
-            print(error)
-        }
+    func getUserDetails() async {
+        let number = user.phoneNumber
+        print("User number: \(number)")
+        await userViewModel.findByPhoneNumber(user:user)
     }
 }
 

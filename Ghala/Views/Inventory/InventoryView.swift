@@ -8,36 +8,37 @@
 import SwiftUI
 
 struct InventoryView: View {
-    @ObservedObject var inventoryService = InventoryService()
-    @ObservedObject var user: User
+    @ObservedObject var inventoryViewModel = InventoryViewModel(inventoryService: InventoryService())
     var body: some View {
         NavigationView {
             ZStack {
                 VStack {
-                    //Filter View
-                    FilterView()
-                    //Inventory List
                     List {
-                        ForEach(inventoryService.inventory, id: \.sku) { inventoryItem in
-                            InventoryCell(name: inventoryItem.name, category: inventoryItem.category, SKU: inventoryItem.skuCode, price: inventoryItem.ppu, quantity: inventoryItem.quantity, status: inventoryItem.status)
+                        ForEach(inventoryViewModel.inventorySearch, id: \.sku) { inventory in
+                            InventoryCell(name: inventory.name, category: inventory.category, SKU: inventory.skuCode, price: inventory.ppu, quantity: inventory.quantity, status: inventory.status)
                                 .padding()
+                                .frame(maxWidth: .infinity, alignment: .leading)
                                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
-                        }.listRowBackground(Color.clear)
-                            .background(Color.listBackground)
-                    }.listStyle(SidebarListStyle())
+                        }
+                        .listRowBackground(Color.clear)
+                        .background(Color.listBackground)
+                    }
+                    .listStyle(SidebarListStyle())
+                    .navigationTitle("Inventory")
+                    .searchable(text: $inventoryViewModel.searchInventory, prompt: "Search Inventory")
                     .refreshable {
                         Task {
-                            await getAll()
+                            await inventoryViewModel.getInventory()
                         }
                     }
-                }.navigationTitle("Inventory")
-            //Add Inventory Button
+                }
+                // MARK: Add Inventory Button
                 VStack {
                     Spacer()
                     HStack {
                         Spacer()
-                        //to Add Inventory
-                        NavigationLink(destination: AddInventory(inventoryD: InventoryEncode(), user: user)) {
+                        // MARK: Add WareHouse Button
+                        NavigationLink(destination: AddInventory(inventory: Inventory())) {
                             Image(systemName: "plus.circle.fill")
                                 .resizable()
                                 .frame(width: 50, height: 50)
@@ -46,28 +47,19 @@ struct InventoryView: View {
                         }
                     }
                 }
+                
             }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Image(systemName: "magnifyingglass")
-                    }
-                }
-        }.task {
-            await getAll()
+        }.onAppear {
+            Task {
+                await inventoryViewModel.getInventory()
+            }
         }
-    }
-    //getAllItems
-    func getAll() async {
-        do {
-            try await inventoryService.getAllInventory()
-        } catch {
-            print(error)
-        }
+        .alert(inventoryViewModel.errorMsg, isPresented: $inventoryViewModel.showAlert) {}
     }
 }
 
 struct InventoryView_Previews: PreviewProvider {
     static var previews: some View {
-        InventoryView(user: User())
+        InventoryView()
     }
 }

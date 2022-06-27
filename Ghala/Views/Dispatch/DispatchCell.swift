@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DispatchCell: View {
     @State var noteCode: String
-    @State var orders: [OrderElement]
+    @State var orders: [Order]
     @State var route: String
     @State var status: DeliveryStatus
     @State var deliveryWindows: String
@@ -55,9 +55,3 @@ struct DispatchCell: View {
         }
     }
 }
-
-//struct DispatchCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DispatchCell()
-//    }
-//}

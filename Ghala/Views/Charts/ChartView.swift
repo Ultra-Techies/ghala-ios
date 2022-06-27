@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftUICharts
 
 struct ChartView: View {
-    @ObservedObject var startsService = StartsService()
+    @StateObject var startsViewModel = StartsViewModel(startsService: StartsService())
     var body: some View {
         VStack {
             Form {
@@ -39,24 +39,18 @@ struct ChartView: View {
                 }
             }
         }.task {
-            await startsData()
+            await startsViewModel.getStarts()
         }
-    }
-    // MARK: - Get Starts
-    func startsData() async {
-        do {
-            try await startsService.getStarts()
-        } catch {
-            print(error)
-        }
+        .alert(startsViewModel.errorMsg, isPresented: $startsViewModel.showAlert) {}
     }
     // MARK: - Bar Chart
     func StartsData() -> BarChartData {
         var startsData = [BarChartDataPoint]()
         //loop through months
-        for month in startsService.start.orderValue {
+        for month in startsViewModel.starts.orderValue {
             startsData.append(BarChartDataPoint(value: Double(month.sum), xAxisLabel: month.monthName, colour: ColourStyle(colour: .red)))
         }
+
         let sets = BarDataSet(dataPoints: startsData)
         let data: BarDataSet = sets
         let metadata = ChartMetadata(title: "", subtitle: "")
@@ -86,31 +80,20 @@ struct ChartView: View {
         }
     // MARK: - Pie Chart
     func makeData() -> PieChartData {
-        let invValue = Double(startsService.start.inventoryValue)
-        let total = addOrder()
-        print("Total: \(total)")
-        
+        let invValue = Double(startsViewModel.starts.inventoryValue)
+        let orderValue = Double(startsViewModel.totalSum())
+
            let data = PieDataSet(
                dataPoints: [
-                   PieChartDataPoint(value: 20, description: "Order",   colour: .red  , label: .icon(systemName: "", colour: .white, size: 20)),
-                   PieChartDataPoint(value: invValue, description: "Inventory",   colour: .blue   , label: .icon(systemName: "", colour: .white, size: 80)),
+                PieChartDataPoint(value: orderValue, description: "Order", colour: .red),
+                PieChartDataPoint(value: invValue, description: "Inventory", colour: .blue)
                ],
                legendTitle: "Data")
-           
+
            return PieChartData(dataSets: data,
                                metadata: ChartMetadata(title: "Inventory vs Orders", subtitle: ""),
                                chartStyle: PieChartStyle(infoBoxPlacement: .header))
        }
-    
-    // MARK: TO-DO (Add sum and return the value as Int) -> Int
-    func addOrder() -> Int {
-        var total: Int = 0
-        for orderSum in startsService.ordervalue {
-            print("Total sum: \(orderSum.sum)")
-            total = orderSum.sum
-        }
-        return total
-    }
 }
 
 struct chart_Previews: PreviewProvider {

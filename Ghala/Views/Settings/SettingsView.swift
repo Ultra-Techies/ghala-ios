@@ -9,27 +9,19 @@ import SwiftUI
 import AlertToast
 
 struct SettingsView: View {
-    @ObservedObject var userService = UserService()
+    @StateObject var userViewModel = UserViewModel(userService: UserService())
     @ObservedObject var user: User
-    @State private var showToast = false
-    @State var firstName = ""
-    @State var lastName = ""
-    @State var email = ""
     @State var pin = ""
     @State var verifyPin = ""
-    
-    @State var showAlert: Bool = false
-    @State var errorMsg: String = ""
-    @State var loading: Bool = false
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 40) {
-                    TextField("First Name", text: $firstName)
+                    TextField("First Name", text: $userViewModel.user.firstName)
                         .textFieldStyling()
-                    TextField("Last Name", text: $lastName)
+                    TextField("Last Name", text: $userViewModel.user.lastName)
                         .textFieldStyling()
-                    TextField("Email", text: $email)
+                    TextField("Email", text: $userViewModel.user.email)
                         .textFieldStyling()
                     TextField("PIN", text: $pin)
                         .textFieldStyling()
@@ -41,7 +33,7 @@ struct SettingsView: View {
                 .padding(.bottom, 100)
                 Button {
                     Task {
-                      await update()
+                        await update()
                     }
                 } label: {
                     Text("UPDATE")
@@ -49,61 +41,32 @@ struct SettingsView: View {
                         .foregroundColor(.white)
                 }
                 .frame(width: 350, height: 50)
-                .background(Color.buttonColor).opacity(loading ? 0 :  1)
+                .background(Color.buttonColor).opacity(userViewModel.isLoading ? 0 :  1)
                 .background(
                     Rectangle()
                         .fill(Color.buttonColor)
-                        .opacity(loading ? 0 : 1)
+                        .opacity(userViewModel.isLoading ? 0 : 1)
                 )
                 .overlay {
                     ProgressView()
-                        .opacity(loading ? 1 : 0)
+                        .opacity(userViewModel.isLoading ? 1 : 0)
                 }
             }
             .navigationTitle("Settings")
-        }.alert(errorMsg, isPresented: $showAlert) {}
-            .toast(isPresenting: $showToast, alert: {
-                AlertToast(type: .regular, title: "Updated Successfully")
+        }
+        .alert(userViewModel.errorMsg, isPresented: $userViewModel.showAlert) {}
+        .toast(isPresenting: $userViewModel.showToast, alert: {
+            return AlertToast(type: .systemImage("checkmark", Color.yellow), title: "Updated Successfully")
             })
         .task {
-           await getUser()
+            await userViewModel.findByPhoneNumber(user: user)
         }
-    }
-    // MARK: Fetch user Details
-    func getUser() async {
-        do {
-            try await userService.getUser()
-            firstName = userService.user.firstName
-            lastName = userService.user.lastName
-            email = userService.user.email
-        } catch {
-            handleError(error: error.localizedDescription)
-        }
+
     }
     // MARK: Update
     func update() async {
-        user.id = FromUserDefault.userID
-        user.firstName = firstName
-        user.lastName = lastName
-        user.email = email
-        user.password = pin
-        do {
-            loading = true
-        try await userService.updateUser(user: user)
-            showToast = true
-        } catch {
-            loading = false
-            handleError(error: error.localizedDescription)
-        }
-        loading = false
-    }
-    // MARK: Alert
-    func handleError(error: String) {
-        DispatchQueue.main.async {
-            self.loading = false
-            self.errorMsg = error
-            self.showAlert.toggle()
-        }
+        userViewModel.user.password = pin
+        await userViewModel.updateUser(user: userViewModel.user)
     }
 }
 

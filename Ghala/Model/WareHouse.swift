@@ -7,10 +7,6 @@
 
 import Foundation
 
-struct WareHouseData: Codable {
-    var wareInfo: [WareHouse]
-}
-
 class WareHouse: Codable, ObservableObject, Identifiable {
     enum CodingKeys: CodingKey {
         case id
@@ -21,9 +17,7 @@ class WareHouse: Codable, ObservableObject, Identifiable {
     @Published var name: String = ""
     @Published var location: String = ""
     
-    init() {
-        
-    }
+    init() {}
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -34,20 +28,7 @@ class WareHouse: Codable, ObservableObject, Identifiable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        try container.encode(warehouseID, forKey: .id)
         try container.encode(name, forKey: .name)
         try container.encode(location, forKey: .location)
     }
-}
-
-struct WarehouseElement1: Codable {
-    let id: Int
-    let name, location: String
-}
-
-typealias Warehouse = [WarehouseElement1]
-
-//retrurn response on create
-struct CreateResponse: Codable {
-    let warehouseId: Int
 }

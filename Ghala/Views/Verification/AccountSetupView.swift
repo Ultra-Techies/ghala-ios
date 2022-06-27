@@ -8,63 +8,56 @@
 import SwiftUI
 
 struct AccountSetupView: View {
-    @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var user : User
-    @State var firstName = ""
-    @State var lastName = ""
-    @State var email = ""
-    @State var accountPin = ""
-    @State private var toAccSetup = false
+    @StateObject var userViewModel = UserViewModel(userService: UserService())
+    @ObservedObject var user: User
+    @State var toSuccessView = false
     var body: some View {
-        VStack {
-            HStack {
-                Text("Setup your account")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
+        NavigationView {
+            VStack {
+                ScrollView {
+                        VStack {
+                            Text("Welcome to Ghala. Please setup your account to start using the app")
+                                .padding(.horizontal, 25.0)
+                                .multilineTextAlignment(.center)
+                                .padding(.top, 50)
+                            VStack(spacing: 40) {
+                                let _ = print(String(describing: user.phoneNumber))
+                                TextField("First Name", text: $user.firstName)
+                                    .textFieldStyling()
+                                TextField("Last Name", text: $user.lastName)
+                                    .textFieldStyling()
+                                TextField("Email Address", text: $user.email )
+                                    .textFieldStyling()
+                                    
+                                SecureField("Account Pin",text: $user.password)
+                                    .textFieldStyling()
+                                    .keyboardType(.numberPad)
+                            }
+                            .padding(.horizontal, 25.0)
+                            .padding(.top, 50)
+                            .padding(.bottom, 100)
+                            Button {
+                                toSuccessView = true
+                            } label: {
+                                Text("VERIFY")
+                                    .foregroundColor(.white)
+                                    .frame(width: 350, height: 50)
+                            }
+                            .disabled(user.firstName.isEmpty || user.lastName.isEmpty || user.email.isEmpty || user.password.isEmpty)
+                            .background(Color.buttonColor).opacity(userViewModel.isLoading ? 0 :  1)
+                            .overlay {
+                                ProgressView()
+                                    .opacity(userViewModel.isLoading ? 1 : 0)
+                            }
+                            Spacer()
+                            NavigationLink(destination: SubmittedSucessScreen(user: user), isActive: $toSuccessView ,label: EmptyView.init)
+                        }
+                    }
             }
-            .frame(maxWidth: .infinity, maxHeight: 50 , alignment: .center)
-            .background(Color.yellow)
-            Text("Welcome to Ghala. Please setup your account to start using the app")
-                .padding(.horizontal, 25.0)
-                .multilineTextAlignment(.center)
-                .padding(.top, 50)
-            VStack(spacing: 40) {
-                let _ = print(String(describing: user.phoneNumber))
-                TextField("First Name", text: $user.firstName)
-                    .textFieldStyling()
-                TextField("Last Name", text: $user.lastName)
-                    .textFieldStyling()
-                TextField("Email Address", text: $user.email )
-                    .textFieldStyling()
-                SecureField("Account Pin",text: $user.password)
-                    .textFieldStyling()
-                    .keyboardType(/*@START_MENU_TOKEN@*/.numberPad/*@END_MENU_TOKEN@*/)
-            }
-            .padding(.horizontal, 25.0)
-            .padding(.top, 50)
-            .padding(.bottom, 100)
-            Button {
-                toAccSetup.toggle()
-            } label: {
-                Text("VERIFY")
-                    .foregroundColor(.white)
-                    .frame(width: 350, height: 50)
-            }
-            .background(Color.buttonColor)
-            // MARK: Add condion when button pressed wait for...  ---on (Environment dismiss)
-//            ProgressView()
-//                .scaleEffect(2)
-//                .font(.system(size:8))
-//                .frame(alignment: .bottom)
-//                .padding(.top, 50)
-            Spacer()
+            .navigationBarTitle("Setup Your Account", displayMode: .inline)
+            .navigationBarColor(backgroundColor: .systemYellow, titleColor: .black)
         }
         .frame(maxHeight: .infinity)
-        .fullScreenCover(isPresented: $toAccSetup) {
-           SubmittedSucessScreen(user: user)
-        }
-        
     }
 }
 
@@ -86,5 +79,38 @@ struct TextFieldStyle: ViewModifier {
 extension View {
     func textFieldStyling() -> some View {
         modifier(TextFieldStyle())
+    }
+}
+
+struct NavigationBarModifier: ViewModifier {
+
+    var backgroundColor: UIColor?
+    var titleColor: UIColor?
+
+    init(backgroundColor: UIColor?, titleColor: UIColor?) {
+        self.backgroundColor = backgroundColor
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.configureWithTransparentBackground()
+        coloredAppearance.backgroundColor = backgroundColor
+        coloredAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .white]
+        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .white]
+
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
+        UINavigationBar.appearance().compactAppearance = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+    }
+
+    func body(content: Content) -> some View {
+        ZStack {
+            content
+            VStack {
+                GeometryReader { geometry in
+                    Color(self.backgroundColor ?? .clear)
+                        .frame(height: geometry.safeAreaInsets.top)
+                        .edgesIgnoringSafeArea(.top)
+                    Spacer()
+                }
+            }
+        }
     }
 }
