@@ -42,7 +42,6 @@ class DeliveryViewModel: ObservableObject {
             return delivery.filter { $0.deliveryWindow.localizedCaseInsensitiveContains(searchDelivery)}
         }
     }
-    
     // MARK: Create Delivery
     func createDeliveryNote(order: Order) async {
         do {

@@ -23,7 +23,7 @@ class WarehouseViewModel: ObservableObject {
     init(wareHouseService: WareHouseService) {
         self.wareHouseService = wareHouseService
     }
-    //  MARK: Get All WareHouse
+    // MARK: Get All WareHouse
     func getAll() async {
         do {
             let wareHouseData = try await wareHouseService.getAllWareHouse()

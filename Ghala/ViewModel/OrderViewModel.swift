@@ -37,7 +37,6 @@ class OrderViewModel: ObservableObject {
     var orderSearch: [Order] {
         if searchOrder.isEmpty {
             return order
-            
         } else {
             return order.filter { $0.customerName.localizedCaseInsensitiveContains(searchOrder)}
         }
