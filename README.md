@@ -30,3 +30,18 @@ More designs coming soon...
 <a href="url"><img src=https://user-images.githubusercontent.com/33428918/170789741-6d620bc5-9171-481b-a712-d9cf3ba962a7.png  height="550"  ></a>
 <a href="url"><img src=https://user-images.githubusercontent.com/33428918/170789746-b4f9e0af-be71-4f65-b47d-085fc8dbc83b.png  height="550"  ></a>
 <a href="url"><img src=https://user-images.githubusercontent.com/33428918/170789770-2b82684e-d5fa-4b7c-b409-07f09d500b28.png  height="550"  ></a>
+
+## Architecture
+The app uses the MVVM architecture: A comprehensive architecture design is still WIP.
+
+## Contributors
+Auto-populated from:[contrib.rocks](https://contrib.rocks)
+
+<a href="https://github.com/Ultra-Techies/ghala-ios/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Ultra-Techies/ghala-ios" />
+</a>
+
+## SwiftUI Package Dependencies
+
+- [SwiftUICharts](https://miro.com/app/board/uXjVOKTf9mk=/?share_link_id=657041887226)
+- [AlertToast](https://github.com/elai950/AlertToast)
