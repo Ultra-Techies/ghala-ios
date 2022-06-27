@@ -9,14 +9,14 @@ import Foundation
 
 struct Starts: Codable {
     let inventoryValue: Int
-    let orderValue: [OrderValueElement]
+    let orderValue: [OrderValue]
 }
-struct OrderValueElement: Codable, Hashable {
-    let sum: Int
-    let month: Double
-    let year: Double
-    let monthName: String
-    let yearName: String
+struct OrderValue: Codable, Hashable {
+    var sum: Int
+    var month: Double
+    var year: Double
+    var monthName: String
+    var yearName: String
 }
 /*
  {
